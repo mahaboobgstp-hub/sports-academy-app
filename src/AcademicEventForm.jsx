@@ -1,45 +1,62 @@
-export default function AcademicEventForm() {
-  return (
-    <div style={{ padding: "20px" }}>
-      <h2>Create Academic Season</h2>
+import { useState } from "react";
+import {
+  SPORTS, SEASONS, EMIRATES, LOCATIONS
+} from "./data";
+import LocationMetricsModal from "./LocationMetricsModal";
+import "./styles.css";
 
-      <label>Sport</label><br />
+export default function AcademicEventForm() {
+  const [modalLocation, setModalLocation] = useState(null);
+
+  return (
+    <div className="container">
+      <h2>Create Academic Event</h2>
+
+      <label>Sport</label>
       <select>
-        <option>Basketball</option>
-        <option>Badminton</option>
+        {SPORTS.map(s => <option key={s}>{s}</option>)}
       </select>
 
-      <br /><br />
-
-      <label>Year</label><br />
+      <label>Year</label>
       <input placeholder="2025-26" />
 
-      <br /><br />
-
-      <label>Season</label><br />
+      <label>Season</label>
       <select>
-        <option>Season 1</option>
-        <option>Season 2</option>
-        <option>Season 3</option>
-        <option>Summer Camp</option>
+        {SEASONS.map(s => <option key={s}>{s}</option>)}
       </select>
 
-      <br /><br />
+      <label>Season Period</label>
+      <div className="row">
+        <input type="date" />
+        <input type="date" />
+      </div>
 
-      <label>Emirate</label><br />
+      <label>Emirate</label>
       <select>
-        <option>Abu Dhabi</option>
-        <option>Dubai</option>
-        <option>Sharjah</option>
-        <option>Ajman</option>
-        <option>Fujairah</option>
-        <option>Ras Al Khaimah</option>
-        <option>Umm Al Quwain</option>
+        {EMIRATES.map(e => <option key={e}>{e}</option>)}
       </select>
 
-      <br /><br />
+      <label>Locations</label>
+      <div className="locations">
+        {LOCATIONS.map(loc => (
+          <div key={loc.id} className="location-row">
+            <input type="checkbox" />
+            <span>{loc.name}</span>
+            <button onClick={() => setModalLocation(loc)}>
+              More Metrics
+            </button>
+          </div>
+        ))}
+      </div>
 
-      <button>Create Season</button>
+      {modalLocation && (
+        <LocationMetricsModal
+          location={modalLocation}
+          onClose={() => setModalLocation(null)}
+        />
+      )}
+
+      <button className="submit-btn">Create Event</button>
     </div>
   );
 }
