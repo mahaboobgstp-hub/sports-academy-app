@@ -143,3 +143,20 @@ button {
   align-items: center;
   gap: 12px;
 }
+.day-block {
+  margin-top: 12px;
+}
+
+.day-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.hour-inline {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
