@@ -125,3 +125,9 @@ button {
   border: 1px solid #ccc;
   margin-top: 10px;
 }
+
+.date-col {
+  width: 90px;
+  font-size: 13px;
+  color: #555;
+}
