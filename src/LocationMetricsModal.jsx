@@ -32,18 +32,29 @@ export default function LocationMetricsModal({ location, onClose }) {
 
                   {HOURS.map(hour => (
                     <div key={hour} className="hour-inline">
-                      <input type="checkbox" />
-                      <span>{hour}</span>
+  <span className="date-col">05-Jan-26</span>
 
-                      <select>
-                        {PROGRAMS.map(p => (
-                          <option key={p}>{p}</option>
-                        ))}
-                      </select>
+  <input type="checkbox" />
+  <span>{hour}</span>
 
-                      <input placeholder="Seats" />
-                      <input placeholder="Price" />
-                    </div>
+  <select>
+    {PROGRAMS.map(p => (
+      <option key={p}>{p}</option>
+    ))}
+  </select>
+
+  <input placeholder="Seats" />
+  <input placeholder="Price" />
+
+  <label>
+    <input type="checkbox" /> Pause
+  </label>
+
+  <label>
+    <input type="checkbox" /> Cancel
+  </label>
+</div>
+
                   ))}
                 </details>
 
