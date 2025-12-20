@@ -172,3 +172,9 @@ button {
   max-height: 60vh;
   overflow-y: auto;
 }
+.date-editor {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+}
