@@ -1,51 +1,40 @@
 import { useState } from "react";
 
 const DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-const HOURS = ["6:00","7:00","8:00","9:00","10:00","11:00","12:00"];
+const HOURS = ["6:00","7:00","8:00","9:00","10:00"];
 const PROGRAMS = ["ballsnbabies","midlevel","jr","all boys"];
 
 export default function LocationMetricsModal({ location, onClose }) {
-  const [schedule, setSchedule] = useState({});
+  const [courts, setCourts] = useState([{ id: 1, name: "Court 1" }]);
+  const [weekEditor, setWeekEditor] = useState(null);
 
-  const toggleHour = (day, hour) => {
-    setSchedule(prev => ({
-      ...prev,
-      [day]: {
-        ...prev[day],
-        hours: {
-          ...prev[day]?.hours,
-          [hour]: prev[day]?.hours?.[hour] || {
-            program: "",
-            seats: "",
-            price: ""
-          }
-        }
-      }
-    }));
+  const addCourt = () => {
+    setCourts([...courts, { id: courts.length + 1, name: `Court ${courts.length + 1}` }]);
   };
 
   return (
     <div className="modal-backdrop">
-      <div className="modal">
-        <h3>{location.name} – Weekly Pattern</h3>
+      <div className="modal wide">
+        <h3>{location.name} – Courts & Weekly Pattern</h3>
 
-        {DAYS.map(day => (
-          <div key={day} className="day-row">
-            <strong>{day}</strong>
+        <button onClick={addCourt}>+ Add Court</button>
 
-            <details>
-              <summary>Select Hours</summary>
+        {courts.map(court => (
+          <div key={court.id} className="court-block">
+            <h4>{court.name}</h4>
 
-              {HOURS.map(hour => (
-                <div key={hour} className="hour-row">
-                  <input
-                    type="checkbox"
-                    onChange={() => toggleHour(day, hour)}
-                  />
-                  <span>{hour}</span>
+            {DAYS.map(day => (
+              <div key={day} className="day-row-inline">
+                <strong>{day}</strong>
 
-                  {schedule[day]?.hours?.[hour] && (
-                    <>
+                <details>
+                  <summary>Hours</summary>
+
+                  {HOURS.map(hour => (
+                    <div key={hour} className="hour-inline">
+                      <input type="checkbox" />
+                      <span>{hour}</span>
+
                       <select>
                         {PROGRAMS.map(p => (
                           <option key={p}>{p}</option>
@@ -54,19 +43,38 @@ export default function LocationMetricsModal({ location, onClose }) {
 
                       <input placeholder="Seats" />
                       <input placeholder="Price" />
-                    </>
-                  )}
-                </div>
-              ))}
-            </details>
+                    </div>
+                  ))}
+                </details>
 
-            <button className="small-btn">
-              Edit specific weeks
-            </button>
+                <button
+                  className="link-btn"
+                  onClick={() => setWeekEditor({ court, day })}
+                >
+                  Edit weeks
+                </button>
+              </div>
+            ))}
           </div>
         ))}
 
-        <button onClick={onClose}>Save</button>
+        {weekEditor && (
+          <div className="week-modal">
+            <h4>
+              {weekEditor.court.name} – {weekEditor.day}
+            </h4>
+
+            {Array.from({ length: 12 }, (_, i) => (
+              <div key={i}>
+                <input type="checkbox" /> Week {i + 1}
+              </div>
+            ))}
+
+            <button onClick={() => setWeekEditor(null)}>Apply</button>
+          </div>
+        )}
+
+        <button onClick={onClose}>Save & Close</button>
       </div>
     </div>
   );
