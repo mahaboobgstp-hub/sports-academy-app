@@ -61,6 +61,8 @@ const seasonStart = new Date(seasonStartDate);
 const seasonEnd = new Date(seasonEndDate);
 
   const [weekEditor, setWeekEditor] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const [courts, setCourts] = useState([
     { id: 1, name: "Main Court", schedule: {} }
   ]);
@@ -157,20 +159,53 @@ const seasonEnd = new Date(seasonEndDate);
          {weekEditor && (
   <div className="week-modal">
     <h4>{weekEditor.day} – All Dates</h4>
+    {selectedDate && (
+  <div className="date-editor">
+    <h5>
+      Editing{" "}
+      {selectedDate.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "2-digit"
+      })}
+    </h5>
+
+    <div className="hour-inline">
+      <select>
+        {TIME_SLOTS.map(t => (
+          <option key={t}>{t}</option>
+        ))}
+      </select>
+
+      <select>
+        {PROGRAMS.map(p => (
+          <option key={p}>{p}</option>
+        ))}
+      </select>
+
+      <input placeholder="Seats" />
+      <input placeholder="Price" />
+
+      <label>
+        <input type="checkbox" /> Pause
+      </label>
+
+      <label>
+        <input type="checkbox" /> Cancel
+      </label>
+    </div>
+
+    <button onClick={() => setSelectedDate(null)}>
+      Done editing this date
+    </button>
+  </div>
+)}
+
 
     {weekEditor.dates.map((date, i) => (
       <div key={i} style={{ marginBottom: "6px" }}>
-        <button
-          onClick={() =>
-            alert(
-              `Editing ${date.toLocaleDateString("en-GB", {
-                day: "2-digit",
-                month: "short",
-                year: "2-digit"
-              })}`
-            )
-          }
-        >
+        <button onClick={() => setSelectedDate(date)}>
+
           {date.toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "short",
