@@ -49,7 +49,12 @@ const TIME_SLOTS = [
 ];
 const PROGRAMS = ["ballsnbabies","midlevel","jr","all boys"];
 
-export default function LocationMetricsModal({ location, onClose }) {
+export default function LocationMetricsModal({
+  location,
+  seasonStartDate,
+  seasonEndDate,
+  onClose
+}) {
   const [weekEditor, setWeekEditor] = useState(null);
   const [courts, setCourts] = useState([
     { id: 1, name: "Main Court", schedule: {} }
