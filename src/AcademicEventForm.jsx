@@ -63,11 +63,13 @@ const [seasonEndDate, setSeasonEndDate] = useState("");
       </div>
 
       {modalLocation && (
-        <LocationMetricsModal
-          location={modalLocation}
-          onClose={() => setModalLocation(null)}
-        />
-      )}
+  <LocationMetricsModal
+    location={modalLocation}
+    seasonStartDate={seasonStartDate}
+    seasonEndDate={seasonEndDate}
+    onClose={() => setModalLocation(null)}
+  />
+)}
 
       <button className="submit-btn">Create Event</button>
     </div>
