@@ -91,3 +91,37 @@ button {
   padding: 6px;
   border-radius: 4px;
 }
+
+.court-block {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.day-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.hour-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.link-btn {
+  background: none;
+  color: #1e88e5;
+  border: none;
+  cursor: pointer;
+}
+
+.week-modal {
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
