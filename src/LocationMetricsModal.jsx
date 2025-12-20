@@ -25,14 +25,16 @@ export default function LocationMetricsModal({ location, onClose }) {
 
             {DAYS.map(day => (
               <div key={day} className="day-row-inline">
-                <strong>{day}</strong>
+  <span className="day-date">05-Jan-26</span>
+  <strong>{day}</strong>
+
 
                 <details>
                   <summary>Hours</summary>
 
                   {HOURS.map(hour => (
                     <div key={hour} className="hour-inline">
-  <span className="date-col">05-Jan-26</span>
+ 
 
   <input type="checkbox" />
   <span>{hour}</span>
