@@ -7,6 +7,9 @@ import "./styles.css";
 
 export default function AcademicEventForm() {
   const [modalLocation, setModalLocation] = useState(null);
+  const [seasonStartDate, setSeasonStartDate] = useState("");
+const [seasonEndDate, setSeasonEndDate] = useState("");
+  
 
   return (
     <div className="container">
@@ -27,8 +30,18 @@ export default function AcademicEventForm() {
 
       <label>Season Period</label>
       <div className="row">
-        <input type="date" />
-        <input type="date" />
+        <input
+  type="date"
+  value={seasonStartDate}
+  onChange={(e) => setSeasonStartDate(e.target.value)}
+/>
+
+<input
+  type="date"
+  value={seasonEndDate}
+  onChange={(e) => setSeasonEndDate(e.target.value)}
+/>
+
       </div>
 
       <label>Emirate</label>
