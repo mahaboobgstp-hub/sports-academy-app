@@ -1,3 +1,42 @@
+const DAY_INDEX = {
+  Sunday: 0,
+  Monday: 1,
+  Tuesday: 2,
+  Wednesday: 3,
+  Thursday: 4,
+  Friday: 5,
+  Saturday: 6
+};
+
+function formatDate(date) {
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "2-digit"
+  });
+}
+
+function getDatesForDay(startDate, endDate, dayName) {
+  const dates = [];
+  const targetDay = DAY_INDEX[dayName];
+
+  let current = new Date(startDate);
+  current.setHours(0, 0, 0, 0);
+
+  // Move to first required weekday
+  while (current.getDay() !== targetDay) {
+    current.setDate(current.getDate() + 1);
+  }
+
+  // Collect all matching weekdays
+  while (current <= endDate) {
+    dates.push(new Date(current));
+    current.setDate(current.getDate() + 7);
+  }
+
+  return dates;
+}
+
 import { useState } from "react";
 
 const DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -11,6 +50,7 @@ const TIME_SLOTS = [
 const PROGRAMS = ["ballsnbabies","midlevel","jr","all boys"];
 
 export default function LocationMetricsModal({ location, onClose }) {
+  const [weekEditor, setWeekEditor] = useState(null);
   const [courts, setCourts] = useState([
     { id: 1, name: "Main Court", schedule: {} }
   ]);
@@ -62,9 +102,15 @@ export default function LocationMetricsModal({ location, onClose }) {
             {DAYS.map(day => (
               <div key={day} className="day-block">
                 <div className="day-header">
-                  <strong>05-Jan-26</strong> {day}
-                  <button className="link-btn">Edit weeks</button>
-                </div>
+  <strong>{formatDate(dayDates[0])}</strong> {day}
+  <button
+    className="link-btn"
+    onClick={() => setWeekEditor({ day, dates: dayDates })}
+  >
+    Edit weeks
+  </button>
+</div>
+
 
                 {(court.schedule[day] || []).map((row, i) => (
                   <div key={i} className="hour-inline">
@@ -91,7 +137,36 @@ export default function LocationMetricsModal({ location, onClose }) {
             ))}
           </div>
         ))}
+         {weekEditor && (
+  <div className="week-modal">
+    <h4>{weekEditor.day} – All Dates</h4>
 
+    {weekEditor.dates.map((date, i) => (
+      <div key={i} style={{ marginBottom: "6px" }}>
+        <button
+          onClick={() =>
+            alert(
+              `Editing ${date.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "2-digit"
+              })}`
+            )
+          }
+        >
+          {date.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "2-digit"
+          })}
+        </button>
+      </div>
+    ))}
+
+    <button onClick={() => setWeekEditor(null)}>Close</button>
+  </div>
+)}
+   
         <button onClick={onClose}>Save & Close</button>
       </div>
     </div>
