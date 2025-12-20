@@ -131,3 +131,15 @@ button {
   font-size: 13px;
   color: #555;
 }
+.day-date {
+  width: 90px;
+  white-space: nowrap;
+  font-size: 13px;
+  color: #444;
+}
+
+.day-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
