@@ -55,6 +55,11 @@ export default function LocationMetricsModal({
   seasonEndDate,
   onClose
 }) {
+  if (!seasonStartDate || !seasonEndDate) return null;
+
+const seasonStart = new Date(seasonStartDate);
+const seasonEnd = new Date(seasonEndDate);
+
   const [weekEditor, setWeekEditor] = useState(null);
   const [courts, setCourts] = useState([
     { id: 1, name: "Main Court", schedule: {} }
@@ -104,7 +109,11 @@ export default function LocationMetricsModal({
               }
             />
 
-            {DAYS.map(day => (
+            {DAYS.map(day => {
+  const dayDates = getDatesForDay(seasonStart, seasonEnd, day);
+
+  return (
+
               <div key={day} className="day-block">
                 <div className="day-header">
   <strong>{formatDate(dayDates[0])}</strong> {day}
@@ -135,11 +144,14 @@ export default function LocationMetricsModal({
                   </div>
                 ))}
 
+
+
                 <button onClick={() => addHour(court.id, day)}>
                   + Add Hour
                 </button>
               </div>
-            ))}
+             );
+})}
           </div>
         ))}
          {weekEditor && (
