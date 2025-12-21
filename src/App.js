@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AcademicEventForm from "./AcademicEventForm";
 import BookingPage from "./BookingPage";
+import BookingWizard from "./bookings/BookingWizard";
 import "./styles.css";
 
 export default function App() {
@@ -9,7 +10,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<AcademicEventForm />} />
         <Route path="/create" element={<AcademicEventForm />} />
-        <Route path="/book" element={<BookingPage />} />
+        <Route path="/book1" element={<BookingPage />} />
+        <Route path="/book" element={<BookingWizard />} />
+   
       </Routes>
     </BrowserRouter>
   );
