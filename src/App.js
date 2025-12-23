@@ -1,10 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 
+/* ===== SEASONS ===== */
+import SeasonForm from "./pages/seasons/SeasonForm";
 import AcademicEventForm from "./AcademicEventForm";
+
+/* ===== BOOKINGS ===== */
 import BookingPage from "./BookingPage";
 import BookingForm from "./bookings/BookingForm";
 
+/* ===== CORE ===== */
 import Dashboard from "./pages/Dashboard";
 import Placeholder from "./pages/Placeholder";
 
@@ -25,7 +30,34 @@ export default function App() {
           }
         />
 
-        {/* ===== SEASONS (CREATE / EDIT) ===== */}
+        {/* =====================================================
+            SEASONS (ERP CORRECT ROUTES)
+        ===================================================== */}
+
+        {/* CREATE SEASON */}
+        <Route
+          path="/seasons/create"
+          element={
+            <AppLayout>
+              <SeasonForm />
+            </AppLayout>
+          }
+        />
+
+        {/* EDIT SEASON */}
+        <Route
+          path="/seasons/edit"
+          element={
+            <AppLayout>
+              <SeasonForm />
+            </AppLayout>
+          }
+        />
+
+        {/* =====================================================
+            LEGACY (KEEP TEMPORARILY – DO NOT DELETE)
+            This ensures nothing breaks while migrating
+        ===================================================== */}
         <Route
           path="/create"
           element={
@@ -54,7 +86,7 @@ export default function App() {
           }
         />
 
-        {/* ===== FUTURE ERP SCREENS (SAFE PLACEHOLDERS) ===== */}
+        {/* ===== FUTURE ERP SCREENS ===== */}
         <Route
           path="/programs"
           element={<AppLayout><Placeholder title="Programs" /></AppLayout>}
