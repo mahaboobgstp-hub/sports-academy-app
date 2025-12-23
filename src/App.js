@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 
 /* ===== SEASONS ===== */
-import SeasonForm from "./pages/seasons/SeasonForm";
+//import SeasonForm from "./pages/seasons/SeasonForm";
 import AcademicEventForm from "./AcademicEventForm";
 
 /* ===== BOOKINGS ===== */
