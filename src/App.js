@@ -7,7 +7,7 @@ import AcademicEventForm from "./AcademicEventForm";
 
 /* ===== BOOKINGS ===== */
 import BookingPage from "./BookingPage";
-import BookingWizzard from "./bookings/BookingWizzard";
+import BookingWizard from "./bookings/BookingWizard";
 
 /* ===== CORE ===== */
 import Dashboard from "./pages/Dashboard";
