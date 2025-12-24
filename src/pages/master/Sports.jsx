@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 
 export default function Sports() {
   const [sports, setSports] = useState([]);
@@ -6,46 +7,35 @@ export default function Sports() {
   const [code, setCode] = useState("");
 
   useEffect(() => {
-    fetchSports();
+    loadSports();
   }, []);
 
-  const fetchSports = async () => {
-    const res = await fetch(
-      `${process.env.REACT_APP_SUPABASE_URL}/rest/v1/sports?select=*`,
-      {
-        headers: {
-          apikey: process.env.REACT_APP_SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${process.env.REACT_APP_SUPABASE_ANON_KEY}`
-        }
-      }
-    );
-    const data = await res.json();
-    setSports(data);
-  };
+  async function loadSports() {
+    const { data } = await supabase
+      .from("sports")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-  const addSport = async () => {
-    await fetch(
-      `${process.env.REACT_APP_SUPABASE_URL}/rest/v1/sports`,
-      {
-        method: "POST",
-        headers: {
-          apikey: process.env.REACT_APP_SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${process.env.REACT_APP_SUPABASE_ANON_KEY}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name, code })
-      }
-    );
+    setSports(data || []);
+  }
+
+  async function saveSport() {
+    if (!name || !code) return;
+
+    await supabase.from("sports").insert([
+      { name, code }
+    ]);
+
     setName("");
     setCode("");
-    fetchSports();
-  };
+    loadSports();
+  }
 
   return (
     <div>
       <h3>Sports</h3>
 
-      <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
+      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
         <input
           placeholder="Sport Name"
           value={name}
@@ -56,7 +46,7 @@ export default function Sports() {
           value={code}
           onChange={e => setCode(e.target.value)}
         />
-        <button onClick={addSport}>Add Sport</button>
+        <button onClick={saveSport}>Add</button>
       </div>
 
       <table width="100%" border="1" cellPadding="6">
