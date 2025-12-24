@@ -16,46 +16,6 @@ body {
   height: 100vh;
 }
 
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 240px;
-  background: #1e293b;
-  color: #e5e7eb;
-  padding: 16px;
-}
-
-.sidebar h3 {
-  margin: 0 0 20px;
-  font-size: 18px;
-  color: #ffffff;
-}
-
-.sidebar .section {
-  margin-top: 16px;
-}
-
-.sidebar .section-title {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: #94a3b8;
-  margin-bottom: 6px;
-}
-
-.sidebar a {
-  display: block;
-  padding: 8px 10px;
-  margin-bottom: 4px;
-  border-radius: 6px;
-  color: #cbd5f5;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.sidebar a:hover {
-  background: #334155;
-  color: #ffffff;
-}
-
 /* ===== CONTENT ===== */
 .content {
   flex: 1;
