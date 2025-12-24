@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
+import Sports from "./pages/master/Sports";
+
 
 /* ===== SEASONS ===== */
 import AcademicEventForm from "./AcademicEventForm";
@@ -28,6 +30,7 @@ export default function App() {
 
           <Route path="/" element={<Dashboard />} />
           <Route path="/planner" element={<ProgramPlanner />} />
+          <Route path="/master/sports" element={<Sports />} />
   
 
           {/* SEASONS */}
