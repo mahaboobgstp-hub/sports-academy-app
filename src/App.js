@@ -17,84 +17,26 @@ import "./styles.css";
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
+  <Routes>
 
-        <Route
-          path="/"
-          element={
-            <AppLayout>
-              <Dashboard />
-            </AppLayout>
-          }
-        />
+    {/* Layout wrapper ONCE */}
+    <Route element={<AppLayout />}>
 
-        {/* SEASONS */}
-        <Route
-          path="/seasons/create"
-          element={
-            <AppLayout>
-              <AcademicEventForm />
-            </AppLayout>
-          }
-        />
+      <Route path="/" element={<Dashboard />} />
 
-        <Route
-          path="/seasons/edit"
-          element={
-            <AppLayout>
-              <AcademicEventForm />
-            </AppLayout>
-          }
-        />
+      <Route path="/seasons/create" element={<AcademicEventForm />} />
+      <Route path="/seasons/edit" element={<AcademicEventForm />} />
+      <Route path="/create" element={<AcademicEventForm />} />
 
-        {/* LEGACY */}
-        <Route
-          path="/create"
-          element={
-            <AppLayout>
-              <AcademicEventForm />
-            </AppLayout>
-          }
-        />
+      <Route path="/book" element={<BookingWizard />} />
+      <Route path="/book1" element={<BookingPage />} />
 
-        {/* BOOKINGS */}
-        <Route
-          path="/book"
-          element={
-            <AppLayout>
-              <BookingWizard />
-            </AppLayout>
-          }
-        />
+      <Route path="/programs" element={<Placeholder title="Programs" />} />
+      <Route path="/locations" element={<Placeholder title="Locations" />} />
+      <Route path="/products" element={<Placeholder title="Products" />} />
+      <Route path="/analytics" element={<Placeholder title="Analytics" />} />
 
-        <Route
-          path="/book1"
-          element={
-            <AppLayout>
-              <BookingPage />
-            </AppLayout>
-          }
-        />
+    </Route>
 
-        {/* FUTURE */}
-        <Route
-          path="/programs"
-          element={<AppLayout><Placeholder title="Programs" /></AppLayout>}
-        />
-        <Route
-          path="/locations"
-          element={<AppLayout><Placeholder title="Locations" /></AppLayout>}
-        />
-        <Route
-          path="/products"
-          element={<AppLayout><Placeholder title="Products" /></AppLayout>}
-        />
-        <Route
-          path="/analytics"
-          element={<AppLayout><Placeholder title="Analytics" /></AppLayout>}
-        />
-
-      </Routes>
-    </BrowserRouter>
-  );
-}
+  </Routes>
+</BrowserRouter>
