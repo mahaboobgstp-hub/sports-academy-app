@@ -4,16 +4,43 @@ export default function Seasons() {
       <h3>Seasons</h3>
 
       {/* Add Season */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 8,
+          marginBottom: 12
+        }}
+      >
         <input placeholder="Season Name" />
-        <input placeholder="Code" />
-        <input type="date" />
-        <input type="date" />
+        <input placeholder="Season Code" />
+
+        <input placeholder="Academic Year (e.g. 2025-26)" />
+
         <select>
-          <option>Active</option>
-          <option>Inactive</option>
+          <option>Status: Active</option>
+          <option>Status: Closed</option>
         </select>
-        <button>Add</button>
+
+        <input type="date" />
+        <input type="date" />
+
+        <label>
+          <input type="checkbox" /> Default Season
+        </label>
+
+        <label>
+          <input type="checkbox" /> Planning Locked
+        </label>
+
+        <input
+          placeholder="Notes"
+          style={{ gridColumn: "span 3" }}
+        />
+
+        <button style={{ gridColumn: "span 1" }}>
+          Add
+        </button>
       </div>
 
       {/* Seasons Table */}
@@ -22,14 +49,19 @@ export default function Seasons() {
           <tr>
             <th>Name</th>
             <th>Code</th>
+            <th>Academic Year</th>
             <th>Start</th>
             <th>End</th>
+            <th>Default</th>
+            <th>Locked</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td colSpan="5" align="center">No seasons yet</td>
+            <td colSpan="8" align="center">
+              No seasons yet
+            </td>
           </tr>
         </tbody>
       </table>
