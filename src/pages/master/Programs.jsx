@@ -4,9 +4,16 @@ export default function Programs() {
       <h3>Programs</h3>
 
       {/* Add Program */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 8,
+          marginBottom: 12
+        }}
+      >
         <input placeholder="Program Name" />
-        <input placeholder="Code" />
+        <input placeholder="Program Code" />
 
         <select>
           <option>Select Sport</option>
@@ -14,14 +21,47 @@ export default function Programs() {
           <option>Football</option>
         </select>
 
-        <input placeholder="Age Group (e.g. 7-10)" />
-
         <select>
-          <option>Active</option>
-          <option>Inactive</option>
+          <option>Program Type</option>
+          <option>Group</option>
+          <option>1-on-1</option>
         </select>
 
-        <button>Add</button>
+        <input type="number" placeholder="Duration (minutes)" />
+        <input type="number" placeholder="Default Seats" />
+
+        <select>
+          <option>Skill Level</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+
+        <select>
+          <option>Gender</option>
+          <option>Mixed</option>
+          <option>Boys</option>
+          <option>Girls</option>
+        </select>
+
+        <input type="number" placeholder="Age Min" />
+        <input type="number" placeholder="Age Max" />
+
+        <input type="number" placeholder="Default Price" />
+
+        <select>
+          <option>Status: Active</option>
+          <option>Status: Inactive</option>
+        </select>
+
+        <input
+          placeholder="Description"
+          style={{ gridColumn: "span 3" }}
+        />
+
+        <button style={{ gridColumn: "span 1" }}>
+          Add
+        </button>
       </div>
 
       {/* Programs Table */}
@@ -31,13 +71,17 @@ export default function Programs() {
             <th>Name</th>
             <th>Code</th>
             <th>Sport</th>
-            <th>Age Group</th>
+            <th>Type</th>
+            <th>Duration</th>
+            <th>Seats</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td colSpan="5" align="center">No programs yet</td>
+            <td colSpan="7" align="center">
+              No programs yet
+            </td>
           </tr>
         </tbody>
       </table>
