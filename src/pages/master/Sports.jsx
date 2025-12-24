@@ -20,9 +20,6 @@ export default function Sports() {
   }
 
   async function saveSport() {
-    if (!name || !code) return;
-
-   async function saveSport() {
   if (!name || !code) {
     alert("Name and Code are required");
     return;
