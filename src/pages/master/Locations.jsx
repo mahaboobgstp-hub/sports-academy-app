@@ -25,15 +25,18 @@ export default function Locations() {
     <div>
       <h3>Locations</h3>
 
-      {/* Location Details */}
+      {/* ===============================
+          LOCATION DETAILS
+      =============================== */}
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: 8,
-          marginBottom: 16
+          marginBottom: 20
         }}
       >
+        {/* Core */}
         <input placeholder="Location Name" />
         <input placeholder="Location Code" />
         <input placeholder="City" />
@@ -43,17 +46,48 @@ export default function Locations() {
           <option>Status: Inactive</option>
         </select>
 
+        {/* Address */}
         <input
           placeholder="Full Address"
           style={{ gridColumn: "span 4" }}
         />
 
+        <input placeholder="Timezone (e.g. IST)" />
+        <input type="number" placeholder="Max Capacity" />
+
+        {/* ===============================
+            CONTACT PERSON (OPS)
+        =============================== */}
+        <h4 style={{ gridColumn: "span 4" }}>Contact Person</h4>
+
         <input placeholder="Contact Person Name" />
+        <input placeholder="Contact Role" />
         <input placeholder="Contact Phone" />
         <input placeholder="Contact Email" />
 
-        <input type="number" placeholder="Max Capacity" />
+        {/* ===============================
+            VENDOR / CONTRACTOR
+        =============================== */}
+        <h4 style={{ gridColumn: "span 4" }}>Vendor / Contractor</h4>
 
+        <input placeholder="Vendor Name" />
+        <input placeholder="Vendor Type (Owner / Contractor / Managed)" />
+        <input placeholder="Vendor Company Name" />
+
+        <input placeholder="Vendor Phone" />
+        <input placeholder="Vendor Email" />
+
+        <label>
+          Contract Start Date
+          <input type="date" />
+        </label>
+
+        <label>
+          Contract End Date
+          <input type="date" />
+        </label>
+
+        {/* Notes */}
         <input
           placeholder="Notes"
           style={{ gridColumn: "span 3" }}
@@ -64,7 +98,9 @@ export default function Locations() {
         </button>
       </div>
 
-      {/* Courts Section */}
+      {/* ===============================
+          COURTS (CHILD OF LOCATION)
+      =============================== */}
       <h4>Courts</h4>
 
       {courts.map((court, index) => (
