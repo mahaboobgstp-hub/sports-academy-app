@@ -36,7 +36,7 @@ export default function App() {
 
         {/* CREATE SEASON */}
         <Route
-          path="/seasons/create"
+          path="/AcademicEventForm/create"
           element={
             <AppLayout>
               <SeasonForm />
@@ -46,7 +46,7 @@ export default function App() {
 
         {/* EDIT SEASON */}
         <Route
-          path="/seasons/edit"
+          path="/AcademicEventForm/edit"
           element={
             <AppLayout>
               <SeasonForm />
