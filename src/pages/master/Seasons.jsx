@@ -23,14 +23,14 @@ export default function Seasons() {
         </select>
 
         <label>
-  Season Start Date
-  <input type="date" />
-</label>
+        Season Start Date
+        <input type="date" />
+        </label>
 
-<label>
-  Season End Date
-  <input type="date" />
-</label>
+      <label>
+      Season End Date
+      <input type="date" />
+      </label>
 
 
         <label>
