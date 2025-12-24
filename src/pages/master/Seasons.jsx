@@ -22,8 +22,16 @@ export default function Seasons() {
           <option>Status: Closed</option>
         </select>
 
-        <input type="date" />
-        <input type="date" />
+        <label>
+  Season Start Date
+  <input type="date" />
+</label>
+
+<label>
+  Season End Date
+  <input type="date" />
+</label>
+
 
         <label>
           <input type="checkbox" /> Default Season
