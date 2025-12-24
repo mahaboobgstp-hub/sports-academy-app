@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 
 /* ===== SEASONS ===== */
-//import SeasonForm from "./pages/seasons/SeasonForm";
 import AcademicEventForm from "./AcademicEventForm";
 
 /* ===== BOOKINGS ===== */
@@ -20,7 +19,6 @@ export default function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* ===== DASHBOARD ===== */}
         <Route
           path="/"
           element={
@@ -30,34 +28,26 @@ export default function App() {
           }
         />
 
-        {/* =====================================================
-            SEASONS (ERP CORRECT ROUTES)
-        ===================================================== */}
-
-        {/* CREATE SEASON */}
+        {/* SEASONS */}
         <Route
-          path="/AcademicEventForm/create"
+          path="/seasons/create"
           element={
             <AppLayout>
-              <SeasonForm />
+              <AcademicEventForm />
             </AppLayout>
           }
         />
 
-        {/* EDIT SEASON */}
         <Route
-          path="/AcademicEventForm/edit"
+          path="/seasons/edit"
           element={
             <AppLayout>
-              <SeasonForm />
+              <AcademicEventForm />
             </AppLayout>
           }
         />
 
-        {/* =====================================================
-            LEGACY (KEEP TEMPORARILY – DO NOT DELETE)
-            This ensures nothing breaks while migrating
-        ===================================================== */}
+        {/* LEGACY */}
         <Route
           path="/create"
           element={
@@ -67,12 +57,12 @@ export default function App() {
           }
         />
 
-        {/* ===== BOOKINGS ===== */}
+        {/* BOOKINGS */}
         <Route
           path="/book"
           element={
             <AppLayout>
-              <BookingForm />
+              <BookingWizard />
             </AppLayout>
           }
         />
@@ -86,7 +76,7 @@ export default function App() {
           }
         />
 
-        {/* ===== FUTURE ERP SCREENS ===== */}
+        {/* FUTURE */}
         <Route
           path="/programs"
           element={<AppLayout><Placeholder title="Programs" /></AppLayout>}
