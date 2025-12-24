@@ -33,6 +33,7 @@ export default function App() {
           <Route path="/master/sports" element={<Sports />} />
           <Route path="/planner" element={<ProgramPlanner />} />
           <Route path="/master/seasons" element={<Seasons />} />
+          <Route path="/master/programs" element={<Programs />} />
             
 
           {/* SEASONS */}
@@ -45,7 +46,7 @@ export default function App() {
           <Route path="/book1" element={<BookingPage />} />
 
           {/* FUTURE ERP SCREENS */}
-          <Route path="master/programs" element={<Placeholder title="Programs" />} />
+          <Route path="/programs" element={<Placeholder title="Programs" />} />
           <Route path="/locations" element={<Placeholder title="Locations" />} />
           <Route path="/products" element={<Placeholder title="Products" />} />
           <Route path="/analytics" element={<Placeholder title="Analytics" />} />
