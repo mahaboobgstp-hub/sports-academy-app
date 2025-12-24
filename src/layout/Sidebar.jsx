@@ -24,7 +24,7 @@ export default function Sidebar() {
         <Link to="master/seasons">Seasons</Link>
         <Link to="master/programs">Programs</Link>
         <Link to="/locations">Locations</Link>
-        <Link to="/courts">Courts</Link>
+        //<Link to="/courts">Courts</Link>
         <Link to="/products">Products</Link>
       </div>
 
