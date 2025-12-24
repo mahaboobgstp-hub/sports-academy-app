@@ -19,7 +19,7 @@ export default function Sidebar() {
       </div>
       
       <div className="section">
-        <div className="section-title">Academy Setup</div>
+        <div className="section-title">Master Data (Academy)</div>
         <Link to="/seasons">Seasons</Link>
         <Link to="/programs">Programs</Link>
         <Link to="/locations">Locations</Link>
