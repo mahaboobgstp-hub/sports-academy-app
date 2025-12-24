@@ -29,8 +29,9 @@ export default function App() {
         <Route element={<AppLayout />}>
 
           <Route path="/" element={<Dashboard />} />
-          <Route path="/planner" element={<ProgramPlanner />} />
           <Route path="/master/sports" element={<Sports />} />
+          <Route path="/planner" element={<ProgramPlanner />} />
+          
             
 
           {/* SEASONS */}
