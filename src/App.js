@@ -3,6 +3,7 @@ import AppLayout from "./layout/AppLayout";
 import Sports from "./pages/master/Sports";
 import Seasons from "./pages/master/Seasons";
 import Programs from "./pages/master/Programs";
+import Locations from "./pages/master/Locations";
 
 /* ===== SEASONS ===== */
 import AcademicEventForm from "./AcademicEventForm";
