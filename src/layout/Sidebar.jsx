@@ -22,7 +22,7 @@ export default function Sidebar() {
         <div className="section-title">Master Data (Academy)</div>
         <Link to="/master/sports">Sports</Link>
         <Link to="master/seasons">Seasons</Link>
-        <Link to="/programs">Programs</Link>
+        <Link to="master/programs">Programs</Link>
         <Link to="/locations">Locations</Link>
         <Link to="/courts">Courts</Link>
         <Link to="/products">Products</Link>
