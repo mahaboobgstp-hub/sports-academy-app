@@ -22,14 +22,27 @@ export default function Sports() {
   async function saveSport() {
     if (!name || !code) return;
 
-    await supabase.from("sports").insert([
-      { name, code }
-    ]);
-
-    setName("");
-    setCode("");
-    loadSports();
+   async function saveSport() {
+  if (!name || !code) {
+    alert("Name and Code are required");
+    return;
   }
+
+  const { error } = await supabase
+    .from("sports")
+    .insert([{ name, code }]);
+
+  if (error) {
+    console.error("Supabase insert error:", error);
+    alert(error.message);
+    return;
+  }
+
+  setName("");
+  setCode("");
+  loadSports();
+}
+
 
   return (
     <div>
