@@ -1,0 +1,69 @@
+.planner-page {
+  padding: 16px;
+  background: #f8fafc;
+}
+
+.planner-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.planner-header select,
+.planner-header input {
+  height: 32px;
+  padding: 4px 8px;
+  font-size: 13px;
+}
+
+.planner-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-header h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.program-card {
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.program-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.program-row select,
+.program-row input {
+  height: 30px;
+  font-size: 13px;
+  padding: 4px 6px;
+}
+
+button {
+  height: 30px;
+  font-size: 13px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.sub-btn {
+  margin-top: 8px;
+  background: #1e293b;
+}
