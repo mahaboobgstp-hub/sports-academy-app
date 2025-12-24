@@ -12,6 +12,10 @@ import BookingWizard from "./bookings/BookingWizard";
 import Dashboard from "./pages/Dashboard";
 import Placeholder from "./pages/Placeholder";
 
+/* ===== PROGRAMPLANNER ===== */
+import ProgramPlanner from "./pages/planner/ProgramPlanner";
+
+
 import "./styles.css";
 
 export default function App() {
@@ -23,6 +27,8 @@ export default function App() {
         <Route element={<AppLayout />}>
 
           <Route path="/" element={<Dashboard />} />
+          <Route path="/planner" element={<ProgramPlanner />} />
+  
 
           {/* SEASONS */}
           <Route path="/seasons/create" element={<AcademicEventForm />} />
