@@ -11,6 +11,13 @@ export default function Sidebar() {
       </div>
 
       <div className="section">
+        <div className="section-title">Scheduling</div>
+        <Link to="/planner">Program Planner</Link>
+        <Link to="/calendar">Calendar View</Link>
+        <Link to="/paused">Paused / Cancelled</Link>
+      </div>
+      
+      <div className="section">
         <div className="section-title">Academy Setup</div>
         <Link to="/seasons">Seasons</Link>
         <Link to="/programs">Programs</Link>
@@ -19,13 +26,7 @@ export default function Sidebar() {
         <Link to="/products">Products</Link>
       </div>
 
-      <div className="section">
-        <div className="section-title">Scheduling</div>
-        <Link to="/planner">Class Planner</Link>
-        <Link to="/calendar">Calendar View</Link>
-        <Link to="/paused">Paused / Cancelled</Link>
-      </div>
-
+      
       <div className="section">
         <div className="section-title">Bookings</div>
         <Link to="/book">New Booking</Link>
