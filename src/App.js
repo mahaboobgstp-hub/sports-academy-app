@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import Sports from "./pages/master/Sports";
 import Seasons from "./pages/master/Seasons";
+import Programs from "./pages/master/Programs";
 
 /* ===== SEASONS ===== */
 import AcademicEventForm from "./AcademicEventForm";
@@ -44,7 +45,7 @@ export default function App() {
           <Route path="/book1" element={<BookingPage />} />
 
           {/* FUTURE ERP SCREENS */}
-          <Route path="/programs" element={<Placeholder title="Programs" />} />
+          <Route path="master/programs" element={<Placeholder title="Programs" />} />
           <Route path="/locations" element={<Placeholder title="Locations" />} />
           <Route path="/products" element={<Placeholder title="Products" />} />
           <Route path="/analytics" element={<Placeholder title="Analytics" />} />
