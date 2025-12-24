@@ -17,26 +17,31 @@ import "./styles.css";
 export default function App() {
   return (
     <BrowserRouter>
-  <Routes>
+      <Routes>
 
-    {/* Layout wrapper ONCE */}
-    <Route element={<AppLayout />}>
+        {/* Layoutoutes wrapped by layout ONCE */}
+        <Route element={<AppLayout />}>
 
-      <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard />} />
 
-      <Route path="/seasons/create" element={<AcademicEventForm />} />
-      <Route path="/seasons/edit" element={<AcademicEventForm />} />
-      <Route path="/create" element={<AcademicEventForm />} />
+          {/* SEASONS */}
+          <Route path="/seasons/create" element={<AcademicEventForm />} />
+          <Route path="/seasons/edit" element={<AcademicEventForm />} />
+          <Route path="/create" element={<AcademicEventForm />} />
 
-      <Route path="/book" element={<BookingWizard />} />
-      <Route path="/book1" element={<BookingPage />} />
+          {/* BOOKINGS */}
+          <Route path="/book" element={<BookingWizard />} />
+          <Route path="/book1" element={<BookingPage />} />
 
-      <Route path="/programs" element={<Placeholder title="Programs" />} />
-      <Route path="/locations" element={<Placeholder title="Locations" />} />
-      <Route path="/products" element={<Placeholder title="Products" />} />
-      <Route path="/analytics" element={<Placeholder title="Analytics" />} />
+          {/* FUTURE ERP SCREENS */}
+          <Route path="/programs" element={<Placeholder title="Programs" />} />
+          <Route path="/locations" element={<Placeholder title="Locations" />} />
+          <Route path="/products" element={<Placeholder title="Products" />} />
+          <Route path="/analytics" element={<Placeholder title="Analytics" />} />
 
-    </Route>
+        </Route>
 
-  </Routes>
-</BrowserRouter>
+      </Routes>
+    </BrowserRouter>
+  );
+}
