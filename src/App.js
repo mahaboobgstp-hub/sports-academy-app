@@ -30,8 +30,7 @@ export default function App() {
 
           <Route path="/" element={<Dashboard />} />
           <Route path="/planner" element={<ProgramPlanner />} />
-          <Route path="/master/sports" element={<Sports />} />
-  
+            
 
           {/* SEASONS */}
           <Route path="/seasons/create" element={<AcademicEventForm />} />
