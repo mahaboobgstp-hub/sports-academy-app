@@ -1,96 +1,93 @@
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
+
 export default function Products() {
+  const [products, setProducts] = useState([]);
+
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("");
+  const [price, setPrice] = useState("");
+  const [productType, setProductType] = useState("PROGRAM_FEE");
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  async function loadProducts() {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    setProducts(data || []);
+  }
+
+  async function saveProduct() {
+    if (!name || !code || !price) {
+      alert("Name, Code and Price are required");
+      return;
+    }
+
+    const { error } = await supabase.from("products").insert([
+      {
+        name,
+        code,
+        price,
+        product_type: productType
+      }
+    ]);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    setName("");
+    setCode("");
+    setPrice("");
+    setProductType("PROGRAM_FEE");
+
+    loadProducts();
+  }
+
   return (
     <div>
       <h3>Products</h3>
 
-      {/* Add Product */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 8,
-          marginBottom: 12
-        }}
-      >
-        {/* Core */}
-        <input placeholder="Product Name" />
-        <input placeholder="Product Code / SKU" />
-
-        <select>
-          <option>Product Type</option>
-          <option>Program Fee</option>
-          <option>Add-on</option>
-          <option>Material</option>
-        </select>
-
-        <select>
-          <option>Status: Active</option>
-          <option>Status: Inactive</option>
-        </select>
-
-        <input type="number" placeholder="Price" />
-
-        {/* Billing */}
-        <select>
-          <option>Recurring?</option>
-          <option>Yes</option>
-          <option>No</option>
-        </select>
-
-        <select>
-          <option>Billing Frequency</option>
-          <option>One-time</option>
-          <option>Monthly</option>
-          <option>Quarterly</option>
-        </select>
-
-        <input placeholder="Validity (days/months)" />
-
-        {/* Tax */}
-        <select>
-          <option>Tax Category</option>
-          <option>GST 0%</option>
-          <option>GST 5%</option>
-          <option>GST 12%</option>
-          <option>GST 18%</option>
-        </select>
-
-        <select>
-          <option>Tax Inclusive?</option>
-          <option>Yes</option>
-          <option>No</option>
-        </select>
-
-        {/* Program Linking */}
-        <select>
-          <option>Linked Program (optional)</option>
-        </select>
-
-        <select>
-          <option>Mandatory for Program?</option>
-          <option>Yes</option>
-          <option>No</option>
-        </select>
-
-        {/* Finance */}
-        <select>
-          <option>Refundable?</option>
-          <option>Yes</option>
-          <option>No</option>
-        </select>
-
-        {/* Notes */}
+      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
         <input
-          placeholder="Description / Notes"
-          style={{ gridColumn: "span 3" }}
+          placeholder="Product Name"
+          value={name}
+          onChange={e => setName(e.target.value)}
         />
+        <input
+          placeholder="Code"
+          value={code}
+          onChange={e => setCode(e.target.value)}
+        />
+        <input
+          placeholder="Price"
+          type="number"
+          value={price}
+          onChange={e => setPrice(e.target.value)}
+        />
+        <select
+          value={productType}
+          onChange={e => setProductType(e.target.value)}
+        >
+          <option value="PROGRAM_FEE">Program Fee</option>
+          <option value="ADDON">Add-on</option>
+          <option value="MATERIAL">Material</option>
+        </select>
 
-        <button style={{ gridColumn: "span 1" }}>
-          Add
-        </button>
+        <button onClick={saveProduct}>Add</button>
       </div>
 
-      {/* Products Table */}
       <table width="100%" border="1" cellPadding="6">
         <thead>
           <tr>
@@ -98,16 +95,19 @@ export default function Products() {
             <th>Code</th>
             <th>Type</th>
             <th>Price</th>
-            <th>Recurring</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td colSpan="6" align="center">
-              No products yet
-            </td>
-          </tr>
+          {products.map(p => (
+            <tr key={p.id}>
+              <td>{p.name}</td>
+              <td>{p.code}</td>
+              <td>{p.product_type}</td>
+              <td>{p.price}</td>
+              <td>{p.status}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
