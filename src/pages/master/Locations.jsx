@@ -169,7 +169,7 @@ export default function Locations() {
           </div>
         ))}
 
-        <button onClick={addCourt}>+ Add Court</button>
+        <button onClick={addCourt}>+ Add Court</button>\
         <button onClick={saveLocation}>Save Location</button>
       </div>
 
