@@ -3,12 +3,19 @@ import { supabase } from "../../lib/supabase";
 import "./ProgramPlanner.css";
 
 export default function ProgramPlanner() {
-  const [programs, setPrograms] = useState([]);
-
+ 
+  
   // ===== MASTER DATA =====
+   const [programs, setPrograms] = useState([]);
   const [sports, setSports] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [programMasters, setProgramMasters] = useState([]);
+  const [selectedSeasonId, setSelectedSeasonId] = useState("");
+
+  // 2️⃣ DERIVED DATA (PASTE HERE 👇)
+  const selectedSeason = seasons.find(
+    s => s.id === selectedSeasonId
+  );
 
   // ===== LOAD MASTER DATA ONLY =====
   useEffect(() => {
@@ -67,7 +74,10 @@ export default function ProgramPlanner() {
           ))}
         </select>
 
-        <select>
+      <select
+      value={selectedSeasonId}
+      onChange={(e) => setSelectedSeasonId(e.target.value)}
+      >
           <option>Select Season</option>
           {seasons.map(s => (
             <option key={s.id} value={s.id}>
@@ -76,8 +86,9 @@ export default function ProgramPlanner() {
           ))}
         </select>
 
-        <input value="01-01-2026" disabled />
-        <input value="31-03-2026" disabled />
+        <input value={selectedSeason?.start_date || ""} disabled />
+        <input value={selectedSeason?.end_date || ""} disabled />
+
       </div>
 
       {/* ===== PROGRAM SECTION (UNCHANGED FLOW) ===== */}
