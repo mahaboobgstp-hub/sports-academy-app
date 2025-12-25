@@ -49,6 +49,17 @@ export default function ProgramPlanner() {
   };
 
   const addProgram = () => {
+   const addLocation = (programIndex) => {
+  const updatedPrograms = [...programs];
+
+  updatedPrograms[programIndex].locations.push({
+    id: Date.now(),
+    locationId: ""
+  });
+
+  setPrograms(updatedPrograms);
+};
+
     setPrograms([
       ...programs,
       {
@@ -115,7 +126,14 @@ export default function ProgramPlanner() {
               <input placeholder="Pending" disabled />
             </div>
 
-            <button className="sub-btn">+ Add Location</button>
+            <button
+  className="sub-btn"
+  onClick={() => addLocation(index)}
+>
+  + Add Location
+</button>
+<pre>{JSON.stringify(p.locations, null, 2)}</pre>
+
           </div>
         ))}
       </div>
