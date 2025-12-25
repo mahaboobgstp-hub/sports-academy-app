@@ -1,45 +1,64 @@
-import { useState } from "react";
-//import { supabase } from "../supabaseClient";
+import { useEffect, useState } from "react";
+//import { supabase } from "../lib/supabase";
 
 export default function Locations() {
-  const [saving, setSaving] = useState(false);
+  /* =========================
+     STATE
+  ========================= */
+  const [locations, setLocations] = useState([]);
+  const [courts, setCourts] = useState([]);
 
-  const [location, setLocation] = useState({
+  const [form, setForm] = useState({
     name: "",
     code: "",
     city: "",
     status: "ACTIVE",
-    full_address: "",
+    address: "",
     timezone: "",
     max_capacity: "",
+
     contact_name: "",
     contact_role: "",
     contact_phone: "",
     contact_email: "",
+
     vendor_name: "",
     vendor_type: "",
     vendor_company: "",
     vendor_phone: "",
     vendor_email: "",
-    contract_start_date: "",
-    contract_end_date: "",
+    contract_start: "",
+    contract_end: "",
     notes: ""
   });
 
-  const [courts, setCourts] = useState([]);
+  /* =========================
+     LOAD LOCATIONS
+  ========================= */
+  useEffect(() => {
+    loadLocations();
+  }, []);
 
-  /* =============================
-     HELPERS
-  ============================== */
+  async function loadLocations() {
+    const { data, error } = await supabase
+      .from("locations")
+      .select("id, name, code, city, status, courts(id)")
+      .order("created_at", { ascending: false });
 
-  function updateLocation(field, value) {
-    setLocation({ ...location, [field]: value });
+    if (!error) setLocations(data || []);
+  }
+
+  /* =========================
+     FORM HELPERS
+  ========================= */
+  function updateField(field, value) {
+    setForm({ ...form, [field]: value });
   }
 
   function addCourt() {
     setCourts([
       ...courts,
-      { name: "", code: "", capacity: "", indoor: true }
+      { name: "", code: "", max_seats: "", type: "Indoor" }
     ]);
   }
 
@@ -49,192 +68,124 @@ export default function Locations() {
     setCourts(updated);
   }
 
-  /* =============================
+  /* =========================
      SAVE LOCATION + COURTS
-  ============================== */
-
+  ========================= */
   async function saveLocation() {
-    if (!location.name || !location.code) {
-      alert("Location Name and Code are required");
+    if (!form.name || !form.code || courts.length === 0) {
+      alert("Location name, code and at least one court are required");
       return;
     }
 
-    if (courts.length === 0) {
-      alert("Please add at least one court");
+    /* Insert Location */
+    const { data: location, error } = await supabase
+      .from("locations")
+      .insert([{
+        ...form,
+        max_capacity: Number(form.max_capacity) || null
+      }])
+      .select()
+      .single();
+
+    if (error) {
+      alert(error.message);
       return;
     }
 
-    setSaving(true);
+    /* Insert Courts */
+    const courtsPayload = courts.map(c => ({
+      location_id: location.id,
+      name: c.name,
+      code: c.code,
+      max_seats: Number(c.max_seats),
+      type: c.type
+    }));
 
-    try {
-      // 1️⃣ Insert Location
-      const { data: loc, error: locError } = await supabase
-        .from("locations")
-        .insert([{
-          ...location,
-          max_capacity: location.max_capacity
-            ? Number(location.max_capacity)
-            : null
-        }])
-        .select()
-        .single();
+    const { error: courtError } = await supabase
+      .from("courts")
+      .insert(courtsPayload);
 
-      if (locError) throw locError;
-
-      // 2️⃣ Insert Courts (child)
-      const courtsPayload = courts.map(c => ({
-        location_id: loc.id,
-        name: c.name,
-        code: c.code,
-        capacity: c.capacity ? Number(c.capacity) : null,
-        indoor: c.indoor
-      }));
-
-      const { error: courtError } = await supabase
-        .from("courts")
-        .insert(courtsPayload);
-
-      if (courtError) throw courtError;
-
-      alert("Location & Courts saved successfully");
-
-      // Reset form
-      setLocation({
-        name: "",
-        code: "",
-        city: "",
-        status: "ACTIVE",
-        full_address: "",
-        timezone: "",
-        max_capacity: "",
-        contact_name: "",
-        contact_role: "",
-        contact_phone: "",
-        contact_email: "",
-        vendor_name: "",
-        vendor_type: "",
-        vendor_company: "",
-        vendor_phone: "",
-        vendor_email: "",
-        contract_start_date: "",
-        contract_end_date: "",
-        notes: ""
-      });
-
-      setCourts([]);
-
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    } finally {
-      setSaving(false);
+    if (courtError) {
+      alert(courtError.message);
+      return;
     }
+
+    /* Reset */
+    setForm({
+      name: "",
+      code: "",
+      city: "",
+      status: "ACTIVE",
+      address: "",
+      timezone: "",
+      max_capacity: "",
+      contact_name: "",
+      contact_role: "",
+      contact_phone: "",
+      contact_email: "",
+      vendor_name: "",
+      vendor_type: "",
+      vendor_company: "",
+      vendor_phone: "",
+      vendor_email: "",
+      contract_start: "",
+      contract_end: "",
+      notes: ""
+    });
+
+    setCourts([]);
+    loadLocations();
   }
 
-  /* =============================
+  /* =========================
      UI
-  ============================== */
-
+  ========================= */
   return (
     <div>
       <h3>Locations</h3>
 
+      {/* LOCATION DETAILS */}
       <div className="form-grid">
-        <input placeholder="Location Name" value={location.name}
-          onChange={e => updateLocation("name", e.target.value)} />
+        <input placeholder="Location Name" value={form.name} onChange={e => updateField("name", e.target.value)} />
+        <input placeholder="Location Code" value={form.code} onChange={e => updateField("code", e.target.value)} />
+        <input placeholder="City" value={form.city} onChange={e => updateField("city", e.target.value)} />
 
-        <input placeholder="Location Code" value={location.code}
-          onChange={e => updateLocation("code", e.target.value)} />
-
-        <input placeholder="City" value={location.city}
-          onChange={e => updateLocation("city", e.target.value)} />
-
-        <select value={location.status}
-          onChange={e => updateLocation("status", e.target.value)}>
+        <select value={form.status} onChange={e => updateField("status", e.target.value)}>
           <option value="ACTIVE">Active</option>
           <option value="INACTIVE">Inactive</option>
         </select>
 
-        <input placeholder="Full Address" style={{ gridColumn: "span 4" }}
-          value={location.full_address}
-          onChange={e => updateLocation("full_address", e.target.value)} />
+        <input placeholder="Full Address" value={form.address} onChange={e => updateField("address", e.target.value)} />
+        <input placeholder="Timezone (e.g. IST)" value={form.timezone} onChange={e => updateField("timezone", e.target.value)} />
+        <input type="number" placeholder="Max Capacity" value={form.max_capacity} onChange={e => updateField("max_capacity", e.target.value)} />
 
-        <input placeholder="Timezone (e.g. IST)" value={location.timezone}
-          onChange={e => updateLocation("timezone", e.target.value)} />
+        <h4>Contact Person</h4>
+        <input placeholder="Contact Name" value={form.contact_name} onChange={e => updateField("contact_name", e.target.value)} />
+        <input placeholder="Role" value={form.contact_role} onChange={e => updateField("contact_role", e.target.value)} />
+        <input placeholder="Phone" value={form.contact_phone} onChange={e => updateField("contact_phone", e.target.value)} />
+        <input placeholder="Email" value={form.contact_email} onChange={e => updateField("contact_email", e.target.value)} />
 
-        <input type="number" placeholder="Max Capacity"
-          value={location.max_capacity}
-          onChange={e => updateLocation("max_capacity", e.target.value)} />
+        <h4>Vendor / Contractor</h4>
+        <input placeholder="Vendor Name" value={form.vendor_name} onChange={e => updateField("vendor_name", e.target.value)} />
+        <input placeholder="Vendor Type" value={form.vendor_type} onChange={e => updateField("vendor_type", e.target.value)} />
+        <input placeholder="Company" value={form.vendor_company} onChange={e => updateField("vendor_company", e.target.value)} />
+        <input placeholder="Phone" value={form.vendor_phone} onChange={e => updateField("vendor_phone", e.target.value)} />
+        <input placeholder="Email" value={form.vendor_email} onChange={e => updateField("vendor_email", e.target.value)} />
+        <input type="date" value={form.contract_start} onChange={e => updateField("contract_start", e.target.value)} />
+        <input type="date" value={form.contract_end} onChange={e => updateField("contract_end", e.target.value)} />
 
-        <h4 style={{ gridColumn: "span 4" }}>Contact Person</h4>
-
-        <input placeholder="Contact Name"
-          value={location.contact_name}
-          onChange={e => updateLocation("contact_name", e.target.value)} />
-
-        <input placeholder="Contact Role"
-          value={location.contact_role}
-          onChange={e => updateLocation("contact_role", e.target.value)} />
-
-        <input placeholder="Contact Phone"
-          value={location.contact_phone}
-          onChange={e => updateLocation("contact_phone", e.target.value)} />
-
-        <input placeholder="Contact Email"
-          value={location.contact_email}
-          onChange={e => updateLocation("contact_email", e.target.value)} />
-
-        <h4 style={{ gridColumn: "span 4" }}>Vendor / Contractor</h4>
-
-        <input placeholder="Vendor Name"
-          value={location.vendor_name}
-          onChange={e => updateLocation("vendor_name", e.target.value)} />
-
-        <input placeholder="Vendor Type"
-          value={location.vendor_type}
-          onChange={e => updateLocation("vendor_type", e.target.value)} />
-
-        <input placeholder="Vendor Company"
-          value={location.vendor_company}
-          onChange={e => updateLocation("vendor_company", e.target.value)} />
-
-        <input placeholder="Vendor Phone"
-          value={location.vendor_phone}
-          onChange={e => updateLocation("vendor_phone", e.target.value)} />
-
-        <input placeholder="Vendor Email"
-          value={location.vendor_email}
-          onChange={e => updateLocation("vendor_email", e.target.value)} />
-
-        <input type="date"
-          onChange={e => updateLocation("contract_start_date", e.target.value)} />
-
-        <input type="date"
-          onChange={e => updateLocation("contract_end_date", e.target.value)} />
-
-        <input placeholder="Notes" style={{ gridColumn: "span 4" }}
-          value={location.notes}
-          onChange={e => updateLocation("notes", e.target.value)} />
+        <input placeholder="Notes" value={form.notes} onChange={e => updateField("notes", e.target.value)} />
       </div>
 
+      {/* COURTS */}
       <h4>Courts</h4>
 
       {courts.map((c, i) => (
         <div key={i} className="form-grid">
-          <input placeholder="Court Name"
-            value={c.name}
-            onChange={e => updateCourt(i, "name", e.target.value)} />
-
-          <input placeholder="Court Code"
-            value={c.code}
-            onChange={e => updateCourt(i, "code", e.target.value)} />
-
-          <input type="number" placeholder="Max Seats"
-            value={c.capacity}
-            onChange={e => updateCourt(i, "capacity", e.target.value)} />
-
-          <select value={c.indoor ? "Indoor" : "Outdoor"}
-            onChange={e => updateCourt(i, "indoor", e.target.value === "Indoor")}>
+          <input placeholder="Court Name" value={c.name} onChange={e => updateCourt(i, "name", e.target.value)} />
+          <input placeholder="Court Code" value={c.code} onChange={e => updateCourt(i, "code", e.target.value)} />
+          <input type="number" placeholder="Max Seats" value={c.max_seats} onChange={e => updateCourt(i, "max_seats", e.target.value)} />
+          <select value={c.type} onChange={e => updateCourt(i, "type", e.target.value)}>
             <option>Indoor</option>
             <option>Outdoor</option>
           </select>
@@ -243,11 +194,44 @@ export default function Locations() {
 
       <button onClick={addCourt}>+ Add Court</button>
 
-      <br /><br />
+      {courts.length > 0 && (
+        <button onClick={saveLocation} style={{ marginLeft: 10 }}>
+          Save Location
+        </button>
+      )}
 
-      <button onClick={saveLocation} disabled={saving}>
-        {saving ? "Saving..." : "Save Location"}
-      </button>
+      {/* TABLE */}
+      <hr />
+      <h3>Existing Locations</h3>
+
+      <table border="1" width="100%" cellPadding="6">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>City</th>
+            <th>Courts</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {locations.length === 0 && (
+            <tr>
+              <td colSpan="5" align="center">No locations yet</td>
+            </tr>
+          )}
+
+          {locations.map(l => (
+            <tr key={l.id}>
+              <td>{l.name}</td>
+              <td>{l.code}</td>
+              <td>{l.city}</td>
+              <td>{l.courts?.length || 0}</td>
+              <td>{l.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
