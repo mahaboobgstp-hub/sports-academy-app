@@ -5,21 +5,32 @@ export default function Programs() {
   const [sports, setSports] = useState([]);
   const [programs, setPrograms] = useState([]);
 
-  const [form, setForm] = useState({
-    sport_id: "",
-    name: "",
-    code: "",
-    program_type: "",
-    duration_minutes: "",
-    default_seats: "",
-    skill_level: "",
-    gender: "",
-    age_min: "",
-    age_max: "",
-    default_price: "",
-    description: "",
-    status: "ACTIVE"
-  });
+  const payload = {
+  name,
+  code,
+  sport_id,
+  program_type,
+  skill_level,
+  gender,
+  status,
+  description,
+
+  duration_minutes: duration ? Number(duration) : null,
+  default_seats: defaultSeats ? Number(defaultSeats) : null,
+  default_price: defaultPrice ? Number(defaultPrice) : null,
+  age_min: ageMin ? Number(ageMin) : null,
+  age_max: ageMax ? Number(ageMax) : null,
+};
+
+const { error } = await supabase
+  .from("programs")
+  .insert([payload]);
+
+if (error) {
+  alert(error.message);
+  console.error(error);
+  return;
+}
 
   useEffect(() => {
     loadSports();
