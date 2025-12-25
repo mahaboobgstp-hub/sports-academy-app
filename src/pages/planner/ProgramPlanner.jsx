@@ -47,28 +47,28 @@ export default function ProgramPlanner() {
   }, []);
 
   const loadSports = async () => {
-    const { data } = await supabase.from("sports").select("id, name");
+    const { data } = await supabase.from("sports").select("id,name");
     setSports(data || []);
   };
 
   const loadSeasons = async () => {
     const { data } = await supabase
       .from("seasons")
-      .select("id, name, start_date, end_date");
+      .select("id,name,start_date,end_date");
     setSeasons(data || []);
   };
 
   const loadPrograms = async () => {
-    const { data } = await supabase.from("programs").select("id, name");
+    const { data } = await supabase.from("programs").select("id,name");
     setProgramMasters(data || []);
   };
 
   const loadLocations = async () => {
-    const { data } = await supabase.from("locations").select("id, name");
+    const { data } = await supabase.from("locations").select("id,name");
     setLocationsMaster(data || []);
   };
 
-  /* ===== ADD FUNCTIONS (STATE ONLY) ===== */
+  /* ===== ADD FUNCTIONS (BASELINE + ADDITIVE FLAGS) ===== */
 
   const addProgram = () => {
     setPrograms([
@@ -77,7 +77,8 @@ export default function ProgramPlanner() {
         id: Date.now(),
         programId: "",
         totalSeats: "",
-        locations: []
+        locations: [],
+        locked: false        // ✅ ADDITIVE
       }
     ]);
   };
@@ -88,7 +89,8 @@ export default function ProgramPlanner() {
       id: Date.now(),
       locationId: "",
       seatsAllocated: "",
-      courts: []
+      courts: [],
+      saved: false          // ✅ ADDITIVE
     });
     setPrograms(updated);
   };
@@ -100,7 +102,8 @@ export default function ProgramPlanner() {
       courtName: "",
       seatsAllocated: "",
       days: [],
-      collapsed: false
+      collapsed: false,
+      saved: false          // ✅ ADDITIVE
     });
     setPrograms(updated);
   };
@@ -128,7 +131,7 @@ export default function ProgramPlanner() {
         <select>
           <option>Select Sport</option>
           {sports.map(s => (
-            <option key={s.id} value={s.id}>{s.name}</option>
+            <option key={s.id}>{s.name}</option>
           ))}
         </select>
 
@@ -161,27 +164,42 @@ export default function ProgramPlanner() {
               <select>
                 <option>Select Program</option>
                 {programMasters.map(pm => (
-                  <option key={pm.id} value={pm.id}>{pm.name}</option>
+                  <option key={pm.id}>{pm.name}</option>
                 ))}
               </select>
 
               <input placeholder="Total Seats" />
               <input placeholder="Allocated" disabled />
               <input placeholder="Pending" disabled />
+
+              {/* PROGRAM LOCK */}
+              <button
+                className="sub-btn"
+                onClick={() => {
+                  const updated = [...programs];
+                  updated[pIndex].locked = !updated[pIndex].locked;
+                  setPrograms(updated);
+                }}
+              >
+                {p.locked ? "Unlock Program" : "Lock Program"}
+              </button>
             </div>
 
-            <button className="sub-btn" onClick={() => addLocation(pIndex)}>
+            <button
+              className="sub-btn"
+              onClick={() => addLocation(pIndex)}
+            >
               + Add Location
             </button>
 
-            {/* LOCATIONS */}
+            {/* ===== LOCATIONS ===== */}
             {p.locations.map((loc, lIndex) => (
               <div key={loc.id} className="location-row">
 
                 <select>
                   <option>Select Location</option>
                   {locationsMaster.map(l => (
-                    <option key={l.id} value={l.id}>{l.name}</option>
+                    <option key={l.id}>{l.name}</option>
                   ))}
                 </select>
 
@@ -194,7 +212,20 @@ export default function ProgramPlanner() {
                   + Add Court
                 </button>
 
-                {/* COURTS */}
+                {/* LOCATION SAVE */}
+                <button
+                  className="sub-btn"
+                  onClick={() => {
+                    const updated = [...programs];
+                    updated[pIndex].locations[lIndex].saved =
+                      !updated[pIndex].locations[lIndex].saved;
+                    setPrograms(updated);
+                  }}
+                >
+                  {loc.saved ? "Location Saved" : "Save Location"}
+                </button>
+
+                {/* ===== COURTS ===== */}
                 {loc.courts.map((court, cIndex) => (
                   <div key={court.id} className="court-row">
 
@@ -212,16 +243,40 @@ export default function ProgramPlanner() {
                       className="sub-btn"
                       onClick={() => {
                         const updated = [...programs];
-                        const ct =
-                          updated[pIndex].locations[lIndex].courts[cIndex];
-                        ct.collapsed = !ct.collapsed;
+                        updated[pIndex]
+                          .locations[lIndex]
+                          .courts[cIndex]
+                          .collapsed =
+                          !updated[pIndex]
+                            .locations[lIndex]
+                            .courts[cIndex]
+                            .collapsed;
                         setPrograms(updated);
                       }}
                     >
                       {court.collapsed ? "Expand" : "Collapse"}
                     </button>
 
-                    {/* DAYS */}
+                    {/* COURT SAVE */}
+                    <button
+                      className="sub-btn"
+                      onClick={() => {
+                        const updated = [...programs];
+                        updated[pIndex]
+                          .locations[lIndex]
+                          .courts[cIndex]
+                          .saved =
+                          !updated[pIndex]
+                            .locations[lIndex]
+                            .courts[cIndex]
+                            .saved;
+                        setPrograms(updated);
+                      }}
+                    >
+                      {court.saved ? "Court Saved" : "Save Court"}
+                    </button>
+
+                    {/* ===== DAYS ===== */}
                     {!court.collapsed && court.days.map((day, dIndex) => (
                       <div key={day.dayName} className="day-row">
 
@@ -244,14 +299,14 @@ export default function ProgramPlanner() {
                           }}
                         >
                           {TIME_SLOTS.map(slot => (
-                            <option key={slot} value={slot}>{slot}</option>
+                            <option key={slot}>{slot}</option>
                           ))}
                         </select>
 
                         {/* SEATS PER HOUR */}
                         {day.selectedHours.map(slot => (
                           <div key={slot} className="hour-seat-row">
-                            <span className="hour-label">{slot}</span>
+                            <span>{slot}</span>
                             <input
                               placeholder="Seats"
                               value={day.hourSeats[slot] || ""}
