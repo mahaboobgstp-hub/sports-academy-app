@@ -35,7 +35,7 @@ export default function ProgramPlanner() {
   const loadSeasons = async () => {
     const { data, error } = await supabase
       .from("seasons")
-      .select("id, name");
+      .select("id, name, start_date, end_date");
 
     if (!error) setSeasons(data);
   };
