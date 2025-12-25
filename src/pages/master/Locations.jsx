@@ -1,10 +1,11 @@
 import { useState } from "react";
-//import { supabase } from "../lib/supabase";
+import { supabase } from "../lib/supabase";
 
 export default function Locations() {
-  // ===============================
-  // LOCATION STATE
-  // ===============================
+
+  /* ===============================
+     LOCATION STATE
+  =============================== */
   const [location, setLocation] = useState({
     name: "",
     code: "",
@@ -21,7 +22,7 @@ export default function Locations() {
 
     vendor_name: "",
     vendor_type: "",
-    company_name: "",
+    vendor_company: "",
     vendor_phone: "",
     vendor_email: "",
     contract_start_date: "",
@@ -30,14 +31,14 @@ export default function Locations() {
     notes: ""
   });
 
-  // ===============================
-  // COURTS STATE
-  // ===============================
+  /* ===============================
+     COURTS STATE (CHILD)
+  =============================== */
   const [courts, setCourts] = useState([]);
 
-  // ===============================
-  // HELPERS
-  // ===============================
+  /* ===============================
+     HELPERS
+  =============================== */
   function updateLocation(field, value) {
     setLocation(prev => ({ ...prev, [field]: value }));
   }
@@ -45,7 +46,7 @@ export default function Locations() {
   function addCourt() {
     setCourts([
       ...courts,
-      { name: "", code: "", seats: "", type: "Indoor" }
+      { name: "", code: "", capacity: "", type: "Indoor" }
     ]);
   }
 
@@ -55,12 +56,17 @@ export default function Locations() {
     setCourts(updated);
   }
 
-  // ===============================
-  // SAVE LOCATION + VENDOR + COURTS
-  // ===============================
+  /* ===============================
+     SAVE LOCATION + COURTS
+  =============================== */
   async function saveLocation() {
     if (!location.name || !location.code) {
-      alert("Location Name and Code are required");
+      alert("Location Name & Code are required");
+      return;
+    }
+
+    if (courts.length === 0) {
+      alert("Add at least one court before saving");
       return;
     }
 
@@ -75,10 +81,20 @@ export default function Locations() {
         full_address: location.full_address,
         timezone: location.timezone,
         max_capacity: location.max_capacity || null,
+
         contact_name: location.contact_name,
         contact_role: location.contact_role,
         contact_phone: location.contact_phone,
         contact_email: location.contact_email,
+
+        vendor_name: location.vendor_name,
+        vendor_type: location.vendor_type,
+        vendor_company: location.vendor_company,
+        vendor_phone: location.vendor_phone,
+        vendor_email: location.vendor_email,
+        contract_start_date: location.contract_start_date || null,
+        contract_end_date: location.contract_end_date || null,
+
         notes: location.notes
       }])
       .select()
@@ -91,21 +107,7 @@ export default function Locations() {
 
     const locationId = loc.id;
 
-    // 2️⃣ Insert Vendor (optional)
-    if (location.vendor_name) {
-      await supabase.from("location_vendors").insert([{
-        location_id: locationId,
-        vendor_name: location.vendor_name,
-        vendor_type: location.vendor_type,
-        company_name: location.company_name,
-        phone: location.vendor_phone,
-        email: location.vendor_email,
-        contract_start_date: location.contract_start_date || null,
-        contract_end_date: location.contract_end_date || null
-      }]);
-    }
-
-    // 3️⃣ Insert Courts
+    // 2️⃣ Insert Courts
     for (const court of courts) {
       if (!court.name) continue;
 
@@ -113,15 +115,14 @@ export default function Locations() {
         location_id: locationId,
         name: court.name,
         code: court.code,
-        capacity: court.seats || null,
+        capacity: court.capacity || null,
         indoor: court.type === "Indoor"
       }]);
     }
 
-    alert("Location created successfully");
+    alert("Location & Courts saved successfully");
 
-    // Reset
-    setCourts([]);
+    // Reset everything
     setLocation({
       name: "",
       code: "",
@@ -136,31 +137,35 @@ export default function Locations() {
       contact_email: "",
       vendor_name: "",
       vendor_type: "",
-      company_name: "",
+      vendor_company: "",
       vendor_phone: "",
       vendor_email: "",
       contract_start_date: "",
       contract_end_date: "",
       notes: ""
     });
+    setCourts([]);
   }
 
-  // ===============================
-  // UI
-  // ===============================
+  /* ===============================
+     UI
+  =============================== */
   return (
     <div>
       <h3>Locations</h3>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
+      <div className="form-grid">
 
-        <input placeholder="Location Name" value={location.name}
+        <input placeholder="Location Name"
+          value={location.name}
           onChange={e => updateLocation("name", e.target.value)} />
 
-        <input placeholder="Location Code" value={location.code}
+        <input placeholder="Location Code"
+          value={location.code}
           onChange={e => updateLocation("code", e.target.value)} />
 
-        <input placeholder="City" value={location.city}
+        <input placeholder="City"
+          value={location.city}
           onChange={e => updateLocation("city", e.target.value)} />
 
         <select value={location.status}
@@ -184,7 +189,7 @@ export default function Locations() {
 
         <h4 style={{ gridColumn: "span 4" }}>Contact Person</h4>
 
-        <input placeholder="Contact Person Name"
+        <input placeholder="Contact Name"
           value={location.contact_name}
           onChange={e => updateLocation("contact_name", e.target.value)} />
 
@@ -210,9 +215,9 @@ export default function Locations() {
           value={location.vendor_type}
           onChange={e => updateLocation("vendor_type", e.target.value)} />
 
-        <input placeholder="Vendor Company Name"
-          value={location.company_name}
-          onChange={e => updateLocation("company_name", e.target.value)} />
+        <input placeholder="Vendor Company"
+          value={location.vendor_company}
+          onChange={e => updateLocation("vendor_company", e.target.value)} />
 
         <input placeholder="Vendor Phone"
           value={location.vendor_phone}
@@ -223,32 +228,29 @@ export default function Locations() {
           onChange={e => updateLocation("vendor_email", e.target.value)} />
 
         <label>
-          Contract Start Date
+          Contract Start
           <input type="date"
             value={location.contract_start_date}
             onChange={e => updateLocation("contract_start_date", e.target.value)} />
         </label>
 
         <label>
-          Contract End Date
+          Contract End
           <input type="date"
             value={location.contract_end_date}
             onChange={e => updateLocation("contract_end_date", e.target.value)} />
         </label>
 
         <input placeholder="Notes"
-          style={{ gridColumn: "span 3" }}
+          style={{ gridColumn: "span 4" }}
           value={location.notes}
           onChange={e => updateLocation("notes", e.target.value)} />
-
-        <button onClick={saveLocation}>Add Location</button>
       </div>
 
       <h4>Courts</h4>
 
       {courts.map((court, index) => (
-        <div key={index}
-          style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 8 }}>
+        <div key={index} className="form-grid">
           <input placeholder="Court Name"
             value={court.name}
             onChange={e => updateCourt(index, "name", e.target.value)} />
@@ -256,8 +258,8 @@ export default function Locations() {
             value={court.code}
             onChange={e => updateCourt(index, "code", e.target.value)} />
           <input type="number" placeholder="Max Seats"
-            value={court.seats}
-            onChange={e => updateCourt(index, "seats", e.target.value)} />
+            value={court.capacity}
+            onChange={e => updateCourt(index, "capacity", e.target.value)} />
           <select value={court.type}
             onChange={e => updateCourt(index, "type", e.target.value)}>
             <option>Indoor</option>
@@ -267,6 +269,12 @@ export default function Locations() {
       ))}
 
       <button onClick={addCourt}>+ Add Court</button>
+
+      {courts.length > 0 && (
+        <button style={{ marginTop: 12 }} onClick={saveLocation}>
+          Save Location
+        </button>
+      )}
     </div>
   );
 }
