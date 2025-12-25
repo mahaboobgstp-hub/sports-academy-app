@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../lib/supabase";
 import "./ProgramPlanner.css";
 
 export default function ProgramPlanner() {
