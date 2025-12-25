@@ -1,88 +1,94 @@
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
+
 export default function Programs() {
+  const [sports, setSports] = useState([]);
+  const [programs, setPrograms] = useState([]);
+
+  const [sportId, setSportId] = useState("");
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("");
+
+  useEffect(() => {
+    loadSports();
+    loadPrograms();
+  }, []);
+
+  async function loadSports() {
+    const { data } = await supabase
+      .from("sports")
+      .select("id,name")
+      .order("name");
+    setSports(data || []);
+  }
+
+  async function loadPrograms() {
+    const { data } = await supabase
+      .from("programs")
+      .select("id,name,code,status,sports(name)")
+      .order("created_at", { ascending: false });
+    setPrograms(data || []);
+  }
+
+  async function saveProgram() {
+    if (!sportId || !name || !code) {
+      alert("Sport, Name, Code required");
+      return;
+    }
+
+    const { error } = await supabase.from("programs").insert([
+      {
+        sport_id: sportId,
+        name,
+        code
+      }
+    ]);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    setName("");
+    setCode("");
+    loadPrograms();
+  }
+
   return (
     <div>
       <h3>Programs</h3>
 
-      {/* Add Program */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 8,
-          marginBottom: 12
-        }}
-      >
-        <input placeholder="Program Name" />
-        <input placeholder="Program Code" />
-
-        <select>
-          <option>Select Sport</option>
-          <option>Basketball</option>
-          <option>Football</option>
+      <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+        <select value={sportId} onChange={e => setSportId(e.target.value)}>
+          <option value="">Select Sport</option>
+          {sports.map(s => (
+            <option key={s.id} value={s.id}>{s.name}</option>
+          ))}
         </select>
 
-        <select>
-          <option>Program Type</option>
-          <option>Group</option>
-          <option>1-on-1</option>
-        </select>
-
-        <input type="number" placeholder="Duration (minutes)" />
-        <input type="number" placeholder="Default Seats" />
-
-        <select>
-          <option>Skill Level</option>
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
-        </select>
-
-        <select>
-          <option>Gender</option>
-          <option>Mixed</option>
-          <option>Boys</option>
-          <option>Girls</option>
-        </select>
-
-        <input type="number" placeholder="Age Min" />
-        <input type="number" placeholder="Age Max" />
-
-        <input type="number" placeholder="Default Price" />
-
-        <select>
-          <option>Status: Active</option>
-          <option>Status: Inactive</option>
-        </select>
-
-        <input
-          placeholder="Description"
-          style={{ gridColumn: "span 3" }}
-        />
-
-        <button style={{ gridColumn: "span 1" }}>
-          Add
-        </button>
+        <input placeholder="Program Name" value={name} onChange={e => setName(e.target.value)} />
+        <input placeholder="Code" value={code} onChange={e => setCode(e.target.value)} />
+        <button onClick={saveProgram}>Add</button>
       </div>
 
-      {/* Programs Table */}
-      <table width="100%" border="1" cellPadding="6">
+      <table border="1" width="100%" cellPadding="6">
         <thead>
           <tr>
+            <th>Sport</th>
             <th>Name</th>
             <th>Code</th>
-            <th>Sport</th>
-            <th>Type</th>
-            <th>Duration</th>
-            <th>Seats</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td colSpan="7" align="center">
-              No programs yet
-            </td>
-          </tr>
+          {programs.map(p => (
+            <tr key={p.id}>
+              <td>{p.sports?.name}</td>
+              <td>{p.name}</td>
+              <td>{p.code}</td>
+              <td>{p.status}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
