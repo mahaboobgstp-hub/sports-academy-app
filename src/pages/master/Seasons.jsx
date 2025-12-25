@@ -49,6 +49,7 @@ export default function Seasons() {
       {
         name,
         code,
+        academic_year: academicYear,
         start_date: startDate,
         end_date: endDate,
         is_default: isDefault,
@@ -61,7 +62,7 @@ export default function Seasons() {
       alert(error.message);
       return;
     }
-
+    setAcademicYear("");
     setName("");
     setCode("");
     setStartDate("");
