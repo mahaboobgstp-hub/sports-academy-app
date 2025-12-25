@@ -1,11 +1,9 @@
 import { useState } from "react";
-//import { supabase } from "../lib/supabase";
+//import { supabase } from "../supabaseClient";
 
 export default function Locations() {
+  const [saving, setSaving] = useState(false);
 
-  /* ===============================
-     LOCATION STATE
-  =============================== */
   const [location, setLocation] = useState({
     name: "",
     code: "",
@@ -14,12 +12,10 @@ export default function Locations() {
     full_address: "",
     timezone: "",
     max_capacity: "",
-
     contact_name: "",
     contact_role: "",
     contact_phone: "",
     contact_email: "",
-
     vendor_name: "",
     vendor_type: "",
     vendor_company: "",
@@ -27,26 +23,23 @@ export default function Locations() {
     vendor_email: "",
     contract_start_date: "",
     contract_end_date: "",
-
     notes: ""
   });
 
-  /* ===============================
-     COURTS STATE (CHILD)
-  =============================== */
   const [courts, setCourts] = useState([]);
 
-  /* ===============================
+  /* =============================
      HELPERS
-  =============================== */
+  ============================== */
+
   function updateLocation(field, value) {
-    setLocation(prev => ({ ...prev, [field]: value }));
+    setLocation({ ...location, [field]: value });
   }
 
   function addCourt() {
     setCourts([
       ...courts,
-      { name: "", code: "", capacity: "", type: "Indoor" }
+      { name: "", code: "", capacity: "", indoor: true }
     ]);
   }
 
@@ -56,116 +49,104 @@ export default function Locations() {
     setCourts(updated);
   }
 
-  /* ===============================
+  /* =============================
      SAVE LOCATION + COURTS
-  =============================== */
+  ============================== */
+
   async function saveLocation() {
     if (!location.name || !location.code) {
-      alert("Location Name & Code are required");
+      alert("Location Name and Code are required");
       return;
     }
 
     if (courts.length === 0) {
-      alert("Add at least one court before saving");
+      alert("Please add at least one court");
       return;
     }
 
-    // 1️⃣ Insert Location
-    const { data: loc, error } = await supabase
-      .from("locations")
-      .insert([{
-        name: location.name,
-        code: location.code,
-        city: location.city,
-        status: location.status,
-        full_address: location.full_address,
-        timezone: location.timezone,
-        max_capacity: location.max_capacity || null,
+    setSaving(true);
 
-        contact_name: location.contact_name,
-        contact_role: location.contact_role,
-        contact_phone: location.contact_phone,
-        contact_email: location.contact_email,
+    try {
+      // 1️⃣ Insert Location
+      const { data: loc, error: locError } = await supabase
+        .from("locations")
+        .insert([{
+          ...location,
+          max_capacity: location.max_capacity
+            ? Number(location.max_capacity)
+            : null
+        }])
+        .select()
+        .single();
 
-        vendor_name: location.vendor_name,
-        vendor_type: location.vendor_type,
-        vendor_company: location.vendor_company,
-        vendor_phone: location.vendor_phone,
-        vendor_email: location.vendor_email,
-        contract_start_date: location.contract_start_date || null,
-        contract_end_date: location.contract_end_date || null,
+      if (locError) throw locError;
 
-        notes: location.notes
-      }])
-      .select()
-      .single();
+      // 2️⃣ Insert Courts (child)
+      const courtsPayload = courts.map(c => ({
+        location_id: loc.id,
+        name: c.name,
+        code: c.code,
+        capacity: c.capacity ? Number(c.capacity) : null,
+        indoor: c.indoor
+      }));
 
-    if (error) {
-      alert(error.message);
-      return;
+      const { error: courtError } = await supabase
+        .from("courts")
+        .insert(courtsPayload);
+
+      if (courtError) throw courtError;
+
+      alert("Location & Courts saved successfully");
+
+      // Reset form
+      setLocation({
+        name: "",
+        code: "",
+        city: "",
+        status: "ACTIVE",
+        full_address: "",
+        timezone: "",
+        max_capacity: "",
+        contact_name: "",
+        contact_role: "",
+        contact_phone: "",
+        contact_email: "",
+        vendor_name: "",
+        vendor_type: "",
+        vendor_company: "",
+        vendor_phone: "",
+        vendor_email: "",
+        contract_start_date: "",
+        contract_end_date: "",
+        notes: ""
+      });
+
+      setCourts([]);
+
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    } finally {
+      setSaving(false);
     }
-
-    const locationId = loc.id;
-
-    // 2️⃣ Insert Courts
-    for (const court of courts) {
-      if (!court.name) continue;
-
-      await supabase.from("courts").insert([{
-        location_id: locationId,
-        name: court.name,
-        code: court.code,
-        capacity: court.capacity || null,
-        indoor: court.type === "Indoor"
-      }]);
-    }
-
-    alert("Location & Courts saved successfully");
-
-    // Reset everything
-    setLocation({
-      name: "",
-      code: "",
-      city: "",
-      status: "ACTIVE",
-      full_address: "",
-      timezone: "",
-      max_capacity: "",
-      contact_name: "",
-      contact_role: "",
-      contact_phone: "",
-      contact_email: "",
-      vendor_name: "",
-      vendor_type: "",
-      vendor_company: "",
-      vendor_phone: "",
-      vendor_email: "",
-      contract_start_date: "",
-      contract_end_date: "",
-      notes: ""
-    });
-    setCourts([]);
   }
 
-  /* ===============================
+  /* =============================
      UI
-  =============================== */
+  ============================== */
+
   return (
     <div>
       <h3>Locations</h3>
 
       <div className="form-grid">
-
-        <input placeholder="Location Name"
-          value={location.name}
+        <input placeholder="Location Name" value={location.name}
           onChange={e => updateLocation("name", e.target.value)} />
 
-        <input placeholder="Location Code"
-          value={location.code}
+        <input placeholder="Location Code" value={location.code}
           onChange={e => updateLocation("code", e.target.value)} />
 
-        <input placeholder="City"
-          value={location.city}
+        <input placeholder="City" value={location.city}
           onChange={e => updateLocation("city", e.target.value)} />
 
         <select value={location.status}
@@ -174,13 +155,11 @@ export default function Locations() {
           <option value="INACTIVE">Inactive</option>
         </select>
 
-        <input placeholder="Full Address"
-          style={{ gridColumn: "span 4" }}
+        <input placeholder="Full Address" style={{ gridColumn: "span 4" }}
           value={location.full_address}
           onChange={e => updateLocation("full_address", e.target.value)} />
 
-        <input placeholder="Timezone (e.g. IST)"
-          value={location.timezone}
+        <input placeholder="Timezone (e.g. IST)" value={location.timezone}
           onChange={e => updateLocation("timezone", e.target.value)} />
 
         <input type="number" placeholder="Max Capacity"
@@ -227,41 +206,35 @@ export default function Locations() {
           value={location.vendor_email}
           onChange={e => updateLocation("vendor_email", e.target.value)} />
 
-        <label>
-          Contract Start
-          <input type="date"
-            value={location.contract_start_date}
-            onChange={e => updateLocation("contract_start_date", e.target.value)} />
-        </label>
+        <input type="date"
+          onChange={e => updateLocation("contract_start_date", e.target.value)} />
 
-        <label>
-          Contract End
-          <input type="date"
-            value={location.contract_end_date}
-            onChange={e => updateLocation("contract_end_date", e.target.value)} />
-        </label>
+        <input type="date"
+          onChange={e => updateLocation("contract_end_date", e.target.value)} />
 
-        <input placeholder="Notes"
-          style={{ gridColumn: "span 4" }}
+        <input placeholder="Notes" style={{ gridColumn: "span 4" }}
           value={location.notes}
           onChange={e => updateLocation("notes", e.target.value)} />
       </div>
 
       <h4>Courts</h4>
 
-      {courts.map((court, index) => (
-        <div key={index} className="form-grid">
+      {courts.map((c, i) => (
+        <div key={i} className="form-grid">
           <input placeholder="Court Name"
-            value={court.name}
-            onChange={e => updateCourt(index, "name", e.target.value)} />
+            value={c.name}
+            onChange={e => updateCourt(i, "name", e.target.value)} />
+
           <input placeholder="Court Code"
-            value={court.code}
-            onChange={e => updateCourt(index, "code", e.target.value)} />
+            value={c.code}
+            onChange={e => updateCourt(i, "code", e.target.value)} />
+
           <input type="number" placeholder="Max Seats"
-            value={court.capacity}
-            onChange={e => updateCourt(index, "capacity", e.target.value)} />
-          <select value={court.type}
-            onChange={e => updateCourt(index, "type", e.target.value)}>
+            value={c.capacity}
+            onChange={e => updateCourt(i, "capacity", e.target.value)} />
+
+          <select value={c.indoor ? "Indoor" : "Outdoor"}
+            onChange={e => updateCourt(i, "indoor", e.target.value === "Indoor")}>
             <option>Indoor</option>
             <option>Outdoor</option>
           </select>
@@ -270,11 +243,11 @@ export default function Locations() {
 
       <button onClick={addCourt}>+ Add Court</button>
 
-      {courts.length > 0 && (
-        <button style={{ marginTop: 12 }} onClick={saveLocation}>
-          Save Location
-        </button>
-      )}
+      <br /><br />
+
+      <button onClick={saveLocation} disabled={saving}>
+        {saving ? "Saving..." : "Save Location"}
+      </button>
     </div>
   );
 }
