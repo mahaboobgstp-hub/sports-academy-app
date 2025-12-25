@@ -2,64 +2,88 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import "./ProgramPlanner.css";
 
+/* ===== STATIC DEFINITIONS ===== */
+
+const DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
+
+const TIME_SLOTS = [
+  "06:00-07:00",
+  "07:00-08:00",
+  "08:00-09:00",
+  "09:00-10:00",
+  "10:00-11:00",
+  "11:00-12:00",
+  "12:00-13:00",
+  "13:00-14:00",
+  "14:00-15:00",
+  "15:00-16:00",
+  "16:00-17:00",
+  "17:00-18:00",
+  "18:00-19:00",
+  "19:00-20:00",
+  "20:00-21:00",
+  "21:00-22:00",
+  "22:00-23:00",
+  "23:00-23:59"
+];
+
 export default function ProgramPlanner() {
- 
-  
-  // ===== MASTER DATA =====
-   const [programs, setPrograms] = useState([]);
+
+  /* ===== MASTER DATA ===== */
   const [sports, setSports] = useState([]);
   const [seasons, setSeasons] = useState([]);
   const [programMasters, setProgramMasters] = useState([]);
+  const [locationsMaster, setLocationsMaster] = useState([]);
+
+  /* ===== CONTEXT ===== */
   const [selectedSeasonId, setSelectedSeasonId] = useState("");
 
-  // 2️⃣ DERIVED DATA (PASTE HERE 👇)
-  const selectedSeason = seasons.find(
-    s => s.id === selectedSeasonId
-  );
+  /* ===== PLANNER STATE ===== */
+  const [programs, setPrograms] = useState([]);
 
-  // ===== LOAD MASTER DATA ONLY =====
+  const selectedSeason = seasons.find(s => s.id === selectedSeasonId);
+
+  /* ===== LOAD MASTER DATA ===== */
   useEffect(() => {
     loadSports();
     loadSeasons();
     loadPrograms();
+    loadLocations();
   }, []);
 
   const loadSports = async () => {
-    const { data, error } = await supabase
-      .from("sports")
-      .select("id, name");
-
-    if (!error) setSports(data);
+    const { data } = await supabase.from("sports").select("id, name");
+    setSports(data || []);
   };
 
   const loadSeasons = async () => {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from("seasons")
       .select("id, name, start_date, end_date");
-
-    if (!error) setSeasons(data);
+    setSeasons(data || []);
   };
 
   const loadPrograms = async () => {
-    const { data, error } = await supabase
-      .from("programs")
-      .select("id, name");
-
-    if (!error) setProgramMasters(data);
+    const { data } = await supabase.from("programs").select("id, name");
+    setProgramMasters(data || []);
   };
 
+  const loadLocations = async () => {
+    const { data } = await supabase.from("locations").select("id, name");
+    setLocationsMaster(data || []);
+  };
+
+  /* ===== ADD FUNCTIONS (STATE ONLY) ===== */
+
   const addProgram = () => {
-   const addLocation = (programIndex) => {
-  const updatedPrograms = [...programs];
-
-  updatedPrograms[programIndex].locations.push({
-    id: Date.now(),
-    locationId: ""
-  });
-
-  setPrograms(updatedPrograms);
-};
-
     setPrograms([
       ...programs,
       {
@@ -71,53 +95,84 @@ export default function ProgramPlanner() {
     ]);
   };
 
+  const addLocation = (pIndex) => {
+    const updated = [...programs];
+    updated[pIndex].locations.push({
+      id: Date.now(),
+      locationId: "",
+      seatsAllocated: "",
+      courts: []
+    });
+    setPrograms(updated);
+  };
+
+  const addCourt = (pIndex, lIndex) => {
+    const updated = [...programs];
+    updated[pIndex].locations[lIndex].courts.push({
+      id: Date.now(),
+      courtName: "",
+      seatsAllocated: "",
+      days: []
+    });
+    setPrograms(updated);
+  };
+
+  const addHours = (pIndex, lIndex, cIndex) => {
+    const updated = [...programs];
+    updated[pIndex].locations[lIndex].courts[cIndex].days =
+      DAYS.map(day => ({
+        dayName: day,
+        selectedHours: [],
+        hourSeats: {},
+        dayTotal: ""
+      }));
+    setPrograms(updated);
+  };
+
+  /* ===== UI ===== */
+
   return (
     <div className="planner-page">
 
-      {/* ===== TOP CONTEXT BAR (UNCHANGED) ===== */}
+      {/* ===== TOP CONTEXT ===== */}
       <div className="planner-header">
         <select>
           <option>Select Sport</option>
           {sports.map(s => (
-            <option key={s.id} value={s.id}>
-              {s.name}
-            </option>
+            <option key={s.id} value={s.id}>{s.name}</option>
           ))}
         </select>
 
-      <select
-      value={selectedSeasonId}
-      onChange={(e) => setSelectedSeasonId(e.target.value)}
-      >
+        <select
+          value={selectedSeasonId}
+          onChange={(e) => setSelectedSeasonId(e.target.value)}
+        >
           <option>Select Season</option>
           {seasons.map(s => (
-            <option key={s.id} value={s.id}>
-              {s.name}
-            </option>
+            <option key={s.id} value={s.id}>{s.name}</option>
           ))}
         </select>
 
         <input value={selectedSeason?.start_date || ""} disabled />
         <input value={selectedSeason?.end_date || ""} disabled />
-
       </div>
 
-      {/* ===== PROGRAM SECTION (UNCHANGED FLOW) ===== */}
+      {/* ===== PROGRAMS ===== */}
       <div className="planner-section">
         <div className="section-header">
           <h3>Programs</h3>
           <button onClick={addProgram}>+ Add Program</button>
         </div>
 
-        {programs.map((p) => (
+        {programs.map((p, pIndex) => (
           <div key={p.id} className="program-card">
+
+            {/* PROGRAM ROW */}
             <div className="program-row">
               <select>
                 <option>Select Program</option>
                 {programMasters.map(pm => (
-                  <option key={pm.id} value={pm.id}>
-                    {pm.name}
-                  </option>
+                  <option key={pm.id} value={pm.id}>{pm.name}</option>
                 ))}
               </select>
 
@@ -126,13 +181,67 @@ export default function ProgramPlanner() {
               <input placeholder="Pending" disabled />
             </div>
 
-            <button
-  className="sub-btn"
-  onClick={() => addLocation(index)}
->
-  + Add Location
-</button>
-<pre>{JSON.stringify(p.locations, null, 2)}</pre>
+            <button className="sub-btn" onClick={() => addLocation(pIndex)}>
+              + Add Location
+            </button>
+
+            {/* LOCATIONS */}
+            {p.locations.map((loc, lIndex) => (
+              <div key={loc.id} className="location-row">
+
+                <select>
+                  <option>Select Location</option>
+                  {locationsMaster.map(l => (
+                    <option key={l.id} value={l.id}>{l.name}</option>
+                  ))}
+                </select>
+
+                <input placeholder="Seats Allocated" />
+
+                <button
+                  className="sub-btn"
+                  onClick={() => addCourt(pIndex, lIndex)}
+                >
+                  + Add Court
+                </button>
+
+                {/* COURTS */}
+                {loc.courts.map((court, cIndex) => (
+                  <div key={court.id} className="court-row">
+
+                    <input placeholder="Court Name" />
+                    <input placeholder="Seats Allocated" />
+
+                    <button
+                      className="sub-btn"
+                      onClick={() => addHours(pIndex, lIndex, cIndex)}
+                    >
+                      + Add Hours
+                    </button>
+
+                    {/* DAYS */}
+                    {court.days.map((day, dIndex) => (
+                      <div key={day.dayName} className="day-row">
+
+                        <strong>{day.dayName}</strong>
+
+                        <select multiple>
+                          {TIME_SLOTS.map(slot => (
+                            <option key={slot} value={slot}>{slot}</option>
+                          ))}
+                        </select>
+
+                        <input placeholder="Day Total" disabled />
+                        <button className="sub-btn">Edit Weeks</button>
+
+                      </div>
+                    ))}
+
+                  </div>
+                ))}
+
+              </div>
+            ))}
 
           </div>
         ))}
