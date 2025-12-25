@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import "./ProgramPlanner.css";
 
-/* ===== STATIC DEFINITIONS ===== */
+/* ===== CONSTANTS ===== */
 
 const DAYS = [
   "Monday",
@@ -15,24 +15,11 @@ const DAYS = [
 ];
 
 const TIME_SLOTS = [
-  "06:00-07:00",
-  "07:00-08:00",
-  "08:00-09:00",
-  "09:00-10:00",
-  "10:00-11:00",
-  "11:00-12:00",
-  "12:00-13:00",
-  "13:00-14:00",
-  "14:00-15:00",
-  "15:00-16:00",
-  "16:00-17:00",
-  "17:00-18:00",
-  "18:00-19:00",
-  "19:00-20:00",
-  "20:00-21:00",
-  "21:00-22:00",
-  "22:00-23:00",
-  "23:00-23:59"
+  "06:00-07:00","07:00-08:00","08:00-09:00","09:00-10:00",
+  "10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00",
+  "14:00-15:00","15:00-16:00","16:00-17:00","17:00-18:00",
+  "18:00-19:00","19:00-20:00","20:00-21:00","21:00-22:00",
+  "22:00-23:00","23:00-23:59"
 ];
 
 export default function ProgramPlanner() {
@@ -112,7 +99,8 @@ export default function ProgramPlanner() {
       id: Date.now(),
       courtName: "",
       seatsAllocated: "",
-      days: []
+      days: [],
+      collapsed: false
     });
     setPrograms(updated);
   };
@@ -124,7 +112,8 @@ export default function ProgramPlanner() {
         dayName: day,
         selectedHours: [],
         hourSeats: {},
-        dayTotal: ""
+        dayTotal: "",
+        showWeeks: false
       }));
     setPrograms(updated);
   };
@@ -219,20 +208,89 @@ export default function ProgramPlanner() {
                       + Add Hours
                     </button>
 
+                    <button
+                      className="sub-btn"
+                      onClick={() => {
+                        const updated = [...programs];
+                        const ct =
+                          updated[pIndex].locations[lIndex].courts[cIndex];
+                        ct.collapsed = !ct.collapsed;
+                        setPrograms(updated);
+                      }}
+                    >
+                      {court.collapsed ? "Expand" : "Collapse"}
+                    </button>
+
                     {/* DAYS */}
-                    {court.days.map((day, dIndex) => (
+                    {!court.collapsed && court.days.map((day, dIndex) => (
                       <div key={day.dayName} className="day-row">
 
                         <strong>{day.dayName}</strong>
 
-                        <select multiple>
+                        <select
+                          multiple
+                          value={day.selectedHours}
+                          onChange={(e) => {
+                            const values = Array.from(
+                              e.target.selectedOptions
+                            ).map(o => o.value);
+                            const updated = [...programs];
+                            updated[pIndex]
+                              .locations[lIndex]
+                              .courts[cIndex]
+                              .days[dIndex]
+                              .selectedHours = values;
+                            setPrograms(updated);
+                          }}
+                        >
                           {TIME_SLOTS.map(slot => (
                             <option key={slot} value={slot}>{slot}</option>
                           ))}
                         </select>
 
+                        {/* SEATS PER HOUR */}
+                        {day.selectedHours.map(slot => (
+                          <div key={slot} className="hour-seat-row">
+                            <span className="hour-label">{slot}</span>
+                            <input
+                              placeholder="Seats"
+                              value={day.hourSeats[slot] || ""}
+                              onChange={(e) => {
+                                const updated = [...programs];
+                                updated[pIndex]
+                                  .locations[lIndex]
+                                  .courts[cIndex]
+                                  .days[dIndex]
+                                  .hourSeats[slot] = e.target.value;
+                                setPrograms(updated);
+                              }}
+                            />
+                          </div>
+                        ))}
+
                         <input placeholder="Day Total" disabled />
-                        <button className="sub-btn">Edit Weeks</button>
+
+                        <button
+                          className="sub-btn"
+                          onClick={() => {
+                            const updated = [...programs];
+                            const d =
+                              updated[pIndex]
+                                .locations[lIndex]
+                                .courts[cIndex]
+                                .days[dIndex];
+                            d.showWeeks = !d.showWeeks;
+                            setPrograms(updated);
+                          }}
+                        >
+                          Edit Weeks
+                        </button>
+
+                        {day.showWeeks && (
+                          <div className="weeks-placeholder">
+                            Week-wise editor will appear here
+                          </div>
+                        )}
 
                       </div>
                     ))}
