@@ -47,7 +47,7 @@ export default function Locations() {
   function addCourt() {
     setCourts([
       ...courts,
-      { name: "", code: "", seats: "", court_type: "Indoor" }
+      { name: "", code: "", seats: "", type: "Indoor" }
     ]);
   }
 
@@ -196,7 +196,7 @@ async function saveLocation() {
             <input placeholder="Court Name" value={c.name} onChange={e => updateCourt(i, "name", e.target.value)} />
             <input placeholder="Court Code" value={c.code} onChange={e => updateCourt(i, "code", e.target.value)} />
             <input type="number" placeholder="Seats" value={c.seats} onChange={e => updateCourt(i, "seats", e.target.value)} />
-            <select value={c.type} onChange={e => updateCourt(i, "court_type", e.target.value)}>
+            <select value={c.type} onChange={e => updateCourt(i, "type", e.target.value)}>
               <option>Indoor</option>
               <option>Outdoor</option>
             </select>
