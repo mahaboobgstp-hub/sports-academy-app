@@ -47,7 +47,7 @@ export default function Locations() {
   function addCourt() {
     setCourts([
       ...courts,
-      { name: "", code: "", seats: "", type: "Indoor" }
+      { name: "", code: "", seats: "", court_type: "Indoor" }
     ]);
   }
 
