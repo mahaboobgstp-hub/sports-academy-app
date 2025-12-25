@@ -32,11 +32,11 @@ export default function Seasons() {
 
   async function saveSeason() {
     if (!name || !code || !startDate || !endDate) {
-      alert("Name, Code, Start Date and End Date are required");
+      alert("All mandatory fields are required");
       return;
     }
 
-    // Ensure only ONE default season
+    // ensure only one default season
     if (isDefault) {
       await supabase
         .from("seasons")
@@ -76,24 +76,42 @@ export default function Seasons() {
     <div>
       <h3>Seasons</h3>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 12 }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 8,
+          marginBottom: 12
+        }}
+      >
         <input placeholder="Season Name" value={name} onChange={e => setName(e.target.value)} />
         <input placeholder="Season Code" value={code} onChange={e => setCode(e.target.value)} />
         <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
         <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
       </div>
 
-      <div style={{ display: "flex", gap: 16, marginBottom: 12 }}>
+      <div style={{ display: "flex", gap: 20, marginBottom: 12 }}>
         <label>
-          <input type="checkbox" checked={isDefault} onChange={e => setIsDefault(e.target.checked)} /> Default Season
+          <input
+            type="checkbox"
+            checked={isDefault}
+            onChange={e => setIsDefault(e.target.checked)}
+          />{" "}
+          Default Season
         </label>
+
         <label>
-          <input type="checkbox" checked={planningLocked} onChange={e => setPlanningLocked(e.target.checked)} /> Planning Locked
+          <input
+            type="checkbox"
+            checked={planningLocked}
+            onChange={e => setPlanningLocked(e.target.checked)}
+          />{" "}
+          Planning Locked
         </label>
       </div>
 
       <textarea
-        placeholder="Notes"
+        placeholder="Internal Notes"
         value={notes}
         onChange={e => setNotes(e.target.value)}
         style={{ width: "100%", marginBottom: 12 }}
