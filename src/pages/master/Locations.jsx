@@ -58,42 +58,75 @@ export default function Locations() {
   }
 
   async function saveLocation() {
-    if (!form.name || !form.code) {
-      alert("Location name and code are required");
+  if (!form.name || !form.code) {
+    alert("Location name and code are required");
+    return;
+  }
+
+  // 🔑 IMPORTANT: convert empty strings to null for DB compatibility
+  const locationPayload = {
+    name: form.name,
+    code: form.code,
+    city: form.city || null,
+    status: form.status || "ACTIVE",
+    address: form.address || null,
+    timezone: form.timezone || null,
+    max_capacity: form.max_capacity ? Number(form.max_capacity) : null,
+
+    contact_name: form.contact_name || null,
+    contact_role: form.contact_role || null,
+    contact_phone: form.contact_phone || null,
+    contact_email: form.contact_email || null,
+
+    vendor_name: form.vendor_name || null,
+    vendor_type: form.vendor_type || null,
+    vendor_company: form.vendor_company || null,
+    vendor_phone: form.vendor_phone || null,
+    vendor_email: form.vendor_email || null,
+
+    contract_start: form.contract_start || null,
+    contract_end: form.contract_end || null,
+
+    notes: form.notes || null
+  };
+
+  // 🔹 Insert location
+  const { data: location, error } = await supabase
+    .from("locations")
+    .insert([locationPayload])
+    .select()
+    .single();
+
+  if (error) {
+    alert(error.message);
+    console.error(error);
+    return;
+  }
+
+  // 🔹 Insert courts (child records)
+  if (courts.length > 0) {
+    const courtRows = courts.map(c => ({
+      location_id: location.id,
+      name: c.name,
+      code: c.code,
+      max_seats: c.seats ? Number(c.seats) : null,
+      type: c.type || "Indoor"
+    }));
+
+    const { error: courtError } = await supabase
+      .from("courts")
+      .insert(courtRows);
+
+    if (courtError) {
+      alert(courtError.message);
+      console.error(courtError);
       return;
     }
+  }
 
-    const { data: location, error } = await supabase
-      .from("locations")
-      .insert([form])
-      .select()
-      .single();
+  alert("Location saved successfully");
+}
 
-    if (error) {
-      alert(error.message);
-      return;
-    }
-
-    if (courts.length > 0) {
-      const courtRows = courts.map(c => ({
-        location_id: location.id,
-        name: c.name,
-        code: c.code,
-        max_seats: c.seats,
-        type: c.type
-      }));
-
-      const { error: courtError } = await supabase
-        .from("courts")
-        .insert(courtRows);
-
-      if (courtError) {
-        alert(courtError.message);
-        return;
-      }
-    }
-
-    alert("Location saved successfully");
 
     setForm({
       name: "",
