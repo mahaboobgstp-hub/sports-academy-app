@@ -6,6 +6,7 @@ export default function Seasons() {
 
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
+  const [academicYear, setAcademicYear] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [isDefault, setIsDefault] = useState(false);
@@ -31,7 +32,7 @@ export default function Seasons() {
   }
 
   async function saveSeason() {
-    if (!name || !code || !startDate || !endDate) {
+    if (!name || !code || !academicYear || !startDate || !endDate) {
       alert("All mandatory fields are required");
       return;
     }
@@ -84,6 +85,7 @@ export default function Seasons() {
           marginBottom: 12
         }}
       >
+        <input placeholder="Academic Year (e.g. 2025-26)" value={academicYear} onChange={e => setAcademicYear(e.target.value)} />
         <input placeholder="Season Name" value={name} onChange={e => setName(e.target.value)} />
         <input placeholder="Season Code" value={code} onChange={e => setCode(e.target.value)} />
         <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
