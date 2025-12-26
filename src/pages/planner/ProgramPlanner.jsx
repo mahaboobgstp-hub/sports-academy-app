@@ -22,6 +22,51 @@ const TIME_SLOTS = [
   "22:00-23:00","23:00-23:59"
 ];
 
+const getFirstDateForDayInSeason = (dayName, season) => {
+  if (!season?.start_date || !season?.end_date) return null;
+
+  const dayIndexMap = {
+    Sunday: 0,
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6
+  };
+
+  const targetDayIndex = dayIndexMap[dayName];
+  const start = new Date(season.start_date);
+  const end = new Date(season.end_date);
+
+  const date = new Date(start);
+
+  while (date <= end) {
+    if (date.getDay() === targetDayIndex) {
+      return date;
+    }
+    date.setDate(date.getDate() + 1);
+  }
+
+  return null;
+};
+
+const formatDateWithDay = (date) => {
+  if (!date) return "";
+
+  const d = String(date.getDate()).padStart(2, "0");
+  const m = date
+    .toLocaleString("en-GB", { month: "short" })
+    .toUpperCase();
+  const y = date.getFullYear();
+  const day = date
+    .toLocaleString("en-GB", { weekday: "long" })
+    .toUpperCase();
+
+  return `${d}-${m}-${y} ${day}`;
+};
+
+
 function getWeekDatesBetween(startDate, endDate, dayName) {
   if (!startDate || !endDate) return [];
 
@@ -321,7 +366,11 @@ const formatDateWithDay = (dateInput) => {
                     {!court.collapsed && court.days.map((day, dIndex) => (
                       <div key={dIndex} className="day-row">
 
-                        <strong style={{ minWidth: "90px" }}>{day.dayName}</strong>
+                        <strong style={{ minWidth: "160px" }}>
+  {formatDateWithDay(
+    getFirstDateForDayInSeason(day.dayName, selectedSeason)
+  )}
+</strong>
 
                         <select
                           value={newTimeSlot}
