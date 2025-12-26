@@ -372,13 +372,36 @@ setPrograms(updated);
 >
   Edit Weeks
 </button>
+{weekEditor && (
+      <div className="modal-backdrop">
+        <div className="modal">
+          <h3>
+            Edit Weeks – {
+              programs[weekEditor.pIndex]
+                .locations[weekEditor.lIndex]
+                .courts[weekEditor.cIndex]
+                .days[weekEditor.dIndex]
+                .dayName
+            }
+          </h3>
 
-                        {day.showWeeks && (
-                          <div className="weeks-placeholder">
-                            Week-wise editor will appear here
-                          </div>
-                        )}
+          <p>Week-wise editor will appear here</p>
 
+          <button
+            className="sub-btn"
+            onClick={() => setWeekEditor(null)}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    )}
+
+  </div>
+);
+🧠 MENTAL MODEL (REMEMBER THIS)
+❌ Inline week UI → re
+                        
                       </div>
                     ))}
 
