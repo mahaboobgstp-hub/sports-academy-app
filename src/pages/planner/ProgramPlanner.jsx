@@ -327,7 +327,50 @@ setPrograms(updated);
   >
     + Add
   </button>
+{day.timeSlots.map((ts, i) => (
+  <div key={i} className="time-pill">
+    <span>{ts.slot}</span>
+    <strong>{ts.seats}</strong>
+    <button
+      onClick={() => {
+        const updated = [...programs];
+        updated[pIndex]
+          .locations[lIndex]
+          .courts[cIndex]
+          .days[dIndex]
+          .timeSlots.splice(i, 1);
+        setPrograms(updated);
+      }}
+    >
+      ✕
+    </button>
+  </div>
+))}
 
+                        <div className="day-total">
+  Total:{" "}
+  {day.timeSlots.reduce(
+    (sum, t) => sum + Number(t.seats || 0),
+    0
+                   )}
+                  </div>
+                      <input placeholder="Day Total" disabled />
+
+                        <button
+                          className="sub-btn"
+                          onClick={() => {
+                            const updated = [...programs];
+                            const d =
+                              updated[pIndex]
+                                .locations[lIndex]
+                                .courts[cIndex]
+                                .days[dIndex];
+                            d.showWeeks = !d.showWeeks;
+                            setPrograms(updated);
+                          }}
+                        >
+                          Edit Weeks
+                        </button>
 
                         {day.showWeeks && (
                           <div className="weeks-placeholder">
