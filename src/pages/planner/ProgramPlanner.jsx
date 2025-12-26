@@ -26,6 +26,9 @@ export default function ProgramPlanner() {
 
   const [newTimeSlot, setNewTimeSlot] = useState("");
   const [newSeats, setNewSeats] = useState("");
+  const [weekEditor, setWeekEditor] = useState(null);
+// structure later: { pIndex, lIndex, cIndex, dIndex }
+
 
 
   /* ===== MASTER DATA ===== */
@@ -357,20 +360,18 @@ setPrograms(updated);
                   </div>
                       
                         <button
-                          className="sub-btn"
-                          onClick={() => {
-                            const updated = [...programs];
-                            const d =
-                              updated[pIndex]
-                                .locations[lIndex]
-                                .courts[cIndex]
-                                .days[dIndex];
-                            d.showWeeks = !d.showWeeks;
-                            setPrograms(updated);
-                          }}
-                        >
-                          Edit Weeks
-                        </button>
+  className="sub-btn"
+  onClick={() => {
+    setWeekEditor({
+      pIndex,
+      lIndex,
+      cIndex,
+      dIndex
+    });
+  }}
+>
+  Edit Weeks
+</button>
 
                         {day.showWeeks && (
                           <div className="weeks-placeholder">
