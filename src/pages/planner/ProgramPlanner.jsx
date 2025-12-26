@@ -321,8 +321,8 @@ setPrograms(updated);
         });
 
       setPrograms(updated);
-      setNewTimeSlot("");
-      setNewSeats("");
+      //setNewTimeSlot("");
+      //setNewSeats("");
     }}
   >
     + Add
