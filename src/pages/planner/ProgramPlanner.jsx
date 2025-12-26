@@ -24,6 +24,10 @@ const TIME_SLOTS = [
 
 export default function ProgramPlanner() {
 
+  const [newTimeSlot, setNewTimeSlot] = useState("");
+  const [newSeats, setNewSeats] = useState("");
+
+
   /* ===== MASTER DATA ===== */
   const [sports, setSports] = useState([]);
   const [seasons, setSeasons] = useState([]);
@@ -112,14 +116,13 @@ export default function ProgramPlanner() {
     const updated = [...programs];
     updated[pIndex].locations[lIndex].courts[cIndex].days =
       DAYS.map(day => ({
-        dayName: day,
-        selectedHours: [],
-        hourSeats: {},
-        dayTotal: "",
-        showWeeks: false
-      }));
-    setPrograms(updated);
-  };
+  dayName: day,
+  timeSlots: [],   // ✅ NEW: holds time + seats pairs
+  showWeeks: false
+}));
+setPrograms(updated);
+};
+
 
   /* ===== UI ===== */
 
@@ -278,68 +281,53 @@ export default function ProgramPlanner() {
 
                     {/* ===== DAYS ===== */}
                     {!court.collapsed && court.days.map((day, dIndex) => (
-                      <div key={day.dayName} className="day-row">
+                      <div className="day-row">
 
-                        <strong>{day.dayName}</strong>
+  <strong style={{ minWidth: "90px" }}>{day.dayName}</strong>
 
-                        <select
-                          multiple
-                          value={day.selectedHours}
-                          onChange={(e) => {
-                            const values = Array.from(
-                              e.target.selectedOptions
-                            ).map(o => o.value);
-                            const updated = [...programs];
-                            updated[pIndex]
-                              .locations[lIndex]
-                              .courts[cIndex]
-                              .days[dIndex]
-                              .selectedHours = values;
-                            setPrograms(updated);
-                          }}
-                        >
-                          {TIME_SLOTS.map(slot => (
-                            <option key={slot}>{slot}</option>
-                          ))}
-                        </select>
+  {/* TIME DROPDOWN */}
+  <select
+    value={newTimeSlot}
+    onChange={(e) => setNewTimeSlot(e.target.value)}
+  >
+    <option value="">Select Time</option>
+    {TIME_SLOTS.map(t => (
+      <option key={t} value={t}>{t}</option>
+    ))}
+  </select>
 
-                        {/* SEATS PER HOUR */}
-                        {day.selectedHours.map(slot => (
-                          <div key={slot} className="hour-seat-row">
-                            <span>{slot}</span>
-                            <input
-                              placeholder="Seats"
-                              value={day.hourSeats[slot] || ""}
-                              onChange={(e) => {
-                                const updated = [...programs];
-                                updated[pIndex]
-                                  .locations[lIndex]
-                                  .courts[cIndex]
-                                  .days[dIndex]
-                                  .hourSeats[slot] = e.target.value;
-                                setPrograms(updated);
-                              }}
-                            />
-                          </div>
-                        ))}
+  {/* SEATS INPUT */}
+  <input
+    placeholder="Seats"
+    value={newSeats}
+    onChange={(e) => setNewSeats(e.target.value)}
+    style={{ width: "80px" }}
+  />
 
-                        <input placeholder="Day Total" disabled />
+  {/* ADD BUTTON */}
+  <button
+    className="sub-btn"
+    onClick={() => {
+      if (!newTimeSlot || !newSeats) return;
 
-                        <button
-                          className="sub-btn"
-                          onClick={() => {
-                            const updated = [...programs];
-                            const d =
-                              updated[pIndex]
-                                .locations[lIndex]
-                                .courts[cIndex]
-                                .days[dIndex];
-                            d.showWeeks = !d.showWeeks;
-                            setPrograms(updated);
-                          }}
-                        >
-                          Edit Weeks
-                        </button>
+      const updated = [...programs];
+      updated[pIndex]
+        .locations[lIndex]
+        .courts[cIndex]
+        .days[dIndex]
+        .timeSlots.push({
+          slot: newTimeSlot,
+          seats: newSeats
+        });
+
+      setPrograms(updated);
+      setNewTimeSlot("");
+      setNewSeats("");
+    }}
+  >
+    + Add
+  </button>
+
 
                         {day.showWeeks && (
                           <div className="weeks-placeholder">
