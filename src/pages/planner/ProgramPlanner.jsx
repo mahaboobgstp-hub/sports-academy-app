@@ -354,8 +354,7 @@ setPrograms(updated);
     0
                    )}
                   </div>
-                      <input placeholder="Day Total" disabled />
-
+                      
                         <button
                           className="sub-btn"
                           onClick={() => {
