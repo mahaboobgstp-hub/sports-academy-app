@@ -157,6 +157,23 @@ export default function ProgramPlanner() {
       }));
     setPrograms(updated);
   };
+const formatDateWithDay = (dateInput) => {
+  const date = new Date(dateInput);
+
+  const day = String(date.getDate()).padStart(2, "0");
+
+  const month = date
+    .toLocaleString("en-GB", { month: "short" })
+    .toUpperCase(); // JAN, FEB
+
+  const year = date.getFullYear();
+
+  const weekday = date
+    .toLocaleString("en-GB", { weekday: "long" })
+    .toUpperCase(); // SATURDAY
+
+  return `${day}-${month}-${year} ${weekday}`;
+};
 
   /* ===== UI ===== */
 
@@ -425,11 +442,10 @@ export default function ProgramPlanner() {
                   .dayName
               }
             </h3>
-
-            <div className="week-list">
-  {weekEditor.weekDates.map(date => (
-    <div key={date} className="week-row">
-      <strong>{date}</strong>
+<div className="week-list">
+  {weekEditor.weekDates.map((date, i) => (
+    <div key={i} className="week-row">
+      <strong>{formatDateWithDay(date)}</strong>
     </div>
   ))}
 </div>
