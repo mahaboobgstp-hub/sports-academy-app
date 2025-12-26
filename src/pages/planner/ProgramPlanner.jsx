@@ -372,30 +372,7 @@ setPrograms(updated);
 >
   Edit Weeks
 </button>
-{weekEditor && (
-      <div className="modal-backdrop">
-        <div className="modal">
-          <h3>
-            Edit Weeks – {
-              programs[weekEditor.pIndex]
-                .locations[weekEditor.lIndex]
-                .courts[weekEditor.cIndex]
-                .days[weekEditor.dIndex]
-                .dayName
-            }
-          </h3>
 
-          <p>Week-wise editor will appear here</p>
-
-          <button
-            className="sub-btn"
-            onClick={() => setWeekEditor(null)}
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    )}
 
   </div>
 );
@@ -414,5 +391,36 @@ setPrograms(updated);
         ))}
       </div>
     </div>
+            ))}
+{weekEditor && (
+  <div className="modal-backdrop">
+    <div className="modal">
+      <h3>
+        Edit Weeks – {
+          programs[weekEditor.pIndex]
+            .locations[weekEditor.lIndex]
+            .courts[weekEditor.cIndex]
+            .days[weekEditor.dIndex]
+            .dayName
+        }
+      </h3>
+
+      <p>Week-wise editor will appear here</p>
+
+      <button
+        className="sub-btn"
+        onClick={() => setWeekEditor(null)}
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+
+      </div>
+    </div>
+  );
+}
+
   );
 }
