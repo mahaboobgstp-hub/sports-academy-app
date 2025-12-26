@@ -22,6 +22,40 @@ const TIME_SLOTS = [
   "22:00-23:00","23:00-23:59"
 ];
 
+function getWeekDatesBetween(startDate, endDate, dayName) {
+  if (!startDate || !endDate) return [];
+
+  const dayIndexMap = {
+    Sunday: 0,
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6
+  };
+
+  const targetDay = dayIndexMap[dayName];
+  const dates = [];
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  // move start date to first matching weekday
+  while (start.getDay() !== targetDay) {
+    start.setDate(start.getDate() + 1);
+  }
+
+  while (start <= end) {
+    dates.push(new Date(start));
+    start.setDate(start.getDate() + 7);
+  }
+
+  return dates.map(d =>
+    d.toISOString().slice(0, 10) // YYYY-MM-DD
+  );
+}
+
 export default function ProgramPlanner() {
 
   const [newTimeSlot, setNewTimeSlot] = useState("");
@@ -339,8 +373,28 @@ export default function ProgramPlanner() {
 
                         <button
                           className="sub-btn"
-                          onClick={() =>
-                            setWeekEditor({ pIndex, lIndex, cIndex, dIndex })
+                          onClick={() => {
+  const day =
+    programs[pIndex]
+      .locations[lIndex]
+      .courts[cIndex]
+      .days[dIndex];
+
+  const weekDates = getWeekDatesBetween(
+    selectedSeason?.start_date,
+    selectedSeason?.end_date,
+    day.dayName
+  );
+
+  setWeekEditor({
+    pIndex,
+    lIndex,
+    cIndex,
+    dIndex,
+    dayName: day.dayName,
+    weekDates
+  });
+}}
                           }
                         >
                           Edit Weeks
@@ -372,7 +426,14 @@ export default function ProgramPlanner() {
               }
             </h3>
 
-            <p>Week-wise editor will appear here</p>
+            <div className="week-list">
+  {weekEditor.weekDates.map(date => (
+    <div key={date} className="week-row">
+      <strong>{date}</strong>
+    </div>
+  ))}
+</div>
+
 
             <button className="sub-btn" onClick={() => setWeekEditor(null)}>
               Close
