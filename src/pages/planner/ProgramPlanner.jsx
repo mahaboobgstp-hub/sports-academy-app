@@ -399,8 +399,8 @@ setPrograms(updated);
 
   </div>
 );
-🧠 MENTAL MODEL (REMEMBER THIS)
-❌ Inline week UI → re
+//🧠 MENTAL MODEL (REMEMBER THIS)
+//❌ Inline week UI → re
                         
                       </div>
                     ))}
