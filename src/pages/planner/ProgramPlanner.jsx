@@ -57,11 +57,11 @@ const formatDateWithDay = (date) => {
   const d = String(date.getDate()).padStart(2, "0");
   const m = date
     .toLocaleString("en-GB", { month: "short" })
-    .toUpperCase();
+    
   const y = date.getFullYear();
   const day = date
     .toLocaleString("en-GB", { weekday: "long" })
-    .toUpperCase();
+    
 
   return `${d}-${m}-${y} ${day}`;
 };
