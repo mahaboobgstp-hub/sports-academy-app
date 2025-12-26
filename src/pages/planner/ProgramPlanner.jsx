@@ -27,9 +27,6 @@ export default function ProgramPlanner() {
   const [newTimeSlot, setNewTimeSlot] = useState("");
   const [newSeats, setNewSeats] = useState("");
   const [weekEditor, setWeekEditor] = useState(null);
-// structure later: { pIndex, lIndex, cIndex, dIndex }
-
-
 
   /* ===== MASTER DATA ===== */
   const [sports, setSports] = useState([]);
@@ -75,7 +72,7 @@ export default function ProgramPlanner() {
     setLocationsMaster(data || []);
   };
 
-  /* ===== ADD FUNCTIONS (BASELINE + ADDITIVE FLAGS) ===== */
+  /* ===== ADD FUNCTIONS ===== */
 
   const addProgram = () => {
     setPrograms([
@@ -85,7 +82,7 @@ export default function ProgramPlanner() {
         programId: "",
         totalSeats: "",
         locations: [],
-        locked: false        // ✅ ADDITIVE
+        locked: false
       }
     ]);
   };
@@ -97,7 +94,7 @@ export default function ProgramPlanner() {
       locationId: "",
       seatsAllocated: "",
       courts: [],
-      saved: false          // ✅ ADDITIVE
+      saved: false
     });
     setPrograms(updated);
   };
@@ -110,7 +107,7 @@ export default function ProgramPlanner() {
       seatsAllocated: "",
       days: [],
       collapsed: false,
-      saved: false          // ✅ ADDITIVE
+      saved: false
     });
     setPrograms(updated);
   };
@@ -119,14 +116,13 @@ export default function ProgramPlanner() {
     const updated = [...programs];
     updated[pIndex].locations[lIndex].courts[cIndex].days =
       DAYS.map(day => ({
-  dayName: day,
-  timeSlots: [],   // ✅ NEW: holds time + seats pairs
-  overrides: {},      
-  showWeeks: false
-}));
-setPrograms(updated);
-};
-
+        dayName: day,
+        timeSlots: [],
+        overrides: {},
+        showWeeks: false
+      }));
+    setPrograms(updated);
+  };
 
   /* ===== UI ===== */
 
@@ -166,7 +162,6 @@ setPrograms(updated);
         {programs.map((p, pIndex) => (
           <div key={p.id} className="program-card">
 
-            {/* PROGRAM ROW */}
             <div className="program-row">
               <select>
                 <option>Select Program</option>
@@ -179,7 +174,6 @@ setPrograms(updated);
               <input placeholder="Allocated" disabled />
               <input placeholder="Pending" disabled />
 
-              {/* PROGRAM LOCK */}
               <button
                 className="sub-btn"
                 onClick={() => {
@@ -192,14 +186,10 @@ setPrograms(updated);
               </button>
             </div>
 
-            <button
-              className="sub-btn"
-              onClick={() => addLocation(pIndex)}
-            >
+            <button className="sub-btn" onClick={() => addLocation(pIndex)}>
               + Add Location
             </button>
 
-            {/* ===== LOCATIONS ===== */}
             {p.locations.map((loc, lIndex) => (
               <div key={loc.id} className="location-row">
 
@@ -212,14 +202,10 @@ setPrograms(updated);
 
                 <input placeholder="Seats Allocated" />
 
-                <button
-                  className="sub-btn"
-                  onClick={() => addCourt(pIndex, lIndex)}
-                >
+                <button className="sub-btn" onClick={() => addCourt(pIndex, lIndex)}>
                   + Add Court
                 </button>
 
-                {/* LOCATION SAVE */}
                 <button
                   className="sub-btn"
                   onClick={() => {
@@ -232,7 +218,6 @@ setPrograms(updated);
                   {loc.saved ? "Location Saved" : "Save Location"}
                 </button>
 
-                {/* ===== COURTS ===== */}
                 {loc.courts.map((court, cIndex) => (
                   <div key={court.id} className="court-row">
 
@@ -264,7 +249,6 @@ setPrograms(updated);
                       {court.collapsed ? "Expand" : "Collapse"}
                     </button>
 
-                    {/* COURT SAVE */}
                     <button
                       className="sub-btn"
                       onClick={() => {
@@ -283,101 +267,85 @@ setPrograms(updated);
                       {court.saved ? "Court Saved" : "Save Court"}
                     </button>
 
-                    {/* ===== DAYS ===== */}
                     {!court.collapsed && court.days.map((day, dIndex) => (
-                      <div className="day-row">
+                      <div key={dIndex} className="day-row">
 
-  <strong style={{ minWidth: "90px" }}>{day.dayName}</strong>
+                        <strong style={{ minWidth: "90px" }}>{day.dayName}</strong>
 
-  {/* TIME DROPDOWN */}
-  <select
-    value={newTimeSlot}
-    onChange={(e) => setNewTimeSlot(e.target.value)}
-  >
-    <option value="">Select Time</option>
-    {TIME_SLOTS.map(t => (
-      <option key={t} value={t}>{t}</option>
-    ))}
-  </select>
+                        <select
+                          value={newTimeSlot}
+                          onChange={(e) => setNewTimeSlot(e.target.value)}
+                        >
+                          <option value="">Select Time</option>
+                          {TIME_SLOTS.map(t => (
+                            <option key={t} value={t}>{t}</option>
+                          ))}
+                        </select>
 
-  {/* SEATS INPUT */}
-  <input
-    placeholder="Seats"
-    value={newSeats}
-    onChange={(e) => setNewSeats(e.target.value)}
-    style={{ width: "80px" }}
-  />
+                        <input
+                          placeholder="Seats"
+                          value={newSeats}
+                          onChange={(e) => setNewSeats(e.target.value)}
+                          style={{ width: "80px" }}
+                        />
 
-  {/* ADD BUTTON */}
-  <button
-    className="sub-btn"
-    onClick={() => {
-      if (!newTimeSlot || !newSeats) return;
+                        <button
+                          className="sub-btn"
+                          onClick={() => {
+                            if (!newTimeSlot || !newSeats) return;
 
-      const updated = [...programs];
-      updated[pIndex]
-        .locations[lIndex]
-        .courts[cIndex]
-        .days[dIndex]
-        .timeSlots.push({
-          slot: newTimeSlot,
-          seats: newSeats
-        });
+                            const updated = [...programs];
+                            updated[pIndex]
+                              .locations[lIndex]
+                              .courts[cIndex]
+                              .days[dIndex]
+                              .timeSlots.push({
+                                slot: newTimeSlot,
+                                seats: newSeats
+                              });
+                            setPrograms(updated);
+                          }}
+                        >
+                          + Add
+                        </button>
 
-      setPrograms(updated);
-      //setNewTimeSlot("");
-      //setNewSeats("");
-    }}
-  >
-    + Add
-  </button>
-{day.timeSlots.map((ts, i) => (
-  <div key={i} className="time-pill">
-    <span>{ts.slot}</span>
-    <strong>{ts.seats}</strong>
-    <button
-      onClick={() => {
-        const updated = [...programs];
-        updated[pIndex]
-          .locations[lIndex]
-          .courts[cIndex]
-          .days[dIndex]
-          .timeSlots.splice(i, 1);
-        setPrograms(updated);
-      }}
-    >
-      ✕
-    </button>
-  </div>
-))}
+                        {day.timeSlots.map((ts, i) => (
+                          <div key={i} className="time-pill">
+                            <span>{ts.slot}</span>
+                            <strong>{ts.seats}</strong>
+                            <button
+                              onClick={() => {
+                                const updated = [...programs];
+                                updated[pIndex]
+                                  .locations[lIndex]
+                                  .courts[cIndex]
+                                  .days[dIndex]
+                                  .timeSlots.splice(i, 1);
+                                setPrograms(updated);
+                              }}
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ))}
 
                         <div className="day-total">
-  Total:{" "}
-  {day.timeSlots.reduce(
-    (sum, t) => sum + Number(t.seats || 0),
-    0
-                   )}
-                  </div>
-                      
+                          Total:{" "}
+                          {day.timeSlots.reduce(
+                            (sum, t) => sum + Number(t.seats || 0),
+                            0
+                          )}
+                        </div>
+
                         <button
-  className="sub-btn"
-  onClick={() => {
-    setWeekEditor({
-      pIndex,
-      lIndex,
-      cIndex,
-      dIndex
-    });
-  }}
->
-  Edit Weeks
-</button>
+                          className="sub-btn"
+                          onClick={() =>
+                            setWeekEditor({ pIndex, lIndex, cIndex, dIndex })
+                          }
+                        >
+                          Edit Weeks
+                        </button>
 
-
-  </div>
-
-
-                        
                       </div>
                     ))}
 
@@ -390,38 +358,29 @@ setPrograms(updated);
           </div>
         ))}
       </div>
-    </div>
-            ))}
-{weekEditor && (
-  <div className="modal-backdrop">
-    <div className="modal">
-      <h3>
-        Edit Weeks – {
-          programs[weekEditor.pIndex]
-            .locations[weekEditor.lIndex]
-            .courts[weekEditor.cIndex]
-            .days[weekEditor.dIndex]
-            .dayName
-        }
-      </h3>
 
-      <p>Week-wise editor will appear here</p>
+      {weekEditor && (
+        <div className="modal-backdrop">
+          <div className="modal">
+            <h3>
+              Edit Weeks – {
+                programs[weekEditor.pIndex]
+                  .locations[weekEditor.lIndex]
+                  .courts[weekEditor.cIndex]
+                  .days[weekEditor.dIndex]
+                  .dayName
+              }
+            </h3>
 
-      <button
-        className="sub-btn"
-        onClick={() => setWeekEditor(null)}
-      >
-        Close
-      </button>
-    </div>
-  </div>
-)}
+            <p>Week-wise editor will appear here</p>
 
-      </div>
+            <button className="sub-btn" onClick={() => setWeekEditor(null)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
-}
-
-  );
-}
 }
