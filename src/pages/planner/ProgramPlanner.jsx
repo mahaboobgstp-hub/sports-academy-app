@@ -55,16 +55,13 @@ const formatDateWithDay = (date) => {
   if (!date) return "";
 
   const d = String(date.getDate()).padStart(2, "0");
-  const m = date
-    .toLocaleString("en-GB", { month: "short" })
-    
+  const m = date.toLocaleString("en-GB", { month: "short" });
   const y = date.getFullYear();
-  const day = date
-    .toLocaleString("en-GB", { weekday: "long" })
-    
+  const day = date.toLocaleString("en-GB", { weekday: "long" });
 
   return `${d}-${m}-${y} ${day}`;
 };
+
 
 
 function getWeekDatesBetween(startDate, endDate, dayName) {
