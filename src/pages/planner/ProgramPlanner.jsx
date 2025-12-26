@@ -361,7 +361,7 @@ const formatDateWithDay = (dateInput) => {
                     </button>
 
                     {!court.collapsed && court.days.map((day, dIndex) => (
-                      <div key={dIndex} className="day-row">
+                      <div key={dIndex} className="day-row day-grid">
 
                         <strong style={{ minWidth: "160px" }}>
   {formatDateWithDay(
