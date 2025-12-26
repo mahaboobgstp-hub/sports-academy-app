@@ -118,6 +118,7 @@ export default function ProgramPlanner() {
       DAYS.map(day => ({
   dayName: day,
   timeSlots: [],   // ✅ NEW: holds time + seats pairs
+  overrides: {},      
   showWeeks: false
 }));
 setPrograms(updated);
