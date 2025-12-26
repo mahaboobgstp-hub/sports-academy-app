@@ -99,3 +99,35 @@ button {
   font-weight: 600;
   margin-left: auto;
 }
+.day-grid {
+  display: grid;
+  grid-template-columns:
+    220px   /* Date + Day */
+    130px   /* Time dropdown */
+    80px    /* Seats input */
+    70px    /* Add button */
+    1fr     /* Time pills */
+    120px   /* Total */
+    100px;  /* Edit weeks */
+  align-items: center;
+  column-gap: 8px;
+  padding: 6px 0;
+}
+
+.day-grid strong {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.time-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 14px;
+  background: #e8f2ff;
+  margin-right: 6px;
+  font-size: 13px;
+}
+
+
