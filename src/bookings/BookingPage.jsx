@@ -131,25 +131,26 @@ export default function BookingPage() {
 <div className="booking-card">
   <div className="booking-card-title">Products</div>
 
-  <div className="product-row">
-    <select>
-      <option value="">Select Product</option>
-      {DUMMY_PRODUCTS.map(p => (
-        <option key={p.id} value={p.id}>{p.name}</option>
-      ))}
-    </select>
+  <div className="booking-grid">
+  <select>
+    <option value="">Select Product</option>
+    {DUMMY_PRODUCTS.map(p => (
+      <option key={p.id} value={p.id}>{p.name}</option>
+    ))}
+  </select>
 
-    <input
-      type="number"
-      placeholder="Product Price"
-    />
-  </div>
+  <input
+    type="number"
+    placeholder="Product Price"
+  />
+</div>
 
-  <div className="product-actions">
-    <button type="button" className="secondary-btn">
-      + Add Product
-    </button>
-  </div>
+<div className="booking-card-actions">
+  <button type="button" className="secondary-btn">
+    + Add Product
+  </button>
+</div>
+
 </div>
 
 
