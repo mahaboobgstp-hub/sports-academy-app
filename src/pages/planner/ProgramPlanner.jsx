@@ -330,6 +330,26 @@ const formatDateWithDay = (dateInput) => {
 
       {/* ===== PROGRAMS ===== */}
       <div className="planner-section">
+        {/* ===== WEEK HEADER ===== */}
+{seasonWeeks.length > 0 && (
+  <div className="week-header">
+    <div className="week-title">
+      <strong>
+        Week {selectedWeekIndex + 1} :
+      </strong>{" "}
+      {formatDateWithDay(seasonWeeks[selectedWeekIndex].start)} →{" "}
+      {formatDateWithDay(seasonWeeks[selectedWeekIndex].end)}
+    </div>
+
+    <button
+      className="sub-btn"
+      onClick={() => setShowWeekPicker(true)}
+    >
+      Edit Week
+    </button>
+  </div>
+)}
+
         <div className="section-header">
           <h3>Programs</h3>
           <button onClick={addProgram}>+ Add Program</button>
