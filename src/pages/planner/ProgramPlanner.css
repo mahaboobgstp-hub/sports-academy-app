@@ -169,3 +169,18 @@ button {
 .week-date-btn.has-override {
   border: 2px solid #f5c542;
 }
+
+.program-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.save-program-btn {
+  padding: 6px 14px;
+  white-space: nowrap;
+  width: auto;
+  height: 34px;
+}
+
+
