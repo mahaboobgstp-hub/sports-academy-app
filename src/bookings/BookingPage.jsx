@@ -106,6 +106,12 @@ export default function BookingPage() {
 {DUMMY_TIME_SLOTS.map(t => (
   <option key={t} value={t}>{t}</option>
 ))}</select>
+          <input
+  type="number"
+  placeholder="Price"
+  className="price-input"
+/>
+
         </div>
 
         <div className="booking-grid booking-stats">
