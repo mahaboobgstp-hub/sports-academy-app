@@ -199,7 +199,7 @@ export default function ProgramPlanner() {
       }));
     setPrograms(updated);
   };
-const formatDateWithDay = (dateInput) => {
+/*const formatDateWithDay = (dateInput) => {
   const date = new Date(dateInput);
 
   const day = String(date.getDate()).padStart(2, "0");
@@ -215,21 +215,22 @@ const formatDateWithDay = (dateInput) => {
     .toUpperCase(); // SATURDAY
 
   return `${day}-${month}-${year} ${weekday}`;
-};
+};*/
 
-  const {
-  pIndex,
-  lIndex,
-  cIndex,
-  dIndex,
-  selectedDate
-} = weekEditor;
+  let pIndex, lIndex, cIndex, dIndex, selectedDate;
+
+if (weekEditor) {
+  ({ pIndex, lIndex, cIndex, dIndex, selectedDate } = weekEditor);
+}
+
 
 const day =
-  programs[pIndex]
-    .locations[lIndex]
-    .courts[cIndex]
-    .days[dIndex];
+  weekEditor &&
+  programs?.[pIndex]
+    ?.locations?.[lIndex]
+    ?.courts?.[cIndex]
+    ?.days?.[dIndex];
+
 
 // slots to show in editor
 const slots =
@@ -496,7 +497,7 @@ const slots =
         ))}
       </div>
 
-      {weekEditor && (
+      {weekEditor && day && (
   <div className="modal-backdrop">
     <div className="modal large">
 
@@ -512,7 +513,7 @@ const slots =
 
       {/* DATE LIST */}
       <div className="week-date-list">
-        {weekEditor.weekDates.map(date => (
+       {weekEditor?.weekDates?.map(date => (
           <button
             key={date}
             className="week-date-btn"
