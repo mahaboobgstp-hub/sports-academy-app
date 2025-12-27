@@ -69,20 +69,6 @@ export default function BookingPage() {
   <option key={c.id} value={c.id}>{c.name}</option>
 ))}</select>
 
-
-
-
-          /*<select>
-            <option>Select Program</option>
-          </select>
-
-          <select>
-            <option>Select Location</option>
-          </select>
-
-          <select>
-            <option>Select Court</option>
-          </select>*/
         </div>
       </div>
 
