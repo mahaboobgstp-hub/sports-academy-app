@@ -35,6 +35,12 @@ export default function BookingPage() {
       {/* CLASS SELECTION */}
       <div className="booking-card">
         <div className="booking-card-title">Class Selection</div>
+        <div className="booking-card-actions">
+        <button type="button" className="secondary-btn">
+        + Add Day
+        </button>
+        </div>
+
 
         <div className="booking-grid">
           <select>
