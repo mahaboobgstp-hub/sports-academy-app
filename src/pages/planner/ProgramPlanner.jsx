@@ -51,7 +51,7 @@ const getFirstDateForDayInSeason = (dayName, season) => {
   return null;
 };
 
-const = (date) => {
+const formatDateWithDay = (date) => {
   if (!date) return "";
 
   const d = String(date.getDate()).padStart(2, "0");
@@ -61,6 +61,7 @@ const = (date) => {
 
   return `${d}-${m}-${y} ${day}`;
 };
+
 
 
 
