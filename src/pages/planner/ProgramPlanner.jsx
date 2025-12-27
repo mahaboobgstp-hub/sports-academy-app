@@ -51,16 +51,6 @@ const getFirstDateForDayInSeason = (dayName, season) => {
   return null;
 };
 
-const formatDateWithDay = (date) => {
-  if (!date) return "";
-
-  const d = String(date.getDate()).padStart(2, "0");
-  const m = date.toLocaleString("en-GB", { month: "short" });
-  const y = date.getFullYear();
-  const day = date.toLocaleString("en-GB", { weekday: "long" });
-
-  return `${d}-${m}-${y} ${day}`;
-};
 
 
 
@@ -199,7 +189,7 @@ export default function ProgramPlanner() {
       }));
     setPrograms(updated);
   };
-/*const formatDateWithDay = (dateInput) => {
+const formatDateWithDay = (dateInput) => {
   const date = new Date(dateInput);
 
   const day = String(date.getDate()).padStart(2, "0");
@@ -215,7 +205,7 @@ export default function ProgramPlanner() {
     .toUpperCase(); // SATURDAY
 
   return `${day}-${month}-${year} ${weekday}`;
-};*/
+};
 
   let pIndex, lIndex, cIndex, dIndex, selectedDate;
 
