@@ -91,3 +91,15 @@
 .secondary-btn:hover {
   background: #d1d5db;
 }
+
+.product-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: flex-end;
+}
