@@ -183,4 +183,7 @@ button {
   height: 34px;
 }
 
+.save-program-btn {
+  font-weight: 600;
+}
 
