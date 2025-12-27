@@ -479,32 +479,58 @@ const formatDateWithDay = (dateInput) => {
       </div>
 
       {weekEditor && (
-        <div className="modal-backdrop">
-          <div className="modal">
-            <h3>
-              Edit Weeks – {
-                programs[weekEditor.pIndex]
-                  .locations[weekEditor.lIndex]
-                  .courts[weekEditor.cIndex]
-                  .days[weekEditor.dIndex]
-                  .dayName
-              }
-            </h3>
-<div className="week-list">
-  {weekEditor.weekDates.map(date => (
-    <div key={date} className="week-row">
-      <strong>{formatDateWithDay(date)}</strong>
-    </div>
-  ))}
-</div>
+  <div className="modal-backdrop">
+    <div className="modal large">
 
+      <h3>
+        Edit Weeks – {
+          programs[weekEditor.pIndex]
+            .locations[weekEditor.lIndex]
+            .courts[weekEditor.cIndex]
+            .days[weekEditor.dIndex]
+            .dayName
+        }
+      </h3>
 
-            <button className="sub-btn" onClick={() => setWeekEditor(null)}>
-              Close
-            </button>
-          </div>
+      {/* DATE LIST */}
+      <div className="week-date-list">
+        {weekEditor.weekDates.map(date => (
+          <button
+            key={date}
+            className="week-date-btn"
+            onClick={() =>
+              setWeekEditor({
+                ...weekEditor,
+                selectedDate: date
+              })
+            }
+          >
+            {formatDateWithDay(date)}
+          </button>
+        ))}
+      </div>
+
+      {/* DATE-SPECIFIC EDITOR */}
+      {weekEditor.selectedDate && (
+        <div className="week-day-editor">
+          <h4>{formatDateWithDay(weekEditor.selectedDate)}</h4>
+
+          {/* reuse same time-slot UI here */}
+          {/* IMPORTANT: bind to overrides[date] instead of day.timeSlots */}
         </div>
       )}
+
+      <button
+        className="sub-btn"
+        onClick={() => setWeekEditor(null)}
+      >
+        Close
+      </button>
+
+    </div>
+  </div>
+)}
+
 
     </div>
   );
