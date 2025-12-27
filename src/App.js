@@ -16,6 +16,7 @@ import AcademicEventForm from "./AcademicEventForm";
 import BookingPage from "./bookings/BookingPage";
 
 
+
 /* ===== CORE ===== */
 import Dashboard from "./pages/Dashboard";
 import Placeholder from "./pages/Placeholder";
@@ -49,7 +50,7 @@ export default function App() {
 
           {/* BOOKINGS */}
           
-          <Route path="/bookings" element={<BookingPage />} />
+         <Route path="/bookings" element={<BookingPage />} />
 
 
           {/* FUTURE ERP SCREENS */}
