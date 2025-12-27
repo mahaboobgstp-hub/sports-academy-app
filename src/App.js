@@ -24,6 +24,9 @@ import Placeholder from "./pages/Placeholder";
 /* ===== PROGRAMPLANNER ===== */
 import ProgramPlanner from "./pages/planner/ProgramPlanner";
 
+/* ===== DASHBOARD ===== */
+import Dashboard from "./dashboard/Dashboard";
+
 
 import "./styles.css";
 
@@ -52,12 +55,15 @@ export default function App() {
           
          <Route path="/bookings" element={<BookingPage />} />
 
+             {/* DASHBOARD */}
+          <Route path="/dashboard" element={<Dashboard />} />
 
           {/* FUTURE ERP SCREENS */}
           <Route path="/programs" element={<Placeholder title="Programs" />} />
           <Route path="/locations" element={<Placeholder title="Locations" />} />
           <Route path="/products" element={<Placeholder title="Products" />} />
           <Route path="/analytics" element={<Placeholder title="Analytics" />} />
+            
 
         </Route>
 
