@@ -24,8 +24,8 @@ import Placeholder from "./pages/Placeholder";
 import ProgramPlanner from "./pages/planner/ProgramPlanner";
 
 
-//import "./styles.css";
-import ".bookings/BookingPage.css";
+import "./styles.css";
+
 export default function App() {
   return (
     <BrowserRouter>
