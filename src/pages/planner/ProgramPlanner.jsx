@@ -113,6 +113,11 @@ export default function ProgramPlanner() {
   /* ===== CONTEXT ===== */
   const [selectedSeasonId, setSelectedSeasonId] = useState("");
 
+  // ===== WEEK STATE =====
+const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
+const [seasonWeeks, setSeasonWeeks] = useState([]);
+
+
   /* ===== PLANNER STATE ===== */
   const [programs, setPrograms] = useState([]);
 
