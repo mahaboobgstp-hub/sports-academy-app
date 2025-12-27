@@ -166,3 +166,6 @@ button {
   border: 1px solid #ddd;
 }
 
+.week-date-btn.has-override {
+  border: 2px solid #f5c542;
+}
