@@ -488,12 +488,14 @@ const formatDateWithDay = (dateInput) => {
                      
 
 <strong style={{ minWidth: "160px" }}>
-  {formatDateWithDay(
-    getDateForDayInWeek(
-      seasonWeeks[selectedWeekIndex],
-      day.dayName
-    )
-  )}
+  {seasonWeeks[selectedWeekIndex]
+    ? formatDateWithDay(
+        getDateForDayInWeek(
+          seasonWeeks[selectedWeekIndex],
+          day.dayName
+        )
+      )
+    : "--"}
 </strong>
 
 
