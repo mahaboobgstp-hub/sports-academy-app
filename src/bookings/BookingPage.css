@@ -1,0 +1,16 @@
+.booking-root {
+  background: #0f172a;
+  color: white;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+.test-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #22c55e;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
