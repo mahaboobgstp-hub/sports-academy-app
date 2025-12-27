@@ -150,6 +150,44 @@ const [seasonWeeks, setSeasonWeeks] = useState([]);
 
   const selectedSeason = seasons.find(s => s.id === selectedSeasonId);
 
+  // ===== WEEK GENERATION (MONDAY-BASED) =====
+useEffect(() => {
+  if (!selectedSeason?.start_date || !selectedSeason?.end_date) return;
+
+  const weeks = [];
+
+  const start = new Date(selectedSeason.start_date);
+  const end = new Date(selectedSeason.end_date);
+
+  // move to first Monday
+  while (start.getDay() !== 1) {
+    start.setDate(start.getDate() + 1);
+  }
+
+  let weekIndex = 0;
+  const cursor = new Date(start);
+
+  while (cursor <= end) {
+    const weekStart = new Date(cursor);
+    const weekEnd = new Date(cursor);
+    weekEnd.setDate(weekEnd.getDate() + 6);
+
+    weeks.push({
+      index: weekIndex,
+      label: `Week ${weekIndex + 1}`,
+      start: weekStart.toISOString().slice(0, 10),
+      end: weekEnd.toISOString().slice(0, 10)
+    });
+
+    cursor.setDate(cursor.getDate() + 7);
+    weekIndex++;
+  }
+
+  setSeasonWeeks(weeks);
+  setSelectedWeekIndex(0); // default to Week 1
+}, [selectedSeason]);
+
+
   /* ===== LOAD MASTER DATA ===== */
   useEffect(() => {
     loadSports();
