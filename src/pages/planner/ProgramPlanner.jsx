@@ -300,6 +300,23 @@ const formatDateWithDay = (dateInput) => {
   return `${day}-${month}-${year} ${weekday}`;
 };
 
+  function getDateForDayInWeek(week, dayName) {
+  const dayIndexMap = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6
+  };
+
+  const start = new Date(week.startDate);
+  const date = new Date(start);
+  date.setDate(start.getDate() + dayIndexMap[dayName]);
+  return date;
+}
+
   
 
   /* ===== UI ===== */
