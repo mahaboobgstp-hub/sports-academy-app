@@ -138,17 +138,17 @@ export default function ProgramPlanner() {
 
   /* ===== CONTEXT ===== */
   const [selectedSeasonId, setSelectedSeasonId] = useState("");
-  useEffect(() => {
-  if (!selectedSeason?.start_date || !selectedSeason?.end_date) return;
+  //useEffect(() => {
+  //if (!selectedSeason?.start_date || !selectedSeason?.end_date) return;
 
-  const weeks = buildSeasonWeeks(
-    selectedSeason.start_date,
-    selectedSeason.end_date
-  );
+  //const weeks = buildSeasonWeeks(
+    //selectedSeason.start_date,
+    //selectedSeason.end_date
+  //);
 
-  setSeasonWeeks(weeks);
-  setSelectedWeekIndex(0);
-}, [selectedSeasonId]);
+  //setSeasonWeeks(weeks);
+  //setSelectedWeekIndex(0);
+//}, [selectedSeasonId]);
 
 
   // ===== WEEK STATE =====
