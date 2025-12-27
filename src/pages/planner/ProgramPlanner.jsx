@@ -98,6 +98,32 @@ function getWeekDatesBetween(startDate, endDate, dayName) {
   );
 }
 
+function getDateForDayInWeek(week, dayName) {
+  if (!week) return null;
+
+  const dayIndexMap = {
+    Sunday: 0,
+    Monday: 1,
+    Tuesday: 2,
+    Wednesday: 3,
+    Thursday: 4,
+    Friday: 5,
+    Saturday: 6
+  };
+
+  const targetDay = dayIndexMap[dayName];
+
+  const start = new Date(week.start);
+  const date = new Date(start);
+
+  while (date.getDay() !== targetDay) {
+    date.setDate(date.getDate() + 1);
+  }
+
+  return date;
+}
+
+
 export default function ProgramPlanner() {
 
   const [newTimeSlot, setNewTimeSlot] = useState("");
