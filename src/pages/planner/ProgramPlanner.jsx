@@ -51,7 +51,7 @@ const getFirstDateForDayInSeason = (dayName, season) => {
   return null;
 };
 
-/*const formatDateWithDay = (date) => {
+const formatDateWithDay = (date) => {
   if (!date) return "";
 
   const d = String(date.getDate()).padStart(2, "0");
@@ -60,7 +60,7 @@ const getFirstDateForDayInSeason = (dayName, season) => {
   const day = date.toLocaleString("en-GB", { weekday: "long" });
 
   return `${d}-${m}-${y} ${day}`;
-};*/
+};
 
 
 
@@ -217,21 +217,7 @@ const formatDateWithDay = (dateInput) => {
   return `${day}-${month}-${year} ${weekday}`;
 };
 
-  const formatDateWithDay = (dateStr) => {
-  const d = new Date(dateStr);
-
-  const datePart = d.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-  });
-
-  const dayPart = d.toLocaleDateString("en-GB", {
-    weekday: "long"
-  });
-
-  return `${datePart} ${dayPart}`;
-};
+  
 
   /* ===== UI ===== */
 
