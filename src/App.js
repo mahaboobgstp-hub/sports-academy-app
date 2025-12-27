@@ -10,7 +10,7 @@ import Products from "./pages/master/Products";
 import AcademicEventForm from "./AcademicEventForm";
 
 /* ===== BOOKINGS ===== */
-import BookingPage from "./BookingPage";
+import BookingPage from "./booking/Bookingpage";
 import BookingWizard from "./bookings/BookingWizard";
 
 /* ===== CORE ===== */
@@ -46,7 +46,7 @@ export default function App() {
 
           {/* BOOKINGS */}
           <Route path="/book" element={<BookingWizard />} />
-          <Route path="/book1" element={<BookingPage />} />
+          <Route path="booking/bookingpage" element={<BookingPage />} />
 
           {/* FUTURE ERP SCREENS */}
           <Route path="/programs" element={<Placeholder title="Programs" />} />
