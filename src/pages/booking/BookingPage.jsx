@@ -51,28 +51,31 @@ export default function BookingPage() {
           </select>
 
           <select>
+            <option>Select Day</option>
             <option>Monday</option>
             <option>Tuesday</option>
             <option>Wednesday</option>
           </select>
 
           <select>
+            <option>Select Time Slot</option>
             <option>6–7 AM</option>
             <option>7–8 AM</option>
             <option>8–9 AM</option>
           </select>
 
           <select>
+            <option>Select Court</option>
             <option>Court A</option>
             <option>Court B</option>
           </select>
         </div>
 
         <div className="booking-row">
-          <input value="Total Seats: 20" disabled />
-          <input value="Seats Sold: 8" disabled />
-          <input value="Seats Available: 12" disabled />
-          <input value="Seats Expired: 0" disabled />
+          <input defaultValue="Total Seats: 20" disabled />
+          <input defaultValue="Seats Sold: 8" disabled />
+          <input defaultValue="Seats Available: 12" disabled />
+          <input defaultValue="Seats Expired: 0" disabled />
         </div>
       </div>
 
@@ -99,19 +102,15 @@ export default function BookingPage() {
         <div className="booking-summary">
           <div><strong>Mandatory:</strong> Jersey ₹1500</div>
 
-          <div>
-            <label>
-              <input type="checkbox" /> Basketball ₹1200
-            </label>
-          </div>
+          <label>
+            <input type="checkbox" /> Basketball ₹1200
+          </label>
 
-          <div>
-            <label>
-              <input type="checkbox" /> Wrist Support ₹500
-            </label>
-          </div>
+          <label>
+            <input type="checkbox" /> Wrist Support ₹500
+          </label>
 
-          <div style={{ marginTop: "8px" }}>
+          <div className="booking-margin-top">
             <strong>Class Price:</strong> ₹2000
           </div>
 
@@ -127,7 +126,7 @@ export default function BookingPage() {
           <input type="checkbox" /> I agree to terms & conditions
         </label>
 
-        <button className="sub-btn">Book & Pay</button>
+        <button className="primary-btn">Book & Pay</button>
       </div>
 
     </div>
