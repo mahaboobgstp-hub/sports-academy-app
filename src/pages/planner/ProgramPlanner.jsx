@@ -485,11 +485,13 @@ const formatDateWithDay = (dateInput) => {
                     {!court.collapsed && court.days.map((day, dIndex) => (
                       <div key={dIndex} className="day-row day-grid">
 
-                        <strong style={{ minWidth: "160px" }}>
-  {formatDateWithDay(
-    getFirstDateForDayInSeason(day.dayName, selectedSeason)
-  )}
+                       const currentWeek = seasonWeeks[selectedWeekIndex];
+const dateForDay = getDateForDayInWeek(currentWeek, day.dayName);
+
+<strong>
+  {formatDateWithDay(dateForDay)}
 </strong>
+
 
                         <select
                           value={newTimeSlot}
