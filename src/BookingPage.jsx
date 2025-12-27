@@ -4,72 +4,77 @@ import "./BookingPage.css";
 export default function BookingPage() {
   return (
     
-      <h2>Book Seat</h2>
+      <div className="booking-page">
 
-      <label>Academy</label><br />
-      <select>
-        <option>Summer 2025 Basketball</option>
-        <option>Season 1 Badminton</option>
-      </select>
+  <div className="booking-title">Academy Booking</div>
 
-      <br /><br />
+  {/* Event & Location */}
+  <div className="booking-card">
+    <div className="booking-section-title">Event & Location</div>
 
-      <label>Emirate</label><br />
-      <select>
-        <option>Abu Dhabi</option>
-        <option>Dubai</option>
-        <option>Sharjah</option>
-      </select>
+    <div className="booking-row">
+      <select><option>Select Season</option></select>
+      <select><option>Basketball</option></select>
+      <select><option>Select Location</option></select>
+      <select><option>Select Program</option></select>
+    </div>
+  </div>
 
-      <br /><br />
+  {/* Class Selection */}
+  <div className="booking-card">
+    <div className="booking-section-title">Class Selection</div>
 
-      <label>Location</label><br />
-      <select>
-        <option>School Location 1</option>
-        <option>School Location 2</option>
-      </select>
+    <div className="booking-row">
+      <select><option>Select Class</option></select>
+      <select><option>Monday</option></select>
+      <select><option>6–7 AM</option></select>
+      <select><option>Court A</option></select>
+    </div>
 
-      <br /><br />
+    <div className="booking-row">
+      <input value="Seats Available: 12" disabled />
+    </div>
+  </div>
 
-      <label>Program</label><br />
-      <select>
-        <option>ballsnbabies</option>
-        <option>midlevel</option>
-        <option>jr</option>
-        <option>all boys</option>
-      </select>
+  {/* Student Details */}
+  <div className="booking-card">
+    <div className="booking-section-title">Student & Parent Details</div>
 
-      <br /><br />
+    <div className="booking-row">
+      <input placeholder="Student Name" />
+      <input placeholder="Age" />
+      <input placeholder="Parent Name" />
+      <input placeholder="Mobile Number" />
+    </div>
 
-      <label>Hour</label><br />
-      <select>
-        <option>6:00 AM</option>
-        <option>7:00 AM</option>
-        <option>8:00 AM</option>
-      </select>
+    <div className="booking-row">
+      <input placeholder="Email" />
+    </div>
+  </div>
 
-      <br /><br />
+  {/* Products & Payment */}
+  <div className="booking-card">
+    <div className="booking-section-title">Products & Payment</div>
 
-      <label>Court</label><br />
-      <select>
-        <option>Court 1</option>
-        <option>Court 2</option>
-      </select>
-
-      <br /><br />
-
+    <div className="booking-summary">
+      <div><strong>Mandatory:</strong> Jersey ₹1500</div>
       <div>
-        <input value="Total Seats: 20" readOnly /><br />
-        <input value="Seats Sold: 8" readOnly /><br />
-        <input value="Seats Available: 10" readOnly /><br />
-        <input value="Seats Expired: 2" readOnly />
+        <label><input type="checkbox" /> Basketball ₹1200</label><br />
+        <label><input type="checkbox" /> Wrist Support ₹500</label>
       </div>
 
-      <br />
-
-      <button>Book Seat</button>
-      <br /><br />
-      <button>Pay Now</button>
+      <div><strong>Class Price:</strong> ₹2000</div>
+      <div><strong>Total:</strong> ₹3500</div>
     </div>
-  );
-}
+  </div>
+
+  {/* Actions */}
+  <div className="booking-actions">
+    <label>
+      <input type="checkbox" /> I agree to terms & conditions
+    </label>
+
+    <button className="sub-btn">Book & Pay</button>
+  </div>
+
+</div>
