@@ -1,6 +1,9 @@
+import "./BookingPage.css";
+
+
 export default function BookingPage() {
   return (
-    <div style={{ padding: "20px" }}>
+    
       <h2>Book Seat</h2>
 
       <label>Academy</label><br />
