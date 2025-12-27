@@ -34,6 +34,13 @@ const DUMMY_TIME_SLOTS = [
   "8:00 – 9:00 AM"
 ];
 
+const DUMMY_PRODUCTS = [
+  { id: "prod1", name: "Jersey" },
+  { id: "prod2", name: "Shoes" },
+  { id: "prod3", name: "Racket" },
+  { id: "prod4", name: "Kit Bag" }
+];
+
 
 export default function BookingPage() {
   return (
@@ -120,13 +127,31 @@ export default function BookingPage() {
         </div>
       </div>
 
-      <div className="booking-card">
-        <div className="booking-card-title">Class Selection</div>
-         <div className="schedule-type">
-  <label className="schedule-option">
-    <input type="checkbox" />
-    <span>Fixed Classes</span>
-  </label>
+      {/* PRODUCTS */}
+<div className="booking-card">
+  <div className="booking-card-title">Products</div>
+
+  <div className="product-row">
+    <select>
+      <option value="">Select Product</option>
+      {DUMMY_PRODUCTS.map(p => (
+        <option key={p.id} value={p.id}>{p.name}</option>
+      ))}
+    </select>
+
+    <input
+      type="number"
+      placeholder="Product Price"
+    />
+  </div>
+
+  <div className="product-actions">
+    <button type="button" className="secondary-btn">
+      + Add Product
+    </button>
+  </div>
+</div>
+
 
       {/* STUDENT DETAILS */}
       <div className="booking-card">
