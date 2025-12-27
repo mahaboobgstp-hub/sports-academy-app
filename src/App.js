@@ -25,7 +25,7 @@ import ProgramPlanner from "./pages/planner/ProgramPlanner";
 
 
 import "./styles.css";
-
+import "./BookingPage.css";
 export default function App() {
   return (
     <BrowserRouter>
