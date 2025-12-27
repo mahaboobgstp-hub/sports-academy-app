@@ -1,16 +1,73 @@
-.booking-root {
-  background: #0f172a;
-  color: white;
-  padding: 40px;
+/* PAGE WRAPPER */
+.booking-page {
+  padding: 24px;
+  background: #f8fafc;
   min-height: 100vh;
 }
 
-.test-btn {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: #22c55e;
-  color: black;
-  border: none;
+/* HEADER */
+.booking-header {
+  margin-bottom: 20px;
+}
+
+.booking-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* CARD */
+.booking-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.booking-card-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* GRID */
+.booking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* INPUTS */
+.booking-grid select,
+.booking-grid input {
+  padding: 10px 12px;
   border-radius: 6px;
-  font-size: 16px;
+  border: 1px solid #d1d5db;
+  width: 100%;
+}
+
+/* STATS ROW */
+.booking-stats input {
+  background: #f1f5f9;
+  font-weight: 500;
+}
+
+/* ACTIONS */
+.booking-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* BUTTON (aligned with Program Planner) */
+.primary-btn {
+  background: #2563eb;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #1d4ed8;
 }
