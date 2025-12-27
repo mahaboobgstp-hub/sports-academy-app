@@ -64,7 +64,6 @@ const formatDateWithDay = (date) => {
 
 
 
-
 function getWeekDatesBetween(startDate, endDate, dayName) {
   if (!startDate || !endDate) return [];
 
@@ -99,35 +98,6 @@ function getWeekDatesBetween(startDate, endDate, dayName) {
   );
 }
 
-function getDateForDayInWeek(week, dayName) {
-  if (!week || !week.start || !dayName) return null;
-
-  const dayIndexMap = {
-    Sunday: 0,
-    Monday: 1,
-    Tuesday: 2,
-    Wednesday: 3,
-    Thursday: 4,
-    Friday: 5,
-    Saturday: 6
-  };
-
-  const targetDay = dayIndexMap[dayName];
-  if (targetDay === undefined) return null;
-
-  const start = new Date(week.start);
-  if (isNaN(start)) return null;
-
-  const date = new Date(start);
-
-  while (date.getDay() !== targetDay) {
-    date.setDate(date.getDate() + 1);
-  }
-
-  return date;
-}
-
-
 export default function ProgramPlanner() {
 
   const [newTimeSlot, setNewTimeSlot] = useState("");
@@ -142,7 +112,6 @@ export default function ProgramPlanner() {
 
   /* ===== CONTEXT ===== */
   const [selectedSeasonId, setSelectedSeasonId] = useState("");
- 
 
   // ===== WEEK STATE =====
 const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
@@ -313,6 +282,40 @@ useEffect(() => {
       }));
     setPrograms(updated);
   };
+const formatDateWithDay = (dateInput) => {
+  const date = new Date(dateInput);
+
+  const day = String(date.getDate()).padStart(2, "0");
+
+  const month = date
+    .toLocaleString("en-GB", { month: "short" })
+    .toUpperCase(); // JAN, FEB
+
+  const year = date.getFullYear();
+
+  const weekday = date
+    .toLocaleString("en-GB", { weekday: "long" })
+    .toUpperCase(); // SATURDAY
+
+  return `${day}-${month}-${year} ${weekday}`;
+};
+
+  function getDateForDayInWeek(week, dayName) {
+  const dayIndexMap = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6
+  };
+
+  const start = new Date(week.startDate);
+  const date = new Date(start);
+  date.setDate(start.getDate() + dayIndexMap[dayName]);
+  return date;
+}
 
   
 
@@ -485,24 +488,15 @@ useEffect(() => {
                      
 
 <strong style={{ minWidth: "160px" }}>
-  {(() => {
-    const week =
-  seasonWeeks.length > 0
-    ? seasonWeeks[selectedWeekIndex]
-    : null;
-
-    const date = getDateForDayInWeek(week, day.dayName);
-
-    return date
-      ? formatDateWithDay(date)
-      : formatDateWithDay(
-          getFirstDateForDayInSeason(day.dayName, selectedSeason)
-        );
-  })()}
+  {seasonWeeks[selectedWeekIndex]
+    ? formatDateWithDay(
+        getDateForDayInWeek(
+          seasonWeeks[selectedWeekIndex],
+          day.dayName
+        )
+      )
+    : "--"}
 </strong>
-
-
-
 
 
 
