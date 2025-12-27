@@ -528,22 +528,19 @@ const formatDateWithDay = (dateInput) => {
 
                      
 
-{(() => {
-  const week = seasonWeeks?.[selectedWeekIndex];
+<strong style={{ minWidth: "160px" }}>
+  {(() => {
+    const week = seasonWeeks?.[selectedWeekIndex];
+    const date = getDateForDayInWeek(week, day.dayName);
 
-  const dateForDay =
-    week
-      ? getDateForDayInWeek(week, day.dayName)
-      : getFirstDateForDayInSeason(day.dayName, selectedSeason);
+    return date
+      ? formatDateWithDay(date)
+      : formatDateWithDay(
+          getFirstDateForDayInSeason(day.dayName, selectedSeason)
+        );
+  })()}
+</strong>
 
-  return (
-    <strong style={{ minWidth: "160px" }}>
-      {dateForDay
-        ? formatDateWithDay(dateForDay)
-        : day.dayName}
-    </strong>
-  );
-})()}
 
 
 
