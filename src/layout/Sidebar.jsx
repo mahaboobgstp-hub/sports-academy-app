@@ -8,7 +8,7 @@ export default function Sidebar() {
 
       <div className="section">
         <div className="section-title">Dashboard</div>
-        <Link to="/">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </div>
 
       <div className="section">
