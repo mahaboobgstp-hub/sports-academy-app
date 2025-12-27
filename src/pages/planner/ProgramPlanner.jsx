@@ -634,6 +634,44 @@ const formatDateWithDay = (dateInput) => {
   </div>
 )}
 
+      {/* ===== WEEK PICKER MODAL ===== */}
+{showWeekPicker && (
+  <div className="modal-backdrop">
+    <div className="modal large">
+
+      <h3>Select Week</h3>
+
+      <div className="week-picker-grid">
+        {seasonWeeks.map((week, index) => (
+          <button
+            key={index}
+            className={`week-picker-btn ${
+              index === selectedWeekIndex ? "active" : ""
+            }`}
+            onClick={() => {
+              setSelectedWeekIndex(index);
+              setShowWeekPicker(false);
+            }}
+          >
+            <div><strong>Week {index + 1}</strong></div>
+            <div style={{ fontSize: "12px", opacity: 0.8 }}>
+              {formatDateWithDay(week.start)} → {formatDateWithDay(week.end)}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <button
+        className="sub-btn"
+        onClick={() => setShowWeekPicker(false)}
+      >
+        Close
+      </button>
+
+    </div>
+  </div>
+)}
+
 
     </div>
   );
