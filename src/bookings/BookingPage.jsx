@@ -54,28 +54,29 @@ export default function BookingPage() {
 {DUMMY_SEASONS.map(s => (
   <option key={s.id} value={s.id}>{s.name}</option>
 ))}
+          </select>
+          <select>
 <option value="">Select Program</option>
 {DUMMY_PROGRAMS.map(p => (
   <option key={p.id} value={p.id}>{p.name}</option>
-))}
-<option value="">Select Location</option>
+))}</select>
+<select><option value="">Select Location</option>
 {DUMMY_LOCATIONS.map(l => (
   <option key={l.id} value={l.id}>{l.name}</option>
-))}
-<option value="">Select Court</option>
+))}</select>
+<select><option value="">Select Court</option>
 {DUMMY_COURTS.map(c => (
   <option key={c.id} value={c.id}>{c.name}</option>
-))}
-<option value="">Select Day</option>
+))}</select>
+<select><option value="">Select Day</option>
 {DUMMY_DAYS.map(d => (
   <option key={d} value={d}>{d}</option>
-))}
-<option value="">Select Time Slot</option>
+))}</select>
+<select><option value="">Select Time Slot</option>
 {DUMMY_TIME_SLOTS.map(t => (
   <option key={t} value={t}>{t}</option>
-))}
+))}</select>
 
-          </select>
 
           <select>
             <option>Select Program</option>
