@@ -515,11 +515,8 @@ const slots =
         {weekEditor.weekDates.map(date => (
           <button
             key={date}
-            className={`week-date-btn
-        ${weekEditor.selectedDate === date ? "active" : ""}
-        ${day.overrides?.[date] ? "has-override" : ""}
-      `}
-            onClick={() =>
+            className="week-date-btn"
+              onClick={() =>
               setWeekEditor({
                 ...weekEditor,
                 selectedDate: date
