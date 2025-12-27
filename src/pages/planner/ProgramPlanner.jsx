@@ -199,6 +199,23 @@ export default function ProgramPlanner() {
       }));
     setPrograms(updated);
   };
+const formatDateWithDay = (dateInput) => {
+  const date = new Date(dateInput);
+
+  const day = String(date.getDate()).padStart(2, "0");
+
+  const month = date
+    .toLocaleString("en-GB", { month: "short" })
+    .toUpperCase(); // JAN, FEB
+
+  const year = date.getFullYear();
+
+  const weekday = date
+    .toLocaleString("en-GB", { weekday: "long" })
+    .toUpperCase(); // SATURDAY
+
+  return `${day}-${month}-${year} ${weekday}`;
+};
 
   let pIndex, lIndex, cIndex, dIndex, selectedDate;
 
