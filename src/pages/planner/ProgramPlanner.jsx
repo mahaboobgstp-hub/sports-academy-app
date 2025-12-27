@@ -116,6 +116,8 @@ export default function ProgramPlanner() {
   // ===== WEEK STATE =====
 const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
 const [seasonWeeks, setSeasonWeeks] = useState([]);
+const [showWeekPicker, setShowWeekPicker] = useState(false);
+
 
   function getWeeksBetween(startDate, endDate) {
   if (!startDate || !endDate) return [];
