@@ -217,24 +217,6 @@ const formatDateWithDay = (dateInput) => {
   return `${day}-${month}-${year} ${weekday}`;
 };
 
-  const {
-  pIndex,
-  lIndex,
-  cIndex,
-  dIndex,
-  selectedDate
-} = weekEditor;
-
-const day =
-  programs[pIndex]
-    .locations[lIndex]
-    .courts[cIndex]
-    .days[dIndex];
-
-// slots to show in editor
-const slots =
-  day.overrides?.[selectedDate] || day.timeSlots;
-
   
 
   /* ===== UI ===== */
@@ -527,102 +509,6 @@ const slots =
           </button>
         ))}
       </div>
-      <div className="week-day-editor">
-
-  <h4>{formatDateWithDay(selectedDate)}</h4>
-
-  {slots.map((ts, i) => (
-    <div key={i} className="day-row">
-
-      {/* TIME */}
-      <select
-        value={ts.slot}
-        onChange={(e) => {
-          const updated = [...programs];
-          const target =
-            updated[pIndex]
-              .locations[lIndex]
-              .courts[cIndex]
-              .days[dIndex];
-
-          const list =
-            target.overrides?.[selectedDate] || [...slots];
-
-          list[i] = {
-            ...list[i],
-            slot: e.target.value
-          };
-
-          target.overrides = {
-            ...target.overrides,
-            [selectedDate]: list
-          };
-
-          setPrograms(updated);
-        }}
-      >
-        {TIME_SLOTS.map(t => (
-          <option key={t} value={t}>{t}</option>
-        ))}
-      </select>
-
-      {/* SEATS */}
-      <input
-        value={ts.seats}
-        style={{ width: "80px" }}
-        onChange={(e) => {
-          const updated = [...programs];
-          const target =
-            updated[pIndex]
-              .locations[lIndex]
-              .courts[cIndex]
-              .days[dIndex];
-
-          const list =
-            target.overrides?.[selectedDate] || [...slots];
-
-          list[i] = {
-            ...list[i],
-            seats: e.target.value
-          };
-
-          target.overrides = {
-            ...target.overrides,
-            [selectedDate]: list
-          };
-
-          setPrograms(updated);
-        }}
-      />
-
-      {/* DELETE */}
-      <button
-        onClick={() => {
-          const updated = [...programs];
-          const target =
-            updated[pIndex]
-              .locations[lIndex]
-              .courts[cIndex]
-              .days[dIndex];
-
-          const list =
-            (target.overrides?.[selectedDate] || [...slots])
-              .filter((_, idx) => idx !== i);
-
-          target.overrides = {
-            ...target.overrides,
-            [selectedDate]: list
-          };
-
-          setPrograms(updated);
-        }}
-      >
-        ✕
-      </button>
-
-    </div>
-  ))}
-</div>
 
       {/* DATE-SPECIFIC EDITOR */}
       {weekEditor.selectedDate && (
