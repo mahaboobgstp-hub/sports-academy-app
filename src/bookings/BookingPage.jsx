@@ -111,15 +111,22 @@ export default function BookingPage() {
   placeholder="Price"
   className="price-input"
 />
-
-        </div>
-
+ </div>
+        
         <div className="booking-grid booking-stats">
           <input disabled defaultValue="Total Seats: -" />
           <input disabled defaultValue="Seats Booked: -" />
           <input disabled defaultValue="Seats Available: -" />
         </div>
       </div>
+
+      <div className="booking-card">
+        <div className="booking-card-title">Class Selection</div>
+         <div className="schedule-type">
+  <label className="schedule-option">
+    <input type="checkbox" />
+    <span>Fixed Classes</span>
+  </label>
 
       {/* STUDENT DETAILS */}
       <div className="booking-card">
