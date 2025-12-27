@@ -270,15 +270,15 @@ const formatDateWithDay = (dateInput) => {
               <input placeholder="Pending" disabled />
 
               <button
-                className="sub-btn"
-                onClick={() => {
-                  const updated = [...programs];
-                  updated[pIndex].locked = !updated[pIndex].locked;
-                  setPrograms(updated);
-                }}
-              >
-                {p.locked ? "Unlock Program" : "Lock Program"}
-              </button>
+  className="sub-btn save-program-btn"
+  onClick={() => {
+    const updated = [...programs];
+    updated[pIndex].locked = true; // mark program as saved
+    setPrograms(updated);
+  }}
+>
+  Save Program
+</button>
             </div>
 
             <button className="sub-btn" onClick={() => addLocation(pIndex)}>
