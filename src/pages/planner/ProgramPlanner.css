@@ -187,3 +187,17 @@ button {
   font-weight: 600;
 }
 
+.week-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: #f4f6f8;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+.week-title {
+  font-size: 14px;
+  font-weight: 600;
+}
