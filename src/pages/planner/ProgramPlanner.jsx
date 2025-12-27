@@ -485,19 +485,12 @@ const formatDateWithDay = (dateInput) => {
                     {!court.collapsed && court.days.map((day, dIndex) => (
                       <div key={dIndex} className="day-row day-grid">
 
-                     
+                       const currentWeek = seasonWeeks[selectedWeekIndex];
+const dateForDay = getDateForDayInWeek(currentWeek, day.dayName);
 
-<strong style={{ minWidth: "160px" }}>
-  {seasonWeeks[selectedWeekIndex]
-    ? formatDateWithDay(
-        getDateForDayInWeek(
-          seasonWeeks[selectedWeekIndex],
-          day.dayName
-        )
-      )
-    : "--"}
+<strong>
+  {formatDateWithDay(dateForDay)}
 </strong>
-
 
 
                         <select
