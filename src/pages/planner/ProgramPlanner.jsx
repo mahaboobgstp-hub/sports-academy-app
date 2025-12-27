@@ -641,7 +641,7 @@ const formatDateWithDay = (dateInput) => {
       </button>
 
     </div>
-  </div>
+  
 )}
 
 
