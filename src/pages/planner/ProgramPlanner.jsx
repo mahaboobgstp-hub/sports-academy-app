@@ -99,7 +99,7 @@ function getWeekDatesBetween(startDate, endDate, dayName) {
 }
 
 function getDateForDayInWeek(week, dayName) {
-  if (!week) return null;
+  if (!week || !week.start || !dayName) return null;
 
   const dayIndexMap = {
     Sunday: 0,
@@ -112,8 +112,11 @@ function getDateForDayInWeek(week, dayName) {
   };
 
   const targetDay = dayIndexMap[dayName];
+  if (targetDay === undefined) return null;
 
   const start = new Date(week.start);
+  if (isNaN(start)) return null;
+
   const date = new Date(start);
 
   while (date.getDay() !== targetDay) {
