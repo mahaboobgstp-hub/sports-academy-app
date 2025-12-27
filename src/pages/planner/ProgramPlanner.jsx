@@ -116,7 +116,8 @@ export default function ProgramPlanner() {
   /* ===== PLANNER STATE ===== */
   const [programs, setPrograms] = useState([]);
 
- 
+  const selectedSeason = seasons.find(s => s.id === selectedSeasonId);
+
   /* ===== LOAD MASTER DATA ===== */
   useEffect(() => {
     loadSports();
@@ -215,10 +216,6 @@ const formatDateWithDay = (dateInput) => {
 
   return `${day}-${month}-${year} ${weekday}`;
 };
-
-  let pIndex, lIndex, cIndex, dIndex, selectedDate;
-
-
 
   
 
@@ -481,151 +478,33 @@ const formatDateWithDay = (dateInput) => {
         ))}
       </div>
 
-      {weekEditor && day && (
-  <div className="modal-backdrop">
-    <div className="modal large">
-
-      <h3>
-        Edit Weeks – {
-          programs[weekEditor.pIndex]
-            .locations[weekEditor.lIndex]
-            .courts[weekEditor.cIndex]
-            .days[weekEditor.dIndex]
-            .dayName
-        }
-      </h3>
-
-      {/* DATE LIST */}
-      <div className="week-date-list">
-       {weekEditor?.weekDates?.map(date => (
-          <button
-            key={date}
-            className="week-date-btn"
-              onClick={() =>
-              setWeekEditor({
-                ...weekEditor,
-                selectedDate: date
-              })
-            }
-          >
-            {formatDateWithDay(date)}
-          </button>
-        ))}
-      </div>
-      <div className="week-day-editor">
-
-  <h4>{formatDateWithDay(selectedDate)}</h4>
-
-  {slots.map((ts, i) => (
-    <div key={i} className="day-row">
-
-      {/* TIME */}
-      <select
-        value={ts.slot}
-        onChange={(e) => {
-          const updated = [...programs];
-          const target =
-            updated[pIndex]
-              .locations[lIndex]
-              .courts[cIndex]
-              .days[dIndex];
-
-          const list =
-            target.overrides?.[selectedDate] || [...slots];
-
-          list[i] = {
-            ...list[i],
-            slot: e.target.value
-          };
-
-          target.overrides = {
-            ...target.overrides,
-            [selectedDate]: list
-          };
-
-          setPrograms(updated);
-        }}
-      >
-        {TIME_SLOTS.map(t => (
-          <option key={t} value={t}>{t}</option>
-        ))}
-      </select>
-
-      {/* SEATS */}
-      <input
-        value={ts.seats}
-        style={{ width: "80px" }}
-        onChange={(e) => {
-          const updated = [...programs];
-          const target =
-            updated[pIndex]
-              .locations[lIndex]
-              .courts[cIndex]
-              .days[dIndex];
-
-          const list =
-            target.overrides?.[selectedDate] || [...slots];
-
-          list[i] = {
-            ...list[i],
-            seats: e.target.value
-          };
-
-          target.overrides = {
-            ...target.overrides,
-            [selectedDate]: list
-          };
-
-          setPrograms(updated);
-        }}
-      />
-
-      {/* DELETE */}
-      <button
-        onClick={() => {
-          const updated = [...programs];
-          const target =
-            updated[pIndex]
-              .locations[lIndex]
-              .courts[cIndex]
-              .days[dIndex];
-
-          const list =
-            (target.overrides?.[selectedDate] || [...slots])
-              .filter((_, idx) => idx !== i);
-
-          target.overrides = {
-            ...target.overrides,
-            [selectedDate]: list
-          };
-
-          setPrograms(updated);
-        }}
-      >
-        ✕
-      </button>
-
+      {weekEditor && (
+        <div className="modal-backdrop">
+          <div className="modal">
+            <h3>
+              Edit Weeks – {
+                programs[weekEditor.pIndex]
+                  .locations[weekEditor.lIndex]
+                  .courts[weekEditor.cIndex]
+                  .days[weekEditor.dIndex]
+                  .dayName
+              }
+            </h3>
+<div className="week-list">
+  {weekEditor.weekDates.map(date => (
+    <div key={date} className="week-row">
+      <strong>{formatDateWithDay(date)}</strong>
     </div>
   ))}
 </div>
-       
 
-          {/* reuse same time-slot UI here */}
-          {/* IMPORTANT: bind to overrides[date] instead of day.timeSlots */}
+
+            <button className="sub-btn" onClick={() => setWeekEditor(null)}>
+              Close
+            </button>
+          </div>
         </div>
-      
-
-      <button
-        className="sub-btn"
-        onClick={() => setWeekEditor(null)}
-      >
-        Close
-      </button>
-
-    </div>
-  
-)}
-
+      )}
 
     </div>
   );
