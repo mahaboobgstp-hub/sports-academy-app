@@ -117,6 +117,33 @@ export default function ProgramPlanner() {
 const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
 const [seasonWeeks, setSeasonWeeks] = useState([]);
 
+  function getWeeksBetween(startDate, endDate) {
+  if (!startDate || !endDate) return [];
+
+  const weeks = [];
+  let current = new Date(startDate);
+
+  // align to week start (Monday)
+  current.setDate(current.getDate() - ((current.getDay() + 6) % 7));
+
+  const end = new Date(endDate);
+
+  while (current <= end) {
+    const weekStart = new Date(current);
+    const weekEnd = new Date(current);
+    weekEnd.setDate(weekEnd.getDate() + 6);
+
+    weeks.push({
+      start: weekStart.toISOString().slice(0, 10),
+      end: weekEnd.toISOString().slice(0, 10)
+    });
+
+    current.setDate(current.getDate() + 7);
+  }
+
+  return weeks;
+}
+
 
   /* ===== PLANNER STATE ===== */
   const [programs, setPrograms] = useState([]);
@@ -152,6 +179,17 @@ const [seasonWeeks, setSeasonWeeks] = useState([]);
     const { data } = await supabase.from("locations").select("id,name");
     setLocationsMaster(data || []);
   };
+useEffect(() => {
+  if (!selectedSeason?.start_date || !selectedSeason?.end_date) return;
+
+  const weeks = getWeeksBetween(
+    selectedSeason.start_date,
+    selectedSeason.end_date
+  );
+
+  setSeasonWeeks(weeks);
+  setSelectedWeekIndex(0); // default = Week 1
+}, [selectedSeason]);
 
   /* ===== ADD FUNCTIONS ===== */
 
