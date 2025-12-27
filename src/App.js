@@ -6,11 +6,13 @@ import Programs from "./pages/master/Programs";
 import Locations from "./pages/master/Locations";
 import Products from "./pages/master/Products";
 
+
+
 /* ===== SEASONS ===== */
 import AcademicEventForm from "./AcademicEventForm";
 
 /* ===== BOOKINGS ===== */
-import BookingPage from "./booking/Bookingpage";
+import BookingPage from "./pages/booking/Bookingpage";
 import BookingWizard from "./bookings/BookingWizard";
 
 /* ===== CORE ===== */
@@ -46,7 +48,7 @@ export default function App() {
 
           {/* BOOKINGS */}
           <Route path="/book" element={<BookingWizard />} />
-          <Route path="booking/bookingpage" element={<BookingPage />} />
+          <Route path="pages/booking/bookingpage" element={<BookingPage />} />
 
           {/* FUTURE ERP SCREENS */}
           <Route path="/programs" element={<Placeholder title="Programs" />} />
