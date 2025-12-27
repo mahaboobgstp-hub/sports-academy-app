@@ -217,6 +217,22 @@ const formatDateWithDay = (dateInput) => {
   return `${day}-${month}-${year} ${weekday}`;
 };
 
+  const formatDateWithDay = (dateStr) => {
+  const d = new Date(dateStr);
+
+  const datePart = d.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  });
+
+  const dayPart = d.toLocaleDateString("en-GB", {
+    weekday: "long"
+  });
+
+  return `${datePart} ${dayPart}`;
+};
+
   /* ===== UI ===== */
 
   return (
@@ -489,8 +505,8 @@ const formatDateWithDay = (dateInput) => {
               }
             </h3>
 <div className="week-list">
-  {weekEditor.weekDates.map((date, i) => (
-    <div key={i} className="week-row">
+  {weekEditor.weekDates.map(date => (
+    <div key={date} className="week-row">
       <strong>{formatDateWithDay(date)}</strong>
     </div>
   ))}
