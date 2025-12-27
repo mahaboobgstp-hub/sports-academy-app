@@ -68,17 +68,11 @@ export default function BookingPage() {
 {DUMMY_COURTS.map(c => (
   <option key={c.id} value={c.id}>{c.name}</option>
 ))}</select>
-<select><option value="">Select Day</option>
-{DUMMY_DAYS.map(d => (
-  <option key={d} value={d}>{d}</option>
-))}</select>
-<select><option value="">Select Time Slot</option>
-{DUMMY_TIME_SLOTS.map(t => (
-  <option key={t} value={t}>{t}</option>
-))}</select>
 
 
-          <select>
+
+
+          /*<select>
             <option>Select Program</option>
           </select>
 
@@ -88,7 +82,7 @@ export default function BookingPage() {
 
           <select>
             <option>Select Court</option>
-          </select>
+          </select>*/
         </div>
       </div>
 
@@ -103,13 +97,16 @@ export default function BookingPage() {
 
 
         <div className="booking-grid">
-          <select>
-            <option>Select Day</option>
-          </select>
+          
+            <select><option value="">Select Day</option>
+{DUMMY_DAYS.map(d => (
+  <option key={d} value={d}>{d}</option>
+))}</select>
 
-          <select>
-            <option>Select Time Slot</option>
-          </select>
+          <select><option value="">Select Time Slot</option>
+{DUMMY_TIME_SLOTS.map(t => (
+  <option key={t} value={t}>{t}</option>
+))}</select>
         </div>
 
         <div className="booking-grid booking-stats">
