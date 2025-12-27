@@ -1,4 +1,4 @@
-import "../bookings/BookingPage.css";
+import "./BookingPage.css";
 
 
 export default function BookingPage() {
