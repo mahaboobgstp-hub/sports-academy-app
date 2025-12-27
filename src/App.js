@@ -47,8 +47,8 @@ export default function App() {
           <Route path="/create" element={<AcademicEventForm />} />
 
           {/* BOOKINGS */}
-          <Route path="/book" element={<BookingWizard />} />
-          <Route path="pages/booking/BookingPage" element={<BookingPage />} />
+          <Route path="pages/booking/BookingPage" element={<BookingWizard />} />
+          //<Route path="pages/booking/BookingPage" element={<BookingPage />} />
 
           {/* FUTURE ERP SCREENS */}
           <Route path="/programs" element={<Placeholder title="Programs" />} />
