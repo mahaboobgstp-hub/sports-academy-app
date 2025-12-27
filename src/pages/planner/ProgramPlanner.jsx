@@ -116,6 +116,23 @@ export default function ProgramPlanner() {
   /* ===== PLANNER STATE ===== */
   const [programs, setPrograms] = useState([]);
 
+  if (weekEditor) {
+  ({ pIndex, lIndex, cIndex, dIndex, selectedDate } = weekEditor);
+}
+
+
+const day =
+  weekEditor &&
+  programs?.[pIndex]
+    ?.locations?.[lIndex]
+    ?.courts?.[cIndex]
+    ?.days?.[dIndex];
+
+
+// slots to show in editor
+const slots =
+  day.overrides?.[selectedDate] || day.timeSlots;
+
   const selectedSeason = seasons.find(s => s.id === selectedSeasonId);
 
   /* ===== LOAD MASTER DATA ===== */
@@ -219,22 +236,7 @@ const formatDateWithDay = (dateInput) => {
 
   let pIndex, lIndex, cIndex, dIndex, selectedDate;
 
-if (weekEditor) {
-  ({ pIndex, lIndex, cIndex, dIndex, selectedDate } = weekEditor);
-}
 
-
-const day =
-  weekEditor &&
-  programs?.[pIndex]
-    ?.locations?.[lIndex]
-    ?.courts?.[cIndex]
-    ?.days?.[dIndex];
-
-
-// slots to show in editor
-const slots =
-  day.overrides?.[selectedDate] || day.timeSlots;
 
   
 
