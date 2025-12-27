@@ -130,4 +130,39 @@ button {
   font-size: 13px;
 }
 
+.week-date-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;                 /* spacing between buttons */
+  margin: 12px 0 20px 0;     /* spacing around the block */
+}
+
+.week-date-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #0d1b2a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;      /* prevents breaking date text */
+}
+
+.week-date-btn:hover {
+  background: #1b263b;
+}
+
+.week-date-btn.active {
+  background: #f5c542;
+  color: #000;
+  font-weight: 600;
+}
+
+.week-day-editor {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
 
