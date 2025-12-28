@@ -202,21 +202,32 @@ button {
   font-weight: 600;
 }
 .week-picker-btn {
-  background: #ffffff;
-  border: 1px solid #2563eb;
-  border-radius: 10px;
+  background: #0f172a;            /* same dark tone as day buttons */
+  color: #ffffff;
 
-  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
 
-  color: #2563eb;
+  padding: 10px 14px;
+  min-height: 56px;
+
   font-size: 13px;
   font-weight: 600;
+  line-height: 1.3;
   text-align: center;
 
   cursor: pointer;
   user-select: none;
 
-  transition: all 0.2s ease-in-out;
+  white-space: normal;            /* ALLOW WRAPPING */
+  word-break: break-word;         /* PREVENT OVERFLOW */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: background 0.2s ease-in-out;
 }
 .week-picker-btn:hover {
   background: #2563eb;
