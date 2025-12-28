@@ -201,7 +201,7 @@ button {
   font-size: 14px;
   font-weight: 600;
 }
-.week-item {
+.week-picker-btn {
   background: #ffffff;
   border: 1px solid #2563eb;
   border-radius: 10px;
@@ -218,11 +218,11 @@ button {
 
   transition: all 0.2s ease-in-out;
 }
-.week-item:hover {
+.week-picker-btn:hover {
   background: #2563eb;
   color: #ffffff;
 }
-.week-item.active {
+.week-picker-btn.active {
   background: #1d4ed8;
   color: #ffffff;
   border-color: #1d4ed8;
@@ -236,10 +236,16 @@ button {
 }
 
 /* Container that holds all weeks */
-.week-container {
+.week-picker-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 14px;
   margin-top: 16px;
+}
+.week-picker-btn div:last-child {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 4px;
+  font-weight: 400;
 }
 
