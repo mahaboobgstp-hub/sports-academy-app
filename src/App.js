@@ -18,7 +18,7 @@ import BookingPage from "./bookings/BookingPage";
 
 
 /* ===== CORE ===== */
-import Dashboard from "./pages/Dashboard";
+//import Dashboard from "./pages/Dashboard";
 import Placeholder from "./pages/Placeholder";
 
 /* ===== PROGRAMPLANNER ===== */
