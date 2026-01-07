@@ -108,6 +108,7 @@ export default function ProgramPlanner() {
   const [newSeats, setNewSeats] = useState("");
   const [weekEditor, setWeekEditor] = useState(null);
   const [locationClassFee, setLocationClassFee] = useState({});
+  const [selectedOverrideDate, setSelectedOverrideDate] = useState(null);
   const [dateOverrides, setDateOverrides] = useState({
   // "2026-01-12": {
   //   "07:00-08:00": 10,
@@ -649,22 +650,22 @@ const formatDateWithDay = (dateInput) => {
       </h3>
 
       {/* DATE LIST */}
-      <div className="week-date-list">
-        {weekEditor.weekDates.map(date => (
-          <button
-            key={date}
-            className="week-date-btn"
-            onClick={() =>
-              setWeekEditor({
-                ...weekEditor,
-                selectedDate: date
-              })
-            }
-          >
-            {formatDateWithDay(date)}
-          </button>
-        ))}
-      </div>
+     <div className="edit-weeks">
+  {weekDates.map(date => (
+    <button
+      key={date}
+      className={
+        selectedOverrideDate === date
+          ? "week-btn active"
+          : "week-btn"
+      }
+      onClick={() => setSelectedOverrideDate(date)}
+    >
+      {formatDateWithDay(new Date(date))}
+    </button>
+  ))}
+</div>
+
 
       {/* DATE-SPECIFIC EDITOR */}
       {weekEditor.selectedDate && (
