@@ -116,7 +116,7 @@ export default function ProgramPlanner() {
   // }
 });
   const [editWeekDay, setEditWeekDay] = useState(null);
-  const [selectedSeason, setSelectedSeason] = useState(null);
+  //const [selectedSeason, setSelectedSeason] = useState(null);
 
 
   /* ===== MASTER DATA ===== */
