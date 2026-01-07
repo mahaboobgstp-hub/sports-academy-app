@@ -77,15 +77,7 @@ function getWeekDatesBetween(startDate, endDate, dayName) {
     Saturday: 6
   };
 
-  function updateLocationFee(locationKey, value) {
-  setLocationClassFee(prev => ({
-    ...prev,
-    [locationKey]: value
-  }));
-}
-function getScheduleForDate(date, weekdayTemplate) {
-  return dateOverrides[date] || weekdayTemplate;
-}
+ 
   
 
 
@@ -138,6 +130,18 @@ export default function ProgramPlanner() {
 const [selectedWeekIndex, setSelectedWeekIndex] = useState(0);
 const [seasonWeeks, setSeasonWeeks] = useState([]);
 const [showWeekPicker, setShowWeekPicker] = useState(false);
+
+
+   function updateLocationFee(locationKey, value) {
+  setLocationClassFee(prev => ({
+    ...prev,
+    [locationKey]: value
+  }));
+}
+  
+function getScheduleForDate(date, weekdayTemplate) {
+  return dateOverrides[date] || weekdayTemplate;
+}
 
 
   function getWeeksBetween(startDate, endDate) {
