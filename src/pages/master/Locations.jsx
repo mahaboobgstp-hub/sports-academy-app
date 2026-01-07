@@ -221,7 +221,7 @@ Time: ${slot.label}`}
       onClick={() => toggleSlot(court.id, day, slot.from)}
     />
   ))}
-</div>
+
     
     <div>
       <h3>Locations</h3>
@@ -268,6 +268,7 @@ Time: ${slot.label}`}
               <option>Outdoor</option>
             </select>
           </div>
+      </div>
         ))}
 
         <button onClick={addCourt}>+ Add Court</button>\
