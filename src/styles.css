@@ -39,3 +39,25 @@ h2 {
   text-align: center;
   color: #64748b;
 }
+
+
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(18, 1fr); /* 5AM–11PM = 18 slots */
+  gap: 2px;
+}
+
+.time-slot {
+  height: 16px;
+  background: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.time-slot:hover {
+  background: #cce5ff;
+}
+
+.time-slot.selected {
+  background: #28a745;
+}
