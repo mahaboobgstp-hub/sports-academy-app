@@ -214,7 +214,7 @@ async function saveLocation() {
   {TIME_SLOTS.map((slot, idx) => (
     <div
       key={idx}
-      className={`time-slot ${isSelected ? "selected" : ""}`}
+      className="time-slot"
       title={`Court: ${court.name}
 Day: ${day}
 Time: ${slot.label}`}
