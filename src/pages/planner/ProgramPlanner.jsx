@@ -658,7 +658,7 @@ const formatDateWithDay = (dateInput) => {
       </h3>
 
       {/* DATE LIST */}
-   {editWeekDay && weekDates.length > 0 && (
+  {weekDates.length > 0 && (
   <div className="edit-weeks">
     {weekDates.map(date => (
       <button
@@ -675,6 +675,18 @@ const formatDateWithDay = (dateInput) => {
     ))}
   </div>
 )}
+
+      {selectedOverrideDate && (
+  <div className="override-editor">
+    <h4>
+      Editing Override for{" "}
+      {formatDateWithDay(new Date(selectedOverrideDate))}
+    </h4>
+
+    {/* override time slots UI goes here */}
+  </div>
+)}
+
 
 
 
