@@ -209,7 +209,7 @@ async function saveLocation() {
   }
 
   return (
-
+<div>
     <div className="time-grid">
   {TIME_SLOTS.map((slot, idx) => (
     <div
@@ -221,9 +221,9 @@ Time: ${slot.label}`}
       onClick={() => toggleSlot(court.id, day, slot.from)}
     />
   ))}
-
+</div>
     
-    <div>
+    
       <h3>Locations</h3>
 
       <div className="form-grid">
@@ -268,7 +268,7 @@ Time: ${slot.label}`}
               <option>Outdoor</option>
             </select>
           </div>
-      </div>
+      
         ))}
 
         <button onClick={addCourt}>+ Add Court</button>\
