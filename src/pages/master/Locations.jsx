@@ -27,6 +27,41 @@ export default function Locations() {
     notes: ""
   });
 
+  // ===== CONTRACT UI STATE =====
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const HOURS = Array.from({ length: 24 }, (_, i) => i);
+
+const [showContract, setShowContract] = useState(false);
+
+const [contractForm, setContractForm] = useState({
+  name: "",
+  season: "",
+  start_date: "",
+  end_date: "",
+  status: "ACTIVE"
+});
+
+const [selectedCourts, setSelectedCourts] = useState([]);
+const [contractGrid, setContractGrid] = useState({});
+
+// ===== HELPERS =====
+function toggleCourt(courtId) {
+  if (selectedCourts.includes(courtId)) {
+    setSelectedCourts(selectedCourts.filter(id => id !== courtId));
+  } else {
+    setSelectedCourts([...selectedCourts, courtId]);
+  }
+}
+
+function toggleHour(courtId, day, hour) {
+  const key = `${courtId}-${day}-${hour}`;
+  setContractGrid(prev => ({
+    ...prev,
+    [key]: !prev[key]
+  }));
+}
+
+
   useEffect(() => {
     loadLocations();
   }, []);
@@ -206,6 +241,129 @@ async function saveLocation() {
         <button onClick={addCourt}>+ Add Court</button>\
         <button onClick={saveLocation}>Save Location</button>
       </div>
+
+      {/* ================= CONTRACTS ================= */}
+<h3>Contracts</h3>
+
+<button onClick={() => setShowContract(true)}>
+  + Add Contract
+</button>
+
+{showContract && (
+  <div style={{ border: "1px solid #ccc", padding: 12, marginTop: 12 }}>
+    
+    <h4>Contract Details</h4>
+
+    <div className="form-grid">
+      <input
+        placeholder="Contract Name"
+        value={contractForm.name}
+        onChange={e => setContractForm({ ...contractForm, name: e.target.value })}
+      />
+
+      <select
+        value={contractForm.season}
+        onChange={e => setContractForm({ ...contractForm, season: e.target.value })}
+      >
+        <option value="">Select Season</option>
+        <option>2025-26</option>
+        <option>2026-27</option>
+      </select>
+
+      <input
+        type="date"
+        value={contractForm.start_date}
+        onChange={e => setContractForm({ ...contractForm, start_date: e.target.value })}
+      />
+
+      <input
+        type="date"
+        value={contractForm.end_date}
+        onChange={e => setContractForm({ ...contractForm, end_date: e.target.value })}
+      />
+
+      <select
+        value={contractForm.status}
+        onChange={e => setContractForm({ ...contractForm, status: e.target.value })}
+      >
+        <option value="ACTIVE">Active</option>
+        <option value="DRAFT">Draft</option>
+      </select>
+    </div>
+
+    {/* COURT SELECTION */}
+    <h4>Select Courts</h4>
+    {courts.map((c, i) => (
+      <label key={i} style={{ marginRight: 12 }}>
+        <input
+          type="checkbox"
+          checked={selectedCourts.includes(i)}
+          onChange={() => toggleCourt(i)}
+        />{" "}
+        {c.name || `Court ${i + 1}`}
+      </label>
+    ))}
+
+    {/* WEEK GRID */}
+    {selectedCourts.length > 0 && (
+      <>
+        <h4>Weekly Contracted Hours</h4>
+
+        <div style={{ overflowX: "auto" }}>
+          <table border="1" cellPadding="4">
+            <thead>
+              <tr>
+                <th>Court</th>
+                {DAYS.map(d => (
+                  <th key={d}>{d}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {selectedCourts.map(courtId => (
+                <tr key={courtId}>
+                  <td>{courts[courtId]?.name || "Court"}</td>
+                  {DAYS.map(day => (
+                    <td key={day}>
+                      <div style={{ display: "flex", flexWrap: "wrap" }}>
+                        {HOURS.map(hour => {
+                          const key = `${courtId}-${day}-${hour}`;
+                          const active = contractGrid[key];
+                          return (
+                            <div
+                              key={hour}
+                              onClick={() => toggleHour(courtId, day, hour)}
+                              style={{
+                                width: 16,
+                                height: 16,
+                                margin: 1,
+                                cursor: "pointer",
+                                background: active ? "#4caf50" : "#eee"
+                              }}
+                              title={`${hour}:00`}
+                            />
+                          );
+                        })}
+                      </div>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    )}
+
+    {/* ACTIONS */}
+    <div style={{ marginTop: 12 }}>
+      <button disabled>Save Contract</button>
+      <button onClick={() => setShowContract(false)}>Cancel</button>
+    </div>
+
+  </div>
+)}
+
 
       <h3>Existing Locations</h3>
 
