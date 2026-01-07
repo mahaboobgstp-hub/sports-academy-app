@@ -3,15 +3,6 @@ import { supabase } from "../../lib/supabase";
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-const TIME_SLOTS = Array.from({ length: 18 }, (_, i) => {
-  const hour = i + 5; // 05:00 to 23:00
-  return {
-    from: `${hour.toString().padStart(2, "0")}:00`,
-    to: `${(hour + 1).toString().padStart(2, "0")}:00`,
-    label: `${hour}:00 - ${hour + 1}:00`
-  };
-});
-
 
 const START_HOUR = 5;   // 5 AM
 const END_HOUR = 23;   // 11 PM
@@ -57,8 +48,9 @@ export default function Locations() {
   });
 
   // ===== CONTRACT UI STATE =====
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const HOURS = Array.from({ length: 24 }, (_, i) => i);
+//const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+//const HOURS = Array.from({ length: 24 }, (_, i) => i);
+const HOURS = Array.from({ length: 18 }, (_, i) => i + 5); // 5 → 22
 
 const [showContract, setShowContract] = useState(false);
 
@@ -74,13 +66,22 @@ const [selectedCourts, setSelectedCourts] = useState([]);
 const [contractGrid, setContractGrid] = useState({});
 
 // ===== HELPERS =====
-function toggleCourt(courtId) {
+/*function toggleCourt(courtId) {
   if (selectedCourts.includes(courtId)) {
     setSelectedCourts(selectedCourts.filter(id => id !== courtId));
   } else {
     setSelectedCourts([...selectedCourts, courtId]);
   }
+}*/
+
+  function toggleCourt(courtIndex) {
+  setSelectedCourts(prev =>
+    prev.includes(courtIndex)
+      ? prev.filter(i => i !== courtIndex)
+      : [...prev, courtIndex]
+  );
 }
+
 
 function toggleHour(courtId, day, hour) {
   const key = `${courtId}-${day}-${hour}`;
@@ -221,46 +222,7 @@ async function saveLocation() {
 
   return (
 <div>
-  {courts.map((court, cIdx) => (
-  <div key={cIdx} style={{ marginBottom: 12 }}>
-    <strong>{court.name || "Court"}</strong>
-
-    <table border="1" width="100%">
-      <thead>
-        <tr>
-          <th>Day</th>
-          {TIME_SLOTS.map((slot, i) => (
-            <th key={i} style={{ fontSize: 10 }}>
-              {slot.from}
-            </th>
-          ))}
-        </tr>
-      </thead>
-
-      <tbody>
-        {DAYS.map(day => (
-          <tr key={day}>
-            <td>{day}</td>
-
-            {TIME_SLOTS.map((slot, i) => (
-              <td
-                key={i}
-                title={`${day} ${slot.label}`}
-                style={{
-                  width: 22,
-                  height: 22,
-                  background: "#eee",
-                  cursor: "pointer"
-                }}
-              />
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-))}
-
+  
     
     
       <h3>Locations</h3>
@@ -310,12 +272,53 @@ async function saveLocation() {
       
         ))}
 
-        <button onClick={addCourt}>+ Add Court</button>\
+        <button onClick={addCourt}>+ Add Court</button>
         <button onClick={saveLocation}>Save Location</button>
       </div>
 
       {/* ================= CONTRACTS ================= */}
 <h3>Contracts</h3>
+
+  {courts.map((court, cIdx) => (
+  <div key={cIdx} style={{ marginBottom: 12 }}>
+    <strong>{court.name || "Court"}</strong>
+
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>Day</th>
+          {TIME_SLOTS.map((slot, i) => (
+            <th key={i} style={{ fontSize: 10 }}>
+              {slot.from}
+            </th>
+          ))}
+        </tr>
+      </thead>
+
+      <tbody>
+        {DAYS.map(day => (
+          <tr key={day}>
+            <td>{day}</td>
+
+            {TIME_SLOTS.map((slot, i) => (
+              <td
+                key={i}
+                title={`${day} ${slot.label}`}
+                style={{
+                  width: 22,
+                  height: 22,
+                  background: "#eee",
+                  cursor: "pointer"
+                }}
+              />
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+))}
+
 
 <button onClick={() => setShowContract(true)}>
   + Add Contract
@@ -369,8 +372,9 @@ async function saveLocation() {
       <label key={i} style={{ marginRight: 12 }}>
         <input
           type="checkbox"
-          checked={selectedCourts.includes(i)}
-          onChange={() => toggleCourt(i)}
+         checked={selectedCourts.includes(i)}
+onChange={() => toggleCourt(i)}
+
         />{" "}
         {c.name || `Court ${i + 1}`}
       </label>
