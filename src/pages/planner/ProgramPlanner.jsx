@@ -83,7 +83,9 @@ function getWeekDatesBetween(startDate, endDate, dayName) {
     [locationKey]: value
   }));
 }
-
+function getScheduleForDate(date, weekdayTemplate) {
+  return dateOverrides[date] || weekdayTemplate;
+}
   
 
 
@@ -520,9 +522,7 @@ const formatDateWithDay = (dateInput) => {
   )}
 </strong>
 
-                        {function getScheduleForDate(date, weekdayTemplate) (
-  return dateOverrides[date] || weekdayTemplate;
-)}
+                      
                         <select
                           value={newTimeSlot}
                           onChange={(e) => setNewTimeSlot(e.target.value)}
