@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+const TIME_SLOTS = Array.from({ length: 18 }, (_, i) => {
+  const hour = i + 5; // 05:00 to 23:00
+  return {
+    from: `${hour.toString().padStart(2, "0")}:00`,
+    to: `${(hour + 1).toString().padStart(2, "0")}:00`,
+    label: `${hour}:00 - ${hour + 1}:00`
+  };
+});
+
 
 const START_HOUR = 5;   // 5 AM
 const END_HOUR = 23;   // 11 PM
@@ -210,18 +221,46 @@ async function saveLocation() {
 
   return (
 <div>
-    <div className="time-grid">
-  {TIME_SLOTS.map((slot, idx) => (
-    <div
-      key={idx}
-      className="time-slot"
-      title={`Court: ${court.name}
-Day: ${day}
-Time: ${slot.label}`}
-      onClick={() => toggleSlot(court.id, day, slot.from)}
-    />
-  ))}
-</div>
+  {courts.map((court, cIdx) => (
+  <div key={cIdx} style={{ marginBottom: 12 }}>
+    <strong>{court.name || "Court"}</strong>
+
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>Day</th>
+          {TIME_SLOTS.map((slot, i) => (
+            <th key={i} style={{ fontSize: 10 }}>
+              {slot.from}
+            </th>
+          ))}
+        </tr>
+      </thead>
+
+      <tbody>
+        {DAYS.map(day => (
+          <tr key={day}>
+            <td>{day}</td>
+
+            {TIME_SLOTS.map((slot, i) => (
+              <td
+                key={i}
+                title={`${day} ${slot.label}`}
+                style={{
+                  width: 22,
+                  height: 22,
+                  background: "#eee",
+                  cursor: "pointer"
+                }}
+              />
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+))}
+
     
     
       <h3>Locations</h3>
