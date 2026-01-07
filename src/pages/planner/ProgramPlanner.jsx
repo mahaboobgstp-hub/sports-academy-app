@@ -115,7 +115,8 @@ export default function ProgramPlanner() {
   //   "08:00-09:00": 12
   // }
 });
-
+  const [editWeekDay, setEditWeekDay] = useState(null);
+  const [selectedSeason, setSelectedSeason] = useState(null);
 
 
   /* ===== MASTER DATA ===== */
@@ -343,7 +344,14 @@ const formatDateWithDay = (dateInput) => {
   return date;
 }
 
-  
+  const weekDates = editWeekDay
+  ? getWeekDatesBetween(
+      selectedSeason?.start_date,
+      selectedSeason?.end_date,
+      editWeekDay
+    )
+  : [];
+
 
   /* ===== UI ===== */
 
@@ -650,21 +658,24 @@ const formatDateWithDay = (dateInput) => {
       </h3>
 
       {/* DATE LIST */}
-     <div className="edit-weeks">
-  {weekDates.map(date => (
-    <button
-      key={date}
-      className={
-        selectedOverrideDate === date
-          ? "week-btn active"
-          : "week-btn"
-      }
-      onClick={() => setSelectedOverrideDate(date)}
-    >
-      {formatDateWithDay(new Date(date))}
-    </button>
-  ))}
-</div>
+   {editWeekDay && weekDates.length > 0 && (
+  <div className="edit-weeks">
+    {weekDates.map(date => (
+      <button
+        key={date}
+        className={
+          selectedOverrideDate === date
+            ? "week-btn active"
+            : "week-btn"
+        }
+        onClick={() => setSelectedOverrideDate(date)}
+      >
+        {formatDateWithDay(new Date(date))}
+      </button>
+    ))}
+  </div>
+)}
+
 
 
       {/* DATE-SPECIFIC EDITOR */}
