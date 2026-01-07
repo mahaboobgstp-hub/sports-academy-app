@@ -426,6 +426,16 @@ const formatDateWithDay = (dateInput) => {
 
                 <input placeholder="Seats Allocated" />
 
+                <input
+  type="number"
+  placeholder="Class Fee / Hour"
+  value={locationClassFee[`${pIndex}-${lIndex}`] || ""}
+  onChange={(e) =>
+    updateLocationFee(`${pIndex}-${lIndex}`, e.target.value)
+  }
+/>
+
+
                 <button className="sub-btn" onClick={() => addCourt(pIndex, lIndex)}>
                   + Add Court
                 </button>
