@@ -84,6 +84,11 @@ function getWeekDatesBetween(startDate, endDate, dayName) {
   }));
 }
 
+  function getScheduleForDate(date, weekdayTemplate) {
+  return dateOverrides[date] || weekdayTemplate;
+}
+
+
   const targetDay = dayIndexMap[dayName];
   const dates = [];
 
@@ -111,6 +116,13 @@ export default function ProgramPlanner() {
   const [newSeats, setNewSeats] = useState("");
   const [weekEditor, setWeekEditor] = useState(null);
   const [locationClassFee, setLocationClassFee] = useState({});
+  const [dateOverrides, setDateOverrides] = useState({
+  // "2026-01-12": {
+  //   "07:00-08:00": 10,
+  //   "08:00-09:00": 12
+  // }
+});
+
 
 
   /* ===== MASTER DATA ===== */
