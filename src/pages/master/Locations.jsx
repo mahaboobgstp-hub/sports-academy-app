@@ -43,6 +43,8 @@ const [contractForm, setContractForm] = useState({
 
 const [selectedCourts, setSelectedCourts] = useState([]);
 const [contractGrid, setContractGrid] = useState({});
+const [courtHourlyCost, setCourtHourlyCost] = useState({});
+  
 
 // ===== HELPERS =====
 function toggleCourt(courtId) {
@@ -53,6 +55,13 @@ function toggleCourt(courtId) {
   }
 }
 
+function updateCourtCost(courtIndex, value) {
+  setCourtHourlyCost(prev => ({
+    ...prev,
+    [courtIndex]: value
+  }));
+}
+  
 function toggleHour(courtId, day, hour) {
   const key = `${courtId}-${day}-${hour}`;
   setContractGrid(prev => ({
@@ -294,14 +303,28 @@ async function saveLocation() {
     {/* COURT SELECTION */}
     <h4>Select Courts</h4>
     {courts.map((c, i) => (
-      <label key={i} style={{ marginRight: 12 }}>
-        <input
-          type="checkbox"
-          checked={selectedCourts.includes(i)}
-          onChange={() => toggleCourt(i)}
-        />{" "}
-        {c.name || `Court ${i + 1}`}
-      </label>
+     <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: 6 }}>
+  <input
+    type="checkbox"
+    checked={selectedCourts.includes(i)}
+    onChange={() => toggleCourt(i)}
+  />
+
+  <span style={{ marginLeft: 6, width: 120 }}>
+    {c.name || `Court ${i + 1}`}
+  </span>
+
+  {selectedCourts.includes(i) && (
+    <input
+      type="number"
+      placeholder="Cost / Hour"
+      value={courtHourlyCost[i] || ""}
+      onChange={e => updateCourtCost(i, e.target.value)}
+      style={{ width: 100 }}
+    />
+  )}
+</div>
+
     ))}
 
     {/* WEEK GRID */}
