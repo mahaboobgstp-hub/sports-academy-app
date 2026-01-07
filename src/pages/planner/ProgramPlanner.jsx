@@ -108,6 +108,7 @@ export default function ProgramPlanner() {
   const [newSeats, setNewSeats] = useState("");
   const [weekEditor, setWeekEditor] = useState(null);
   const [locationClassFee, setLocationClassFee] = useState({});
+  const [editWeekDay, setEditWeekDay] = useState(null);
   const [selectedOverrideDate, setSelectedOverrideDate] = useState(null);
   const [dateOverrides, setDateOverrides] = useState({
   // "2026-01-12": {
