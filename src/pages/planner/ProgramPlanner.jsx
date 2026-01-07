@@ -116,7 +116,7 @@ export default function ProgramPlanner() {
   //   "08:00-09:00": 12
   // }
 });
-  const [editWeekDay, setEditWeekDay] = useState(null);
+  //const [editWeekDay, setEditWeekDay] = useState(null);
   //const [selectedSeason, setSelectedSeason] = useState(null);
 
 
