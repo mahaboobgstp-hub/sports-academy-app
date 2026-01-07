@@ -77,6 +77,13 @@ function getWeekDatesBetween(startDate, endDate, dayName) {
     Saturday: 6
   };
 
+  function updateLocationFee(locationKey, value) {
+  setLocationClassFee(prev => ({
+    ...prev,
+    [locationKey]: value
+  }));
+}
+
   const targetDay = dayIndexMap[dayName];
   const dates = [];
 
@@ -103,6 +110,8 @@ export default function ProgramPlanner() {
   const [newTimeSlot, setNewTimeSlot] = useState("");
   const [newSeats, setNewSeats] = useState("");
   const [weekEditor, setWeekEditor] = useState(null);
+  const [locationClassFee, setLocationClassFee] = useState({});
+
 
   /* ===== MASTER DATA ===== */
   const [sports, setSports] = useState([]);
