@@ -1,26 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
-
-const START_HOUR = 5;   // 5 AM
-const END_HOUR = 23;   // 11 PM
-
-const TIME_SLOTS = Array.from(
-  { length: END_HOUR - START_HOUR },
-  (_, i) => {
-    const from = START_HOUR + i;
-    const to = from + 1;
-    return {
-      from,
-      to,
-      label: `${String(from).padStart(2, "0")}:00 - ${String(to).padStart(2, "0")}:00`
-    };
-  }
-);
-
-
 export default function Locations() {
   const [locations, setLocations] = useState([]);
   const [courts, setCourts] = useState([]);
@@ -48,9 +28,8 @@ export default function Locations() {
   });
 
   // ===== CONTRACT UI STATE =====
-//const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-//const HOURS = Array.from({ length: 24 }, (_, i) => i);
-const HOURS = Array.from({ length: 18 }, (_, i) => i + 5); // 5 → 22
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const HOURS = Array.from({ length: 24 }, (_, i) => i);
 
 const [showContract, setShowContract] = useState(false);
 
@@ -66,22 +45,13 @@ const [selectedCourts, setSelectedCourts] = useState([]);
 const [contractGrid, setContractGrid] = useState({});
 
 // ===== HELPERS =====
-/*function toggleCourt(courtId) {
+function toggleCourt(courtId) {
   if (selectedCourts.includes(courtId)) {
     setSelectedCourts(selectedCourts.filter(id => id !== courtId));
   } else {
     setSelectedCourts([...selectedCourts, courtId]);
   }
-}*/
-
-  function toggleCourt(courtIndex) {
-  setSelectedCourts(prev =>
-    prev.includes(courtIndex)
-      ? prev.filter(i => i !== courtIndex)
-      : [...prev, courtIndex]
-  );
 }
-
 
 function toggleHour(courtId, day, hour) {
   const key = `${courtId}-${day}-${hour}`;
@@ -221,10 +191,7 @@ async function saveLocation() {
   }
 
   return (
-<div>
-  
-    
-    
+    <div>
       <h3>Locations</h3>
 
       <div className="form-grid">
@@ -269,56 +236,14 @@ async function saveLocation() {
               <option>Outdoor</option>
             </select>
           </div>
-      
         ))}
 
-        <button onClick={addCourt}>+ Add Court</button>
+        <button onClick={addCourt}>+ Add Court</button>\
         <button onClick={saveLocation}>Save Location</button>
       </div>
 
       {/* ================= CONTRACTS ================= */}
 <h3>Contracts</h3>
-
-  {courts.map((court, cIdx) => (
-  <div key={cIdx} style={{ marginBottom: 12 }}>
-    <strong>{court.name || "Court"}</strong>
-
-    <table border="1" width="100%">
-      <thead>
-        <tr>
-          <th>Day</th>
-          {TIME_SLOTS.map((slot, i) => (
-            <th key={i} style={{ fontSize: 10 }}>
-              {slot.from}
-            </th>
-          ))}
-        </tr>
-      </thead>
-
-      <tbody>
-        {DAYS.map(day => (
-          <tr key={day}>
-            <td>{day}</td>
-
-            {TIME_SLOTS.map((slot, i) => (
-              <td
-                key={i}
-                title={`${day} ${slot.label}`}
-                style={{
-                  width: 22,
-                  height: 22,
-                  background: "#eee",
-                  cursor: "pointer"
-                }}
-              />
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-))}
-
 
 <button onClick={() => setShowContract(true)}>
   + Add Contract
@@ -372,9 +297,8 @@ async function saveLocation() {
       <label key={i} style={{ marginRight: 12 }}>
         <input
           type="checkbox"
-         checked={selectedCourts.includes(i)}
-onChange={() => toggleCourt(i)}
-
+          checked={selectedCourts.includes(i)}
+          onChange={() => toggleCourt(i)}
         />{" "}
         {c.name || `Court ${i + 1}`}
       </label>
