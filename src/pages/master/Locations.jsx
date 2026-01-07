@@ -1,6 +1,20 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
+<div className="time-grid">
+  {TIME_SLOTS.map((slot, idx) => (
+    <div
+      key={idx}
+      className={`time-slot ${isSelected ? "selected" : ""}`}
+      title={`Court: ${court.name}
+Day: ${day}
+Time: ${slot.label}`}
+      onClick={() => toggleSlot(court.id, day, slot.from)}
+    />
+  ))}
+</div>
+
+
 const START_HOUR = 5;   // 5 AM
 const END_HOUR = 23;   // 11 PM
 
