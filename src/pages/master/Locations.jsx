@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
+const START_HOUR = 5;   // 5 AM
+const END_HOUR = 23;   // 11 PM
+
+const TIME_SLOTS = Array.from(
+  { length: END_HOUR - START_HOUR },
+  (_, i) => {
+    const from = START_HOUR + i;
+    const to = from + 1;
+    return {
+      from,
+      to,
+      label: `${String(from).padStart(2, "0")}:00 - ${String(to).padStart(2, "0")}:00`
+    };
+  }
+);
+
+
 export default function Locations() {
   const [locations, setLocations] = useState([]);
   const [courts, setCourts] = useState([]);
