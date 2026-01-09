@@ -1,5 +1,5 @@
-import studentImg from "../../../../assets/student.png";
-import coachImg from "../../../../assets/coach.png";
+//import studentImg from "../../../../assets/student.png";
+//import coachImg from "../../../../assets/coach.png";
 
 export default function StudentOverview() {
   return (
@@ -9,7 +9,7 @@ export default function StudentOverview() {
         {/* Student */}
         <div className="person">
           <img
-            src={studentImg}
+            src="/assets/student.png"
             alt="Student"
             className="avatar"
           />
@@ -22,7 +22,7 @@ export default function StudentOverview() {
         {/* Coach */}
         <div className="person">
           <img
-            src={coachImg}
+            src="/assets/coach.png"
             alt="Coach"
             className="avatar"
           />
