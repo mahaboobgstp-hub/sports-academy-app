@@ -19,25 +19,33 @@ export default function DrillsPanel() {
     <div className="card">
       <h3>Training Drills</h3>
 
-      <div className="drill-group completed">
-        <strong>Completed</strong>
-        <ul>
-          {drills.completed.map(d => <li key={d}>{d}</li>)}
-        </ul>
-      </div>
+      <div className="drills-row">
+        <div className="drill-column completed">
+          <strong>Completed</strong>
+          <ul>
+            {drills.completed.map(d => (
+              <li key={d}>{d}</li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="drill-group progress">
-        <strong>In Progress</strong>
-        <ul>
-          {drills.inProgress.map(d => <li key={d}>{d}</li>)}
-        </ul>
-      </div>
+        <div className="drill-column progress">
+          <strong>In Progress</strong>
+          <ul>
+            {drills.inProgress.map(d => (
+              <li key={d}>{d}</li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="drill-group upcoming">
-        <strong>Upcoming</strong>
-        <ul>
-          {drills.upcoming.map(d => <li key={d}>{d}</li>)}
-        </ul>
+        <div className="drill-column upcoming">
+          <strong>Upcoming</strong>
+          <ul>
+            {drills.upcoming.map(d => (
+              <li key={d}>{d}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
