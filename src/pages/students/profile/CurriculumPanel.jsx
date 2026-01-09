@@ -18,16 +18,18 @@ export default function CurriculumPanel() {
     <div className="card">
       <h3>Curriculum</h3>
 
-      {curriculum.map((level) => (
-        <div key={level.phase} className="curriculum-block">
-          <strong>{level.phase}</strong>
-          <ul>
-            {level.topics.map((topic) => (
-              <li key={topic}>{topic}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <div className="curriculum-row">
+        {curriculum.map(level => (
+          <div key={level.phase} className="curriculum-column">
+            <strong>{level.phase}</strong>
+            <ul>
+              {level.topics.map(topic => (
+                <li key={topic}>{topic}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
