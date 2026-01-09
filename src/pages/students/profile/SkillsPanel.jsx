@@ -39,7 +39,7 @@ const skills = [
   { name: "Game Awareness", level: 2 }
 ];
 
-export default function SkillsPanel() {
+export default function SkillsPanel({ isCoach }) {
   return (
     <div className="card">
       <h3>Skill Progress</h3>
@@ -53,6 +53,8 @@ export default function SkillsPanel() {
               <span
                 key={i}
                 className={`ball ${i <= skill.level ? "filled" : ""}`}
+                onClick={() => isCoach && updateLevel(skill.name, i)}
+                style={{ cursor: isCoach ? "pointer" : "default" }}
               >
                 🏀
               </span>
@@ -66,6 +68,12 @@ export default function SkillsPanel() {
               ? "Intermediate"
               : "Advanced"}
           </span>
+           {/* 👇 HELPER TEXT — PUT IT HERE */}
+          {isCoach && (
+            <small style={{ color: "#888", marginLeft: 8 }}>
+              Click to update
+            </small>
+          )}
         </div>
       ))}
     </div>
