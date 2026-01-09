@@ -1,5 +1,5 @@
-import studentImg from "../../../assets/student.png";
-import coachImg from "../../../assets/coach.png";
+//import studentImg from "../../../assets/student.png";
+//import coachImg from "../../../assets/coach.png";
 
 
 export default function StudentOverview() {
@@ -8,7 +8,7 @@ export default function StudentOverview() {
       <div className="header-row">
         {/* Student */}
         <div className="person">
-          <img src="/assets/student.png" alt="Student" />
+          <img src="/assets/student.png" />
           <div>
             <h3>Arjun Kumar</h3>
             <div>Age: 11 · U-12 · Basketball</div>
@@ -17,7 +17,7 @@ export default function StudentOverview() {
 
         {/* Coach */}
         <div className="person">
-          <img src="/assets/coach.png" alt="Coach" />
+          <img src="/assets/coach.png" />
           <div>
             <h4>Coach Rahul</h4>
             <div>Head Basketball Coach</div>
