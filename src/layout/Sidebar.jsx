@@ -36,7 +36,7 @@ export default function Sidebar() {
 
     <div className="section">
        <div className="section-title">Students</div>
-      <Link to="/students">Student Search</Link>
+      <Link to="/students">Students</Link>
       <Link to="/students/profiles">Student Profiles</Link>
       <Link to="/students/attendance">Attendance</Link>
       <Link to="/students/skills">Skill Progress</Link>
