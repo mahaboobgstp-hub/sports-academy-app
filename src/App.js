@@ -64,6 +64,16 @@ export default function App() {
           <Route path="/locations" element={<Placeholder title="Locations" />} />
           <Route path="/products" element={<Placeholder title="Products" />} />
           <Route path="/analytics" element={<Placeholder title="Analytics" />} />
+      
+          {/* STUDENT DETAILS */}
+
+          <Route path="/students" element={<StudentSearch />} />
+          <Route path="/students/profiles" element={<StudentProfiles />} />
+          <Route path="/students/attendance" element={<AttendancePage />} />
+          <Route path="/students/skills" element={<SkillProgress />} />
+          <Route path="/students/communication" element={<StudentMessages />} />
+
+            
             
 
         </Route>
