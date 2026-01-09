@@ -1,0 +1,53 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background: #fff;
+  width: 420px;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.detail-grid label {
+  display: block;
+  font-size: 12px;
+  color: #777;
+}
+
+.detail-grid span {
+  font-weight: 600;
+}
+
+.status-completed {
+  color: green;
+}
+
+.status-refunded {
+  color: red;
+}
+
+.modal-actions {
+  text-align: right;
+}
+
+.close-btn {
+  padding: 6px 14px;
+  cursor: pointer;
+}
