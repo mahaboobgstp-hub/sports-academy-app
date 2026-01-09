@@ -107,3 +107,21 @@
   color: #616161;
 }
 
+.curriculum-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.curriculum-column {
+  flex: 1;
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.curriculum-column ul {
+  margin-top: 8px;
+  padding-left: 16px;
+}
+
