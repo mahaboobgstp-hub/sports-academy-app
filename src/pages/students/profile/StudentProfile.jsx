@@ -5,6 +5,8 @@ import AttendancePanel from "./AttendancePanel";
 import CoachNotes from "./CoachNotes";
 import CurriculumPanel from "./CurriculumPanel";
 import DrillsPanel from "./DrillsPanel";
+import QuestionsPanel from "./QuestionsPanel";
+
 
 
 export default function StudentProfile() {
@@ -16,6 +18,7 @@ export default function StudentProfile() {
       <DrillsPanel />
       <AttendancePanel />
       <CoachNotes />
+      <QuestionsPanel />
     </div>
   );
 }
