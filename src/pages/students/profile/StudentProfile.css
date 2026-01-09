@@ -236,3 +236,19 @@
   padding-top: 60%;
   border-radius: 2px;
 }
+
+.attendance-cell {
+  position: relative;
+  width: 100%;
+  padding-top: 60%;
+  border-radius: 3px;
+}
+
+.attendance-date {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+}
