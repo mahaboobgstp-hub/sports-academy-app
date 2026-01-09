@@ -1,41 +1,38 @@
 import { useState } from "react";
-import "./StudentPage.css";
+import SearchPanel from "./components/SearchPanel";
+import StudentList from "./components/StudentList";
 
 export default function StudentPage() {
-  const [mobile, setMobile] = useState("");
-  const [students, setStudents] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [students] = useState([
+    {
+      id: "stu1",
+      name: "Arjun Kumar",
+      ageGroup: "U-12",
+      sport: "Basketball",
+      program: "Beginner Batch",
+      coach: "Coach Rahul",
+      photo: "https://via.placeholder.com/60"
+    },
+    {
+      id: "stu2",
+      name: "Ananya Kumar",
+      ageGroup: "U-10",
+      sport: "Basketball",
+      program: "Foundation Batch",
+      coach: "Coach Rahul",
+      photo: "https://via.placeholder.com/60"
+    }
+  ]);
 
   return (
-    <div className="student-page">
+    <div style={{ padding: 20 }}>
+      <h2>Students</h2>
 
-      {/* SEARCH */}
-      <div className="student-search">
-        <input
-          placeholder="Enter Parent Mobile Number"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-        />
-        <button>Search</button>
-      </div>
+      {/* Search */}
+      <SearchPanel />
 
-      {/* STUDENT LIST */}
-      <div className="student-list">
-        {students.length === 0 && (
-          <div className="empty">
-            No students loaded
-          </div>
-        )}
-      </div>
-
-      {/* STUDENT PROFILE */}
-      {selectedStudent && (
-        <div className="student-profile">
-          Student Profile
-        </div>
-      )}
-
+      {/* List */}
+      <StudentList students={students} />
     </div>
   );
 }
-
