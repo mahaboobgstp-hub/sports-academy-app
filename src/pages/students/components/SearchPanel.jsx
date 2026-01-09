@@ -1,12 +1,11 @@
 export default function SearchPanel() {
   return (
-    <div style={{ marginBottom: 16 }}>
+    <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
       <input
-        placeholder="Search by Parent Mobile"
-        style={{ padding: 8, width: 250 }}
+        placeholder="Enter Parent Mobile Number"
+        style={{ padding: 8, width: 260 }}
       />
-      <button style={{ marginLeft: 8 }}>Search</button>
+      <button>Search</button>
     </div>
   );
 }
-
