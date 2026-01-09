@@ -23,7 +23,8 @@ const attendanceData = [
 
 // P = Present, A = Absent, H = Holiday
 
-export default function AttendancePanel() {
+export default function AttendancePanel({ isCoach }) {
+
   return (
     <div className="card">
       <h3>Attendance</h3>
@@ -33,7 +34,9 @@ export default function AttendancePanel() {
         <div>Attendance: 83%</div>
       </div>
 
-     <div className="attendance-grid">
+      {isCoach ? <CoachAttendanceView /> : <ParentAttendanceGrid />}
+
+           <div className="attendance-grid">
   {attendanceData.map((item, index) => (
     <div
       key={index}
