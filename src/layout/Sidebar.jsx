@@ -34,6 +34,16 @@ export default function Sidebar() {
         <Link to="/manage-bookings">Manage Bookings</Link>
       </div>
 
+    <div className="section">
+       <div className="section-title">Students</div>
+      <Link to="/students">Student Search</Link>
+      <Link to="/students/profiles">Student Profiles</Link>
+      <Link to="/students/attendance">Attendance</Link>
+      <Link to="/students/skills">Skill Progress</Link>
+      <Link to="/students/communication">Parent–Coach Messages</Link>
+   </div>
+
+
       <div className="section">
         <div className="section-title">Sales</div>
         <Link to="/payments">Payments</Link>
