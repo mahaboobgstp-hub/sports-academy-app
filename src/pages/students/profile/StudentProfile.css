@@ -285,3 +285,33 @@
   border-radius: 6px;
   font-size: 14px;
 }
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.skill-name {
+  width: 140px;
+  font-weight: 500;
+}
+
+.skill-icons {
+  display: flex;
+  gap: 6px;
+}
+
+.ball {
+  font-size: 18px;
+  opacity: 0.2;
+}
+
+.ball.filled {
+  opacity: 1;
+}
+
+.skill-label {
+  font-size: 13px;
+  color: #555;
+}
