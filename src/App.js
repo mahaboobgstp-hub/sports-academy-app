@@ -12,6 +12,8 @@ import CoachStudentList from "./pages/coach/CoachStudentList";
 import CoachAttendance from "./pages/coach/CoachAttendance";
 import CoachSkillEdit from "./pages/coach/CoachSkillEdit";
 import CoachDrillUpdate from "./pages/coach/CoachDrillUpdate";
+import CoachQuestionReply from "./pages/coach/CoachQuestionReply";
+
 
 
 
@@ -85,6 +87,8 @@ export default function App() {
           <Route path="/coach/attendance" element={<CoachAttendance />} />
           <Route path="/coach/skills" element={<CoachSkillEdit />} />
           <Route path="/coach/drills" element={<CoachDrillUpdate />} />
+          <Route path="/coach/questions" element={<CoachQuestionReply />} />
+  
   
 
             
