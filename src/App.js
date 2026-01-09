@@ -6,7 +6,7 @@ import Programs from "./pages/master/Programs";
 import Locations from "./pages/master/Locations";
 import Products from "./pages/master/Products";
 import StudentPage from "./pages/students/StudentPage";
-import StudentProfile from "./pages/profile/StudentProfile";
+import StudentProfile from "./pages/students/profile/StudentProfile";
 
 /* ===== SEASONS ===== */
 import AcademicEventForm from "./AcademicEventForm";
