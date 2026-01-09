@@ -213,3 +213,26 @@
 .attendance-legend .holiday {
   background: #ff9800;
 }
+
+.attendance-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* more columns */
+  gap: 4px; /* tighter spacing */
+  margin-top: 12px;
+}
+
+.attendance-cell {
+  width: 100%;
+  padding-top: 70%; /* REDUCED height */
+  border-radius: 3px;
+}
+.attendance-grid {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 3px;
+}
+
+.attendance-cell {
+  padding-top: 60%;
+  border-radius: 2px;
+}
