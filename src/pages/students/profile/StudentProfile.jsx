@@ -1,19 +1,16 @@
+import "./StudentProfile.css";
 import StudentOverview from "./StudentOverview";
 import SkillsPanel from "./SkillsPanel";
 import AttendancePanel from "./AttendancePanel";
 import CoachNotes from "./CoachNotes";
-import MessagePanel from "./MessagePanel";
 
 export default function StudentProfile() {
   return (
-    <div style={{ padding: 16 }}>
-      <h2>Student Profile</h2>
+    <div className="student-profile-page">
       <StudentOverview />
       <SkillsPanel />
       <AttendancePanel />
       <CoachNotes />
-      <MessagePanel />
     </div>
   );
 }
-
