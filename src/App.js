@@ -5,7 +5,7 @@ import Seasons from "./pages/master/Seasons";
 import Programs from "./pages/master/Programs";
 import Locations from "./pages/master/Locations";
 import Products from "./pages/master/Products";
-
+import StudentPage from "./pages/students/StudentPage";
 
 
 /* ===== SEASONS ===== */
@@ -45,7 +45,8 @@ export default function App() {
           <Route path="/master/programs" element={<Programs />} />
           <Route path="/master/locations" element={<Locations />} /> 
           <Route path="/master/products" element={<Products />} />
-
+          <Route path="/students" element={<StudentPage />} /> 
+          
           {/* SEASONS */}
           <Route path="/seasons/create" element={<AcademicEventForm />} />
           <Route path="/seasons/edit" element={<AcademicEventForm />} />
