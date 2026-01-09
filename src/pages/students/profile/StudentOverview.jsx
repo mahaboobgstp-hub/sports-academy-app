@@ -1,3 +1,7 @@
+import studentImg from "../../../assets/student.png";
+import coachImg from "../../../assets/coach.png";
+
+
 export default function StudentOverview() {
   return (
     <div className="card">
