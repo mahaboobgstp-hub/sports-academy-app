@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function CoachStudentList() {
+  const navigate = useNavigate();
+
   const students = [
     {
       id: "stu1",
@@ -29,7 +33,11 @@ export default function CoachStudentList() {
 
       <div style={{ marginTop: 16 }}>
         {students.map((s) => (
-          <StudentRow key={s.id} student={s} />
+          <StudentRow
+            key={s.id}
+            student={s}
+            navigate={navigate}
+          />
         ))}
       </div>
     </div>
@@ -38,7 +46,7 @@ export default function CoachStudentList() {
 
 /* ---------- ROW ---------- */
 
-function StudentRow({ student }) {
+function StudentRow({ student, navigate }) {
   return (
     <div
       style={{
@@ -64,12 +72,16 @@ function StudentRow({ student }) {
 
       <div style={{ display: "flex", gap: 8 }}>
         <button>Mark Attendance</button>
-        <button onClick={() => navigate(`/students/${student.id}?mode=coach`)}>
-  View Profile
-</button>
 
+        {/* ✅ COACH MODE NAVIGATION */}
+        <button
+          onClick={() =>
+            navigate(`/students/${student.id}?mode=coach`)
+          }
+        >
+          View / Update
+        </button>
       </div>
     </div>
   );
 }
-
