@@ -67,11 +67,14 @@ export default function App() {
       
           {/* STUDENT DETAILS */}
 
-          <Route path="/students" element={<StudentSearch />} />
+         /* <Route path="/students" element={<StudentSearch />} />
           <Route path="/students/profiles" element={<StudentProfiles />} />
           <Route path="/students/attendance" element={<AttendancePage />} />
           <Route path="/students/skills" element={<SkillProgress />} />
-          <Route path="/students/communication" element={<StudentMessages />} />
+          <Route path="/students/communication" element={<StudentMessages />} />*/
+
+          <Route path="/students" element={<StudentPage />} />
+          <Route path="/students/:studentId" element={<StudentProfile />} /> 
 
             
             
