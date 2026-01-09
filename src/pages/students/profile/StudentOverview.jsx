@@ -8,7 +8,7 @@ export default function StudentOverview() {
       <div className="header-row">
         {/* Student */}
         <div className="person">
-          <img src="/assets/student.png" />
+          <img src={studentImg} alt="Student" className="avatar" />
           <div>
             <h3>Arjun Kumar</h3>
             <div>Age: 11 · U-12 · Basketball</div>
@@ -17,7 +17,7 @@ export default function StudentOverview() {
 
         {/* Coach */}
         <div className="person">
-          <img src="/assets/coach.png" />
+          <img src={coachImg} alt="Coach" className="avatar" />
           <div>
             <h4>Coach Rahul</h4>
             <div>Head Basketball Coach</div>
