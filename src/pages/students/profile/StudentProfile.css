@@ -272,3 +272,9 @@
   width: 60px;
   height: 60px;
 }
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
