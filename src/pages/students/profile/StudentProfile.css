@@ -131,3 +131,33 @@
   background: #f5f5f5;
   border-radius: 6px;
 }
+.drills-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.drill-column {
+  flex: 1;
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.drill-column ul {
+  margin-top: 8px;
+  padding-left: 16px;
+}
+
+/* Status colors */
+.drill-column.completed strong {
+  color: #2e7d32;
+}
+
+.drill-column.progress strong {
+  color: #f9a825;
+}
+
+.drill-column.upcoming strong {
+  color: #616161;
+}
