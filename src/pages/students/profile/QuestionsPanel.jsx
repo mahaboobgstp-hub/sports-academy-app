@@ -1,18 +1,25 @@
 import { useState } from "react";
 
-export default function QuestionsPanel() {
+export default function QuestionsPanel({ isCoach }) {
   const [showForm, setShowForm] = useState(false);
   const [question, setQuestion] = useState("");
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([
+    {
+      text: "What should my child practice at home?",
+      date: "12 Apr",
+      reply: ""
+    }
+  ]);
 
-  function handleSubmit() {
+  function submitQuestion() {
     if (!question.trim()) return;
 
     setQuestions([
       ...questions,
       {
         text: question,
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        reply: ""
       }
     ]);
 
@@ -24,13 +31,15 @@ export default function QuestionsPanel() {
     <div className="card">
       <h3>Questions</h3>
 
-      {/* Ask button */}
-      <button onClick={() => setShowForm(!showForm)}>
-        Ask a Question
-      </button>
+      {/* ✅ 1. ASK QUESTION BUTTON — PASTE HERE */}
+      {!isCoach && (
+        <button onClick={() => setShowForm(true)}>
+          Ask a Question
+        </button>
+      )}
 
-      {/* Question form */}
-      {showForm && (
+      {/* Parent question form */}
+      {!isCoach && showForm && (
         <div style={{ marginTop: 12 }}>
           <textarea
             value={question}
@@ -42,24 +51,47 @@ export default function QuestionsPanel() {
           />
           <button
             style={{ marginTop: 8 }}
-            onClick={handleSubmit}
+            onClick={submitQuestion}
           >
             Submit
           </button>
         </div>
       )}
 
-      {/* Posted questions */}
-      {questions.length > 0 && (
-        <div style={{ marginTop: 16 }}>
-          {questions.map((q, i) => (
-            <div key={i} className="question-item">
-              <div>{q.text}</div>
-              <small>{q.date}</small>
+      {/* Questions list */}
+      <div style={{ marginTop: 16 }}>
+        {questions.map((q, index) => (
+          <div key={index} className="question-item">
+
+            {/* Question text */}
+            <div>
+              <strong>Parent:</strong> {q.text}
             </div>
-          ))}
-        </div>
-      )}
+            <small>{q.date}</small>
+
+            {/* ✅ 2. COACH REPLY TEXTAREA — PASTE HERE */}
+            {isCoach && (
+              <textarea
+                placeholder="Type reply..."
+                rows={2}
+                style={{
+                  width: "100%",
+                  marginTop: 8,
+                  padding: 8
+                }}
+              />
+            )}
+
+            {/* Existing reply (parent sees this later) */}
+            {q.reply && (
+              <div style={{ marginTop: 8 }}>
+                <strong>Coach:</strong> {q.reply}
+              </div>
+            )}
+
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
