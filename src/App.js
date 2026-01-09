@@ -7,6 +7,8 @@ import Locations from "./pages/master/Locations";
 import Products from "./pages/master/Products";
 import StudentPage from "./pages/students/StudentPage";
 import StudentProfile from "./pages/students/profile/StudentProfile";
+import CoachDashboard from "./pages/coach/CoachDashboard";
+
 
 /* ===== SEASONS ===== */
 import AcademicEventForm from "./AcademicEventForm";
@@ -69,6 +71,10 @@ export default function App() {
 
           <Route path="/students" element={<StudentPage />} />
           <Route path="/students/:studentId" element={<StudentProfile />} /> 
+
+            {/* COACH */}
+          <Route path="/coach" element={<CoachDashboard />} />
+  
 
             
             
