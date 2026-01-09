@@ -1,9 +1,8 @@
-const attendance = [
-  { date: "01 Apr", status: "Present" },
-  { date: "03 Apr", status: "Present" },
-  { date: "05 Apr", status: "Absent" },
-  { date: "08 Apr", status: "Present" }
+const attendanceData = [
+  "P", "P", "A", "P", "P", "H", "P", "P", "P", "A",
+  "P", "P", "P", "H", "P", "A", "P", "P", "P", "P"
 ];
+// P = Present, A = Absent, H = Holiday
 
 export default function AttendancePanel() {
   return (
@@ -15,22 +14,27 @@ export default function AttendancePanel() {
         <div>Attendance: 83%</div>
       </div>
 
-      <table className="attendance-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {attendance.map((a, i) => (
-            <tr key={i}>
-              <td>{a.date}</td>
-              <td>{a.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="attendance-grid">
+        {attendanceData.map((status, index) => (
+          <div
+            key={index}
+            className={`attendance-cell ${status}`}
+            title={
+              status === "P"
+                ? "Present"
+                : status === "A"
+                ? "Absent"
+                : "Holiday"
+            }
+          />
+        ))}
+      </div>
+
+      <div className="attendance-legend">
+        <span><i className="present" /> Present</span>
+        <span><i className="absent" /> Absent</span>
+        <span><i className="holiday" /> Holiday</span>
+      </div>
     </div>
   );
 }
