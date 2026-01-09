@@ -43,6 +43,18 @@ export default function Sidebar() {
       <Link to="/students/communication">Parent–Coach Messages</Link>
    </div>
 
+      <div className="sidebar-section">
+  <div className="sidebar-title">Coach</div>
+
+  <Link to="/coach">Dashboard</Link>
+  <Link to="/coach/students">My Students</Link>
+  <Link to="/coach/attendance">Attendance</Link>
+  <Link to="/coach/skills">Skills</Link>
+  <Link to="/coach/drills">Drills</Link>
+  <Link to="/coach/questions">Questions</Link>
+</div>
+
+
 
       <div className="section">
         <div className="section-title">Sales</div>
