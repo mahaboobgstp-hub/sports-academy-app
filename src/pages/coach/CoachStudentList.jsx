@@ -64,7 +64,10 @@ function StudentRow({ student }) {
 
       <div style={{ display: "flex", gap: 8 }}>
         <button>Mark Attendance</button>
-        <button>View Profile</button>
+        <button onClick={() => navigate(`/students/${student.id}?mode=coach`)}>
+  View Profile
+</button>
+
       </div>
     </div>
   );
