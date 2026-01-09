@@ -1,0 +1,55 @@
+.product-sales-page {
+  padding: 20px;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.card {
+  background: #fff;
+  padding: 14px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.filters input,
+.filters select {
+  padding: 6px;
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.sales-table th,
+.sales-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.completed {
+  color: green;
+  font-weight: 600;
+}
+
+.refunded {
+  color: red;
+  font-weight: 600;
+}
+
+.view-btn {
+  padding: 4px 8px;
+  cursor: pointer;
+}
