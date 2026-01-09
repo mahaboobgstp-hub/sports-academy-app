@@ -11,8 +11,8 @@ export default function StudentProfile() {
   return (
     <div className="student-profile-page">
       <StudentOverview />
-      <CurriculumPanel />
       <SkillsPanel />
+      <CurriculumPanel />
       <DrillsPanel />
       <AttendancePanel />
       <CoachNotes />
