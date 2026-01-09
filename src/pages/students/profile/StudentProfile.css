@@ -83,3 +83,27 @@
   margin-top: 8px;
 }
 
+.curriculum-block {
+  margin-top: 12px;
+}
+
+.curriculum-block ul {
+  margin: 6px 0 0 16px;
+}
+
+.drill-group {
+  margin-top: 12px;
+}
+
+.drill-group.completed strong {
+  color: #2e7d32;
+}
+
+.drill-group.progress strong {
+  color: #f9a825;
+}
+
+.drill-group.upcoming strong {
+  color: #616161;
+}
+
