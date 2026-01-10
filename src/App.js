@@ -92,7 +92,17 @@ export default function App() {
           <Route path="/coach/questions" element={<CoachQuestionReply />} />
 
              {/* CALENDAR */}
-          <Route path="/calendar" component={CalendarPage} />
+          //<Route path="/calendar" component={CalendarPage} />
+          <div style={{ display: "flex", height: "100vh" }}>
+  <Sidebar />
+  <main style={{ flex: 1, padding: "16px", overflow: "auto" }}>
+    <Routes>
+      <Route path="/calendar" element={<CalendarPage />} />
+      {/* other routes */}
+    </Routes>
+  </main>
+</div>
+
   
   
 
