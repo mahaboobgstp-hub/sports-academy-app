@@ -13,7 +13,7 @@ import CoachAttendance from "./pages/coach/CoachAttendance";
 import CoachSkillEdit from "./pages/coach/CoachSkillEdit";
 import CoachDrillUpdate from "./pages/coach/CoachDrillUpdate";
 import CoachQuestionReply from "./pages/coach/CoachQuestionReply";
-//import Sidebar from "./components/sidebar/Sidebar";
+import Sidebar from "./components/sidebar/Sidebar";
 import CalendarPage from "./pages/calendar/CalendarPage";
 
 
