@@ -82,10 +82,10 @@ export default function DrillsPanel({ isCoach }) {
     <div className="card">
       <h3>Training Drills</h3>
 
-      <div className="drills-row">
+      <div className="drills-row">*/
 
         {/* UPCOMING */}
-        <div className="drill-column upcoming">
+       /* <div className="drill-column upcoming">
           <strong>Upcoming</strong>
 
           {drills.upcoming.map((d) => (
@@ -103,10 +103,10 @@ export default function DrillsPanel({ isCoach }) {
               )}
             </div>
           ))}
-        </div>
+        </div>*/
 
         {/* IN PROGRESS */}
-        <div className="drill-column progress">
+       /* <div className="drill-column progress">
           <strong>In Progress</strong>
 
           {drills.inProgress.map((d) => (
@@ -124,10 +124,10 @@ export default function DrillsPanel({ isCoach }) {
               )}
             </div>
           ))}
-        </div>
+        </div>*/
 
         {/* COMPLETED */}
-        <div className="drill-column completed">
+      /*  <div className="drill-column completed">
           <strong>Completed</strong>
 
           {drills.completed.map((d) => (
