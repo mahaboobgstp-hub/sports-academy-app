@@ -34,6 +34,9 @@ export default function CalendarPage() {
   ];
 
   return (
+  <div style={{ background: "yellow", padding: "20px" }}>
+    <h1>CALENDAR PAGE LOADED</h1>
+
     <div className="calendar-page">
       <CalendarHeader
         currentDate={currentDate}
