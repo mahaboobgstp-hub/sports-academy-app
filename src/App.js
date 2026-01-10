@@ -14,7 +14,7 @@ import CoachSkillEdit from "./pages/coach/CoachSkillEdit";
 import CoachDrillUpdate from "./pages/coach/CoachDrillUpdate";
 import CoachQuestionReply from "./pages/coach/CoachQuestionReply";
 import Sidebar from "./components/sidebar/Sidebar";
-import CalendarPage from "./pages/calendar/CalendarPage";
+import CalendarPage from "../pages/calendar/CalendarPage";
 
 
 
@@ -90,6 +90,9 @@ export default function App() {
           <Route path="/coach/skills" element={<CoachSkillEdit />} />
           <Route path="/coach/drills" element={<CoachDrillUpdate />} />
           <Route path="/coach/questions" element={<CoachQuestionReply />} />
+
+             {/* CALENDAR */}
+          <Route path="/calendar" component={CalendarPage} />
   
   
 
