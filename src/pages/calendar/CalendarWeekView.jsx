@@ -21,7 +21,7 @@ export default function CalendarWeekView({ currentDate, sessions }) {
   return (
      <div style={{ background: "red", height: "300px" }}>
       WEEK VIEW RENDERED
-    </div>
+    
     <div className="calendar-week">
       <div className="time-column">
         {hours.map((h) => (
@@ -52,5 +52,6 @@ export default function CalendarWeekView({ currentDate, sessions }) {
         );
       })}
     </div>
+     </div>
   );
 }
