@@ -1,4 +1,4 @@
-/*const drills = {
+const drills = {
   completed: [
     "Right-hand Dribble Control",
     "Chest Pass Accuracy",
@@ -49,10 +49,10 @@ export default function DrillsPanel({ isCoach }) {
       </div>
     </div>
   );
-}*/
+}
 
 
-import { useState } from "react";
+/*import { useState } from "react";
 
 export default function DrillsPanel({ isCoach }) {
   const [drills, setDrills] = useState({
@@ -140,5 +140,5 @@ export default function DrillsPanel({ isCoach }) {
       </div>
     </div>
   );
-}
+}*/
 
