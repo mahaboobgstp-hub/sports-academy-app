@@ -52,6 +52,7 @@ export default function CalendarPage() {
       color: "#2563eb"
     }
   ];
+console.log("CALENDAR SESSIONS:", sessions);
 
   return (
     <div className="calendar-page">
