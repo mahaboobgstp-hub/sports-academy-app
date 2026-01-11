@@ -35,7 +35,9 @@ export default function ClassStatusTable({ data }) {
               } hover:bg-blue-50 transition`}
             >
               <td className="p-4 font-medium">{item.className}</td>
-              <td className="p-4">{item.program}</td>
+              /*<td className="p-4">{item.program}</td>*/
+              <td className="p-4 bg-red-500 text-white"> {item.program} </td>
+
               <td className="p-4">{item.location}</td>
               <td className="p-4">{item.coach}</td>
               <td className="p-4">
