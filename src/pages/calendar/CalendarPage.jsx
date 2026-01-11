@@ -6,34 +6,39 @@ import { calendarSessions } from "./mockCalendarData";
 import "./calendar.css";
 
 export default function CalendarPage() {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [view, setView] = useState("week");
+  //const [currentDate, setCurrentDate] = useState(new Date());
+  //const [view, setView] = useState("week");
 
-  const sessions = [
-    {
-      id: "s1",
-      date: "2026-01-13",
-      startTime: "07:00",
-      endTime: "08:30",
-      sport: "Basketball",
-      batch: "U-12 Beginners",
-      coach: "Arjun",
-      location: "Court 1",
-      status: "scheduled"
-    },
-    {
-      id: "s2",
-      date: "2026-01-14",
-      startTime: "08:00",
-      endTime: "09:00",
-      sport: "Football",
-      batch: "U-10",
-      coach: "Rohit",
-      location: "Ground A",
-      status: "scheduled"
-    }
-  ];
+  const iso = (d) => d.toISOString().split("T")[0];
 
+const monday = new Date(currentDate);
+monday.setDate(currentDate.getDate() - currentDate.getDay() + 1);
+
+const sessions = [
+  {
+    id: 1,
+    date: iso(monday), // Monday of visible week
+    startTime: "06:00",
+    endTime: "08:00",
+    program: "Basketball Fundamentals",
+    batch: "U-10",
+    coach: "Arjun",
+    color: "#2563eb"
+  },
+  {
+    id: 2,
+    date: iso(new Date(monday.getTime() + 86400000)), // Tuesday
+    startTime: "08:30",
+    endTime: "10:30",
+    program: "Basketball Intermediate",
+    batch: "U-14",
+    coach: "Arjun",
+    color: "#2563eb"
+  }
+];
+
+
+  
   return (
   
   
