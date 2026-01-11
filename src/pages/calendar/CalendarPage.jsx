@@ -2,6 +2,7 @@ import { useState } from "react";
 import CalendarHeader from "./CalendarHeader";
 import CalendarFilters from "./CalendarFilters";
 import CalendarWeekView from "./CalendarWeekView";
+import { calendarSessions } from "./mockCalendarData";
 import "./calendar.css";
 
 export default function CalendarPage() {
@@ -49,7 +50,7 @@ export default function CalendarPage() {
       {view === "week" && (
         <CalendarWeekView
           currentDate={currentDate}
-          sessions={sessions}
+          sessions={calendarSessions}
         />
       )}
     </div>
