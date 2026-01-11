@@ -4,12 +4,14 @@ import { pausedCancelledClasses } from "./mockData";
 
 export default function PausedCancelledClassesPage() {
   return (
-    <div className="p-6 space-y-6">
-      
+    <div className="p-6 bg-gray-50 min-h-screen space-y-6">
+
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold">Paused / Cancelled Classes</h1>
-        <p className="text-sm text-gray-500">
+      <div className="bg-white rounded-xl shadow-sm p-6">
+        <h1 className="text-2xl font-semibold text-gray-800">
+          Paused / Cancelled Classes
+        </h1>
+        <p className="text-sm text-gray-500 mt-1">
           Track paused batches, cancelled programs, refunds, make-ups & compliance
         </p>
       </div>
@@ -19,6 +21,7 @@ export default function PausedCancelledClassesPage() {
 
       {/* Table */}
       <ClassStatusTable data={pausedCancelledClasses} />
+
     </div>
   );
 }
