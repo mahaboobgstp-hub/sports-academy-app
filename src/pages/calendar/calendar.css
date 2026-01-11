@@ -11,8 +11,8 @@
 
 /* ---------- TIME COLUMN ---------- */
 .time-column {
-  background: #f8fafc;
-  border-right: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-rows: repeat(24, 80px);
 }
 
 .time-slot {
@@ -30,7 +30,9 @@
 /* ---------- DAY COLUMN ---------- */
 .day-column {
   position: relative;
-  border-right: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-rows: repeat(24, 80px);
+  border-left: 1px solid #e5e7eb;
 }
 
 .day-header {
@@ -83,4 +85,8 @@
   font-size: 11px;
   color: #64748b;
   margin-top: 4px;
+}
+.hour-cell {
+  border-top: 1px solid #f1f5f9;
+  height: 60px;
 }
