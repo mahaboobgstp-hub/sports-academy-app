@@ -53,3 +53,34 @@
     transparent 60px
   );
 }
+.calendar-event {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px;
+  font-size: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.event-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.event-sub {
+  font-size: 11px;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-time {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 4px;
+}
