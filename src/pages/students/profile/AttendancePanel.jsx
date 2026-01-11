@@ -63,3 +63,11 @@ export default function AttendancePanel({ isCoach }) {
     </div>
   );
 }
+
+function CoachAttendanceView() {
+  return <div>Coach Attendance View</div>;
+}
+
+function ParentAttendanceGrid() {
+  return <div>Parent Attendance Grid</div>;
+}
