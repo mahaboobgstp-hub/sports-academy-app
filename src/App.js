@@ -15,7 +15,7 @@ import CoachDrillUpdate from "./pages/coach/CoachDrillUpdate";
 import CoachQuestionReply from "./pages/coach/CoachQuestionReply";
 //import Sidebar from "./components/sidebar/Sidebar";
 import CalendarPage from "./pages/calendar/CalendarPage";
-
+import PausedCancelledClassesPage from "./pages/classes/paused-cancelled/PausedCancelledClassesPage";
 
 
 
@@ -94,6 +94,9 @@ export default function App() {
              {/* CALENDAR */}
           
           <Route path="/calendar" element={<CalendarPage />} />
+
+            {/* PUASED/CANCELLED CLASSES */}
+          <Route path="/classes/paused-cancelled" element={<PausedCancelledClassesPage />} />  
                         
        </Route>
 
