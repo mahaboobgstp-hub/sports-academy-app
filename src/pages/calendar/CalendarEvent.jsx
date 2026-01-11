@@ -5,11 +5,17 @@ const sportColors = {
 };
 
 export default function CalendarEvent({ session }) {
-  const startHour = parseInt(session.startTime.split(":")[0], 10);
-  const endHour = parseInt(session.endTime.split(":")[0], 10);
+  const toMinutes = (time) => {
+    const [h, m] = time.split(":").map(Number);
+    return h * 60 + m;
+  };
 
-  const top = (startHour - 6) * 60;
-  const height = (endHour - startHour) * 60;
+  const DAY_START = 6 * 60; // 06:00
+  const startMinutes = toMinutes(session.startTime) - DAY_START;
+  const endMinutes = toMinutes(session.endTime) - DAY_START;
+
+  const top = startMinutes;
+  const height = endMinutes - startMinutes;
 
   return (
     <div
@@ -17,14 +23,13 @@ export default function CalendarEvent({ session }) {
       style={{
         top,
         height,
-        background: sportColors[session.sport] || "#2563eb"
+        background: session.color
       }}
     >
-      <strong>{session.sport}</strong>
+      <strong>{session.program}</strong>
       <div>{session.batch}</div>
       <div>{session.coach}</div>
-      <div>{session.location}</div>
-      <div style={{ fontSize: "11px", opacity: 0.85 }}>
+      <div className="event-time">
         {session.startTime} – {session.endTime}
       </div>
     </div>
