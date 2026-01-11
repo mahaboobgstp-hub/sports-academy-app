@@ -12,13 +12,13 @@ export default function CalendarHeader({
 
   return (
     <div className="calendar-header">
-      <div>
+      <div className="button-group">
         <button onClick={() => changeWeek(-1)}>◀</button>
         <button onClick={() => setCurrentDate(new Date())}>Today</button>
         <button onClick={() => changeWeek(1)}>▶</button>
       </div>
 
-      <div className="view-switch">
+      <div className="button-group view-switch">
         <button
           className={view === "day" ? "active" : ""}
           onClick={() => setView("day")}
