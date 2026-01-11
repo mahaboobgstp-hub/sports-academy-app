@@ -55,14 +55,21 @@
 
 .time-header {
   height: 40px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.time-body {
+  height: calc((22 - 6) * 60px);
 }
 
 .time-slot {
   height: 60px;
   font-size: 11px;
   color: #475569;
+  text-align: right;
+  padding-right: 8px;
   padding-top: 4px;
-  text-align: center;
   border-bottom: 1px solid #e5e7eb;
 }
 
