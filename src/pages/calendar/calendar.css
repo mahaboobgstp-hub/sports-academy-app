@@ -148,13 +148,16 @@
   border: none;
   background: #f1f5f9;
   padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 .button-group button + button {
   border-left: 1px solid #cbd5e1;
 }
 
+
 .button-group button.active {
   background: #2563eb;
-  color: white;
+  color: #ffffff;
 }
