@@ -59,7 +59,7 @@ export default function CalendarWeekView({ currentDate, sessions }) {
         <div className="time-column">
           <div className="day-header time-header"></div>
           {hours.map((hour) => (
-            <div key={hour} className="time-slot">
+            <div className="time-slot">
               {String(hour).padStart(2, "0")}:00
             </div>
           ))}
