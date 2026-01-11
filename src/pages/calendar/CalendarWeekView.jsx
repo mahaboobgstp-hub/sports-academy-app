@@ -57,13 +57,19 @@ export default function CalendarWeekView({ currentDate, sessions }) {
       <div className="calendar-grid">
         {/* ===== TIME COLUMN ===== */}
         <div className="time-column">
-          <div className="day-header time-header"></div>
-          {hours.map((hour) => (
-            <div className="time-slot">
-              {String(hour).padStart(2, "0")}:00
-            </div>
-          ))}
-        </div>
+  {/* Header spacer – MUST match day-header */}
+  <div className="time-header"></div>
+
+  {/* Time body – MUST match day-body */}
+  <div className="time-body">
+    {hours.map((hour) => (
+      <div key={hour} className="time-slot">
+        {String(hour).padStart(2, "0")}:00
+      </div>
+    ))}
+  </div>
+</div>
+
 
         {/* ===== DAY COLUMNS ===== */}
         {days.map((day) => {
