@@ -21,36 +21,26 @@ export default function CalendarWeekView({ currentDate, sessions }) {
   return (
     
     
-    <div className="calendar-week">
-      <div className="time-column">
-        {hours.map((h) => (
-          <div key={h} className="time-slot">
-            {h}:00
-          </div>
-        ))}
-      </div>
-
-      {days.map((day) => {
-        const dayStr = day.toISOString().split("T")[0];
-        const daySessions = sessions.filter(
-          (s) => s.date === dayStr
-        );
-
-        return (
-          <div key={dayStr} className="day-column">
-            <div className="day-header">
-              {day.toDateString()}
-            </div>
-
-            <div className="day-body">
-              {daySessions.map((session) => (
-                <CalendarEvent key={session.id} session={session} />
-              ))}
-            </div>
-          </div>
-        );
-      })}
+   <div className="calendar-week">
+  <div className="calendar-grid">
+    <div className="time-column">
+      {hours.map(h => (
+        <div key={h} className="time-slot">
+          {String(h).padStart(2, "0")}:00
+        </div>
+      ))}
     </div>
-     
-  );
-}
+
+    {days.map(day => (
+      <div key={day} className="day-column">
+        <div className="day-header">{day}</div>
+        <div className="day-body">
+          {sessionsForDay.map(session => (
+            <CalendarEvent key={session.id} session={session} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
