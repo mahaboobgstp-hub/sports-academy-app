@@ -37,7 +37,7 @@
 ================================ */
 .calendar-week {
   height: calc(100vh - 140px);
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
