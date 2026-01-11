@@ -96,7 +96,7 @@ export default function App() {
           <Route path="/calendar" element={<CalendarPage />} />
 
             {/* PUASED/CANCELLED CLASSES */}
-          <Route path="/classes/paused-cancelled" element={<PausedCancelledClassesPage />} />  
+          <Route path="/paused" element={<PausedCancelledClassesPage />} />  
                         
        </Route>
 
