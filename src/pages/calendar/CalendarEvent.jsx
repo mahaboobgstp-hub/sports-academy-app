@@ -24,7 +24,7 @@ export default function CalendarEvent({ session }) {
       <div>{session.batch}</div>
       <div>{session.coach}</div>
       <div>{session.location}</div>
-      <div>
+      <div style={{ fontSize: "11px", opacity: 0.85 }}>
         {session.startTime} – {session.endTime}
       </div>
     </div>
