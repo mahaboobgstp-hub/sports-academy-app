@@ -5,7 +5,9 @@ import { pausedCancelledClasses } from "./mockData";
 export default function PausedCancelledClassesPage() {
   return (
     <div className="p-6 bg-gray-50 min-h-screen space-y-6">
-
+<div className="bg-green-500 text-white p-6">
+  Tailwind Active
+</div>
       {/* Header */}
       <div className="bg-white rounded-xl shadow-sm p-6">
         <h1 className="text-2xl font-semibold text-gray-800">
