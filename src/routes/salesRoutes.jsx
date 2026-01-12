@@ -6,7 +6,7 @@ import SalesLayout from "../layout/SalesLayout";
 /* Sales Pages */
 import Payments from "../pages/sales/Payments";
 import ProductSales from "../pages/sales/ProductSales";
-import Invoices from "../pages/sales/Invoices";
+//import Invoices from "../pages/sales/Invoices";
 import Invoices from "../modules/invoices/pages/CreateInvoice";
 
 export default function SalesRoutes() {
