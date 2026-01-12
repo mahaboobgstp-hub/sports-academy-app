@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router-dom";
+const navigate = useNavigate();
+
+
 export default function CoachDashboard() {
   return (
     <div style={{ padding: 20 }}>
@@ -47,9 +51,18 @@ export default function CoachDashboard() {
       <div>
         <h3>Quick Actions</h3>
         <div style={{ display: "flex", gap: 12 }}>
-          <button>Mark Attendance</button>
-          <button>View Students</button>
-          <button>Answer Questions</button>
+         <button onClick={() => navigate("/coach/attendance")}>
+  Mark Attendance
+</button>
+
+<button onClick={() => navigate("/coach/students")}>
+  View Students
+</button>
+
+<button onClick={() => navigate("/coach/students")}>
+  Answer Questions
+</button>
+
         </div>
       </div>
     </div>
