@@ -22,7 +22,7 @@ export default function SalesLayout() {
             Product Sales
           </NavLink>
 
-          <NavLink to="/sales/invoices" className={linkClass}>
+          <NavLink to="/pages/invoiceview" className={linkClass}>
             Invoices
           </NavLink>
         </nav>
