@@ -2,67 +2,283 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================================
+   DESIGN TOKENS (ERP STANDARD)
+========================================================= */
+:root {
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-muted: #f1f5f9;
 
-/* ===== GLOBAL ===== */
+  --border-light: #e2e8f0;
+  --border-muted: #cbd5e1;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --brand-primary: #2563eb;
+  --brand-primary-hover: #1d4ed8;
+
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
 * {
   box-sizing: border-box;
-  font-family: Inter, system-ui, Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  background: #f8fafc;
-  color: #0f172a;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-/* ===== LAYOUT ===== */
+/* =========================================================
+   APP LAYOUT
+========================================================= */
 .app-layout {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  background: var(--bg-app);
 }
 
-/* ===== CONTENT ===== */
+.sidebar {
+  width: 260px;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border-light);
+  padding: 16px;
+}
+
 .content {
   flex: 1;
   padding: 24px;
   overflow-y: auto;
-  background: #f8fafc;
+  background: var(--bg-app);
 }
 
-/* ===== HEADINGS ===== */
-h2 {
-  margin-top: 0;
-  font-size: 22px;
+/* =========================================================
+   PAGE HEADERS
+========================================================= */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-/* ===== PLACEHOLDER ===== */
-.placeholder {
+.page-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   CARDS / SECTIONS
+========================================================= */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   FORMS
+========================================================= */
+label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  display: block;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  font-size: 13px;
+  background: #fff;
+  color: var(--text-primary);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 1px var(--brand-primary);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+button {
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--brand-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--brand-primary-hover);
+}
+
+.btn-outline {
   background: white;
-  border: 1px dashed #cbd5e1;
-  padding: 40px;
-  border-radius: 8px;
-  text-align: center;
-  color: #64748b;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
 }
 
+.btn-outline:hover {
+  background: var(--bg-muted);
+}
 
+/* =========================================================
+   TABLES (ERP GRADE)
+========================================================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+thead {
+  background: var(--bg-muted);
+}
+
+th,
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 13px;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+.badge {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.badge-success {
+  background: #dcfce7;
+  color: var(--success);
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: var(--warning);
+}
+
+.badge-danger {
+  background: #fee2e2;
+  color: var(--danger);
+}
+
+/* =========================================================
+   PLACEHOLDER / EMPTY STATES
+========================================================= */
+.placeholder {
+  background: var(--bg-card);
+  border: 1px dashed var(--border-muted);
+  padding: 40px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* =========================================================
+   TIME GRID (SCHEDULING)
+========================================================= */
 .time-grid {
   display: grid;
-  grid-template-columns: repeat(18, 1fr); /* 5AM–11PM = 18 slots */
+  grid-template-columns: repeat(18, 1fr);
   gap: 2px;
 }
 
 .time-slot {
   height: 16px;
-  background: #eee;
-  border: 1px solid #ccc;
+  background: #e5e7eb;
+  border-radius: 2px;
   cursor: pointer;
 }
 
 .time-slot:hover {
-  background: #cce5ff;
+  background: #bfdbfe;
 }
 
 .time-slot.selected {
-  background: #28a745;
+  background: var(--success);
+}
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mt-16 {
+  margin-top: 16px;
 }
