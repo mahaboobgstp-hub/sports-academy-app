@@ -22,7 +22,7 @@ import AnalyticsRoutes from "./modules/analytics/AnalyticsRoutes";
 import SalesRoutes from "./routes/salesRoutes";
 // Administration
 import UsersRolesPage from "./modules/administration/pages/UsersRolesPage";
-import PricingRulesPage from "./modules/administration/pages/PricingRulesPage";
+import PricingRulesPage from "./pricing-rules/PricingRulesPage";
 import SettingsLayout from "./modules/settings/SettingsLayout";
 
 
@@ -115,9 +115,9 @@ export default function App() {
             {/* SALES */}
             <Route path="/*" element={<SalesRoutes />} />
 
-            <Route path="UsersRolesPage" element={<UsersRolesPage />} />src/
-            <Route path="pricingrulespage" element={<PricingRulesPage />} />
-            <Route path="settings" element={<SettingsLayout />} /> 
+            <Route path="/UsersRolesPage" element={<UsersRolesPage />} />src/
+            <Route path="/pricing-rules/pricingrulespage" element={<PricingRulesPage />} />
+            <Route path="/settings" element={<SettingsLayout />} /> 
                         
        </Route>
 
