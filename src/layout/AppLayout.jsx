@@ -8,7 +8,12 @@ export default function AppLayout() {
       <aside className="w-64 bg-slate-900 text-white shrink-0">
         Sports Academy ERP
       </aside>
-
+ <div className="app-shell">
+      <Sidebar />
+      <main className="main-content">
+        <Outlet />
+      </main>
+    </div>
       {/* MAIN CONTENT AREA */}
       <div className="flex-1 overflow-y-auto bg-gray-100 p-6">
         <Outlet />
