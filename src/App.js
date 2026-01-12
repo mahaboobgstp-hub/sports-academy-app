@@ -16,6 +16,7 @@ import CoachQuestionReply from "./pages/coach/CoachQuestionReply";
 //import Sidebar from "./components/sidebar/Sidebar";
 import CalendarPage from "./pages/calendar/CalendarPage";
 import PausedCancelledClassesPage from "./pages/classes/paused-cancelled/PausedCancelledClassesPage";
+import ManageBookings from "./pages/bookings/ManageBookings";
 
 
 
@@ -68,6 +69,7 @@ export default function App() {
           {/* BOOKINGS */}
           
          <Route path="/bookings" element={<BookingPage />} />
+         <Route path="/bookings/manage" element={<ManageBookings />} />
 
              {/* DASHBOARD */}
           <Route path="/dashboard" element={<Dashboard />} />
