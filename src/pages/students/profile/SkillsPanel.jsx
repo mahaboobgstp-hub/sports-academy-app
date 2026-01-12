@@ -31,15 +31,15 @@ export default function SkillsPanel() {
   );
 }*/
 
-const skills = [
+/*const skills = [
   { name: "Dribbling", level: 2 },
   { name: "Passing", level: 3 },
   { name: "Shooting", level: 2 },
   { name: "Defense", level: 1 },
   { name: "Game Awareness", level: 2 }
-];
+];*/
 
-export default function SkillsPanel({ isCoach }) {
+/*export default function SkillsPanel({ isCoach }) {
   return (
     <div className="card">
       <h3>Skill Progress</h3>
@@ -59,17 +59,17 @@ export default function SkillsPanel({ isCoach }) {
                 🏀
               </span>
             ))}
-          </div>
+          </div>*/
 
-          <span className="skill-label">
+        /*  <span className="skill-label">
             {skill.level === 1
               ? "Beginner"
               : skill.level === 2
               ? "Intermediate"
               : "Advanced"}
-          </span>
+          </span>*/
            {/* 👇 HELPER TEXT — PUT IT HERE */}
-          {isCoach && (
+         /* {isCoach && (
             <small style={{ color: "#888", marginLeft: 8 }}>
               Click to update
             </small>
@@ -78,5 +78,53 @@ export default function SkillsPanel({ isCoach }) {
       ))}
     </div>
   );
-}
+}*/
 
+import { useState } from "react";
+
+const LEVELS = ["Beginner", "Intermediate", "Advanced"];
+
+export default function SkillsPanel({ isCoach }) {
+  const [skills, setSkills] = useState({
+    Dribbling: "Intermediate",
+    Passing: "Advanced",
+    Shooting: "Intermediate",
+    Defense: "Beginner",
+    "Game Awareness": "Intermediate"
+  });
+
+  function updateSkill(skill) {
+    if (!isCoach) return;
+
+    const next =
+      (LEVELS.indexOf(skills[skill]) + 1) % LEVELS.length;
+
+    setSkills({
+      ...skills,
+      [skill]: LEVELS[next]
+    });
+  }
+
+  return (
+    <div className="card">
+      <h3>Skill Progress</h3>
+
+      {Object.entries(skills).map(([skill, level]) => (
+        <div
+          key={skill}
+          style={{ display: "flex", alignItems: "center", gap: 12 }}
+        >
+          <strong style={{ width: 140 }}>{skill}</strong>
+
+          <span>{level}</span>
+
+          {isCoach && (
+            <button onClick={() => updateSkill(skill)}>
+              Update
+            </button>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
