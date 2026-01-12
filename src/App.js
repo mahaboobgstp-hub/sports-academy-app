@@ -19,7 +19,7 @@ import PausedCancelledClassesPage from "./pages/classes/paused-cancelled/PausedC
 import ManageBookings from "./pages/bookings/ManageBookings";
 import AnalyticsRoutes from "./modules/analytics/AnalyticsRoutes";
 //import DashboardLayout from "./layouts/DashboardLayout";
-
+import SalesRoutes from "./routes/salesRoutes";
 
 
 
@@ -104,6 +104,9 @@ export default function App() {
 
              {/* ANALYTICS */}
           <Route path="/analytics/*" element={<AnalyticsRoutes />} />
+
+            {/* SALES */}
+            <Route path="/*" element={<SalesRoutes />} />
                         
        </Route>
 
