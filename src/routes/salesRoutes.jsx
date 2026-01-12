@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import SalesLayout from "../layouts/SalesLayout";
+import SalesLayout from "../layout/SalesLayout";
 import Payments from "../pages/sales/Payments";
 import ProductSales from "../pages/sales/ProductSales";
 import Invoices from "../pages/sales/Invoices";
