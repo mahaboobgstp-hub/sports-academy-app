@@ -69,7 +69,7 @@ export default function App() {
           {/* BOOKINGS */}
           
          <Route path="/bookings" element={<BookingPage />} />
-         <Route path="/bookings/manage" element={<ManageBookings />} />
+         <Route path="/managebookings" element={<ManageBookings />} />
 
              {/* DASHBOARD */}
           <Route path="/dashboard" element={<Dashboard />} />
