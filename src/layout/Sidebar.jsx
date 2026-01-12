@@ -31,7 +31,7 @@ export default function Sidebar() {
       <div className="section">
         <div className="section-title">Bookings</div>
         <Link to="/bookings">New Booking</Link>
-        <Link to="/manage-bookings">Manage Bookings</Link>
+        <Link to="/managebookings">Manage Bookings</Link>
       </div>
 
     <div className="section">
