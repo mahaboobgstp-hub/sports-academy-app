@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const attendanceData = [
   { day: "01", status: "P" },
   { day: "02", status: "P" },
