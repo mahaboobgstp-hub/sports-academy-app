@@ -74,6 +74,7 @@ export default function App() {
          <Route path="/managebookings" element={<ManageBookings />} />
 
              {/* DASHBOARD */}
+           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
 
           {/* FUTURE ERP SCREENS */}
