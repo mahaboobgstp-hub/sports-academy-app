@@ -55,7 +55,7 @@ export default function Sidebar() {
         <div className="section-title">Sales</div>
         <Link to="/sales/payments">Payments</Link>
         <Link to="/sales/product-sales">Product Sales</Link>
-        <Link to="/pages/invoiceview">Invoice View</Link>
+        
       </div>
 
       <div className="section">
