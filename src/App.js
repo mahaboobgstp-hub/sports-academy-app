@@ -17,6 +17,8 @@ import CoachQuestionReply from "./pages/coach/CoachQuestionReply";
 import CalendarPage from "./pages/calendar/CalendarPage";
 import PausedCancelledClassesPage from "./pages/classes/paused-cancelled/PausedCancelledClassesPage";
 import ManageBookings from "./pages/bookings/ManageBookings";
+import AnalyticsRoutes from "./modules/analytics/AnalyticsRoutes";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 
 
@@ -98,6 +100,9 @@ export default function App() {
 
             {/* PUASED/CANCELLED CLASSES */}
           <Route path="/paused" element={<PausedCancelledClassesPage />} />  
+
+             {/* ANALYTICS */}
+          <Route path="/analytics/*" element={<AnalyticsRoutes />} />
                         
        </Route>
 
