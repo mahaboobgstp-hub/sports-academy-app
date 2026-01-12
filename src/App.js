@@ -116,7 +116,7 @@ export default function App() {
             <Route path="/*" element={<SalesRoutes />} />
 
             <Route path="UsersRolesPage" element={<UsersRolesPage />} />src/
-            <Route path="pricing-rules" element={<PricingRules />} />
+            <Route path="pricingrules" element={<PricingRules />} />
             <Route path="settings" element={<SettingsLayout />} /> 
                         
        </Route>
