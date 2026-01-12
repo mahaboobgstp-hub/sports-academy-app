@@ -18,7 +18,7 @@ import CalendarPage from "./pages/calendar/CalendarPage";
 import PausedCancelledClassesPage from "./pages/classes/paused-cancelled/PausedCancelledClassesPage";
 import ManageBookings from "./pages/bookings/ManageBookings";
 import AnalyticsRoutes from "./modules/analytics/AnalyticsRoutes";
-import DashboardLayout from "./layouts/DashboardLayout";
+//import DashboardLayout from "./layouts/DashboardLayout";
 
 
 
