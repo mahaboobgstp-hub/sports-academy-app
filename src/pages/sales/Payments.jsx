@@ -1,6 +1,7 @@
-import PaymentSummaryCards from "../../components/sales/PaymentSummaryCards";
-import PaymentFilters from "../../components/sales/PaymentFilters";
-import PaymentsTable from "../../components/sales/PaymentsTable";
+import PaymentSummaryCards from "./components/PaymentSummaryCards";
+import PaymentFilters from "./components/PaymentFilters";
+import PaymentsTable from "./components/PaymentsTable";
+
 
 export default function Payments() {
   return (
