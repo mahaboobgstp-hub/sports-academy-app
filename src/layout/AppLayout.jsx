@@ -5,9 +5,7 @@ export default function AppLayout() {
   return (
     <div className="flex h-screen w-screen overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white shrink-0">
-        Sports Academy ERP
-      </aside>
+     
  <div className="app-shell">
       <Sidebar />
       <main className="main-content">
