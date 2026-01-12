@@ -21,7 +21,7 @@
 
       <div className="drills-row">*/
 
-        {/* COMPLETED */}
+      /* COMPLETED */
      /*   <div className="drill-column completed">
           <strong>Completed</strong>
           <ul>
@@ -31,7 +31,7 @@
           </ul>
         </div>
 
-      {/* IN PROGRESS */}
+      /* IN PROGRESS */
         /*<div className="drill-column progress">
           <strong>In Progress</strong>
           <ul>
@@ -41,7 +41,7 @@
           </ul>
         </div>*/
 
-        {/* UPCOMING */}
+        /* UPCOMING */
       /*  <div className="drill-column upcoming">
           <strong>Upcoming</strong>
           <ul>
