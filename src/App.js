@@ -81,7 +81,7 @@ export default function App() {
           <Route path="/programs" element={<Placeholder title="Programs" />} />
           <Route path="/locations" element={<Placeholder title="Locations" />} />
           <Route path="/products" element={<Placeholder title="Products" />} />
-          <Route path="/analytics" element={<Placeholder title="Analytics" />} />
+          
       
           {/* STUDENT DETAILS */}
 
