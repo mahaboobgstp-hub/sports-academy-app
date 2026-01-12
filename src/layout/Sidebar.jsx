@@ -69,9 +69,9 @@ export default function Sidebar() {
 
       <div className="section">
         <div className="section-title">Administration</div>
-        <Link to="/users">Users & Roles</Link>
-        <Link to="/pricing">Pricing Rules</Link>
-        <Link to="/settings">Settings</Link>
+        <Link to="/administration/user-roles">Users & Roles</Link>
+        <Link to="/administration/pricing-roles">Pricing Rules</Link>
+        <Link to="/administration/settings">Settings</Link>
       </div>
     </div>
   );
