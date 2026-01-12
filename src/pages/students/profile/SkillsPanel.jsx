@@ -82,46 +82,76 @@ export default function SkillsPanel() {
 
 import { useState } from "react";
 
-const LEVELS = ["Beginner", "Intermediate", "Advanced"];
+const LEVEL_LABEL = {
+  1: "Beginner",
+  2: "Intermediate",
+  3: "Advanced"
+};
 
 export default function SkillsPanel({ isCoach }) {
-  const [skills, setSkills] = useState({
-    Dribbling: "Intermediate",
-    Passing: "Advanced",
-    Shooting: "Intermediate",
-    Defense: "Beginner",
-    "Game Awareness": "Intermediate"
-  });
+  const [skills, setSkills] = useState([
+    { name: "Dribbling", level: 2 },
+    { name: "Passing", level: 2 },
+    { name: "Shooting", level: 3 },
+    { name: "Defense", level: 1 },
+    { name: "Game Awareness", level: 2 }
+  ]);
 
-  function updateSkill(skill) {
+  function updateLevel(skillName, newLevel) {
     if (!isCoach) return;
 
-    const next =
-      (LEVELS.indexOf(skills[skill]) + 1) % LEVELS.length;
-
-    setSkills({
-      ...skills,
-      [skill]: LEVELS[next]
-    });
+    setSkills(
+      skills.map((s) =>
+        s.name === skillName ? { ...s, level: newLevel } : s
+      )
+    );
   }
 
   return (
     <div className="card">
       <h3>Skill Progress</h3>
 
-      {Object.entries(skills).map(([skill, level]) => (
+      {skills.map((skill) => (
         <div
-          key={skill}
-          style={{ display: "flex", alignItems: "center", gap: 12 }}
+          key={skill.name}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            marginBottom: 10
+          }}
         >
-          <strong style={{ width: 140 }}>{skill}</strong>
+          <strong style={{ width: 150 }}>
+            {skill.name}
+          </strong>
 
-          <span>{level}</span>
+          {/* BASKETBALL ICONS */}
+          <div style={{ display: "flex", gap: 6 }}>
+            {[1, 2, 3].map((i) => (
+              <span
+                key={i}
+                onClick={() => updateLevel(skill.name, i)}
+                style={{
+                  fontSize: 20,
+                  cursor: isCoach ? "pointer" : "default",
+                  opacity: i <= skill.level ? 1 : 0.3
+                }}
+              >
+                🏀
+              </span>
+            ))}
+          </div>
 
+          {/* LEVEL TEXT */}
+          <span style={{ color: "#555", width: 110 }}>
+            {LEVEL_LABEL[skill.level]}
+          </span>
+
+          {/* HELPER TEXT */}
           {isCoach && (
-            <button onClick={() => updateSkill(skill)}>
-              Update
-            </button>
+            <small style={{ color: "#888" }}>
+              Click to update
+            </small>
           )}
         </div>
       ))}
