@@ -60,11 +60,11 @@ export default function Sidebar() {
 
       <div className="section">
         <div className="section-title">Analytics</div>
-        <Link to="/analytics">Overview</Link>
+        <Link to="/overview">Overview</Link>
         <Link to="/utilization">Utilization</Link>
-        <Link to="/program-performance">Program Performance</Link>
-        <Link to="/location-performance">Location Performance</Link>
-        <Link to="/sales-executive">Sales Executive</Link>
+        <Link to="/programperformance">Program Performance</Link>
+        <Link to="/locationperformance">Location Performance</Link>
+        <Link to="/salesexecutive">Sales Executive</Link>
       </div>
 
       <div className="section">
