@@ -86,12 +86,11 @@ export default function App() {
           <Route path="/students/:studentId" element={<StudentProfile />} /> 
 
             {/* COACH */}
+          
           <Route path="/coach" element={<CoachDashboard />} />
           <Route path="/coach/students" element={<CoachStudentList />} />
           <Route path="/coach/attendance" element={<CoachAttendance />} />
-          <Route path="/coach/skills" element={<CoachSkillEdit />} />
-          <Route path="/coach/drills" element={<CoachDrillUpdate />} />
-          <Route path="/coach/questions" element={<CoachQuestionReply />} />
+
 
              {/* CALENDAR */}
           
