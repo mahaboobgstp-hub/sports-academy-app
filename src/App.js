@@ -20,6 +20,11 @@ import ManageBookings from "./pages/bookings/ManageBookings";
 import AnalyticsRoutes from "./modules/analytics/AnalyticsRoutes";
 //import DashboardLayout from "./layouts/DashboardLayout";
 import SalesRoutes from "./routes/salesRoutes";
+// Administration
+import UsersRoles from "./modules/administration/pages/UsersRoles";
+import PricingRules from "./modules/administration/pages/PricingRules";
+import SettingsLayout from "./modules/settings/SettingsLayout";
+
 
 
 
@@ -109,6 +114,10 @@ export default function App() {
 
             {/* SALES */}
             <Route path="/*" element={<SalesRoutes />} />
+
+            <Route path="users-roles" element={<UsersRoles />} />
+            <Route path="pricing-rules" element={<PricingRules />} />
+            <Route path="settings" element={<SettingsLayout />} /> 
                         
        </Route>
 
