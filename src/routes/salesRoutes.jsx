@@ -7,7 +7,7 @@ import SalesLayout from "../layout/SalesLayout";
 import Payments from "../pages/sales/Payments";
 import ProductSales from "../pages/sales/ProductSales";
 //import Invoices from "../pages/sales/Invoices";
-import Invoices from "../modules/invoices/pages/CreateInvoice";
+import Invoices from "../modules/invoices/pages/InvoiceView";
 
 export default function SalesRoutes() {
   return (
@@ -19,7 +19,7 @@ export default function SalesRoutes() {
         {/* Sales sub-modules */}
         <Route path="payments" element={<Payments />} />
         <Route path="product-sales" element={<ProductSales />} />
-        <Route path="CreateInvoice" element={<Invoices />} />
+        <Route path="invoiceview" element={<InvoiceView />} />
       </Route>
     </Routes>
   );
