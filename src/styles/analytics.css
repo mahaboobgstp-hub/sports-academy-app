@@ -357,3 +357,191 @@
     grid-template-columns: 1fr;
   }
 }
+/* ================================
+   PROGRAM PERFORMANCE
+================================ */
+
+.program-page {
+  padding: 20px;
+}
+
+.program-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.program-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.program-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.program-card-label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.program-card-value {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.program-section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.program-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.program-table th {
+  background-color: #f1f5f9;
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.program-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* ================================
+   LOCATION PERFORMANCE
+================================ */
+
+.location-page {
+  padding: 20px;
+}
+
+.location-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.location-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.location-table th {
+  background-color: #f1f5f9;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.location-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.location-profit {
+  color: #166534;
+  font-weight: 600;
+}
+
+.location-loss {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+/* ================================
+   SALES EXECUTIVE
+================================ */
+
+.sales-page {
+  padding: 20px;
+}
+
+.sales-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.sales-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.sales-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.sales-card-label {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.sales-card-value {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.sales-table th {
+  background-color: #f1f5f9;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sales-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sales-good {
+  color: #166534;
+  font-weight: 600;
+}
+
+.sales-average {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.sales-poor {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+/* ================================
+   COMMON
+================================ */
+
+.table-hover tr:hover {
+  background-color: #f9fafb;
+}
