@@ -78,16 +78,7 @@ button {
   border-radius: 4px;
 }
 
-.time-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #e5f0ff;
-  padding: 4px 6px;
-  border-radius: 12px;
-  font-size: 12px;
-  white-space: nowrap;
-}
+
 
 .time-pill button {
   background: none;
@@ -120,16 +111,7 @@ button {
   white-space: nowrap;
 }
 
-.time-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
-  border-radius: 14px;
-  background: #e8f2ff;
-  margin-right: 6px;
-  font-size: 13px;
-}
+
 
 .week-date-list {
   display: flex;
@@ -264,20 +246,42 @@ button {
 }
 
 .day-row.day-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns:
+    220px   /* 1. Date + Day */
+    130px   /* 2. Time */
+    80px    /* 3. Seats */
+    70px    /* 4. Add */
+    repeat(6, 1fr)  /* 5–10. Class slots (6 fixed slots) */
+    100px   /* 11. Total */
+    110px;  /* 12. Edit Weeks */
+
+  column-gap: 8px;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
 }
+
 .day-row.day-grid .time-pill {
   flex: 0 0 auto;
 }
-.day-row.day-grid {
-  display: grid;
-  grid-template-columns:
-    220px 130px 80px 70px 1fr 120px 100px;
-}
+
 
 .time-pill {
-  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 4px 6px;
+  font-size: 12px;
+  border-radius: 6px;
+
+  background: #e8f2ff;
 }
+/* Any slot that has multiple pills */
+.day-row.day-grid > .time-pill {
+  max-height: 48px;          /* prevents row expansion */
+  overflow-y: auto;
+}
+
