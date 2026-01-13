@@ -79,24 +79,14 @@ button {
 }
 
 .time-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  
-  width: 100%;
-  box-sizing: border-box;
-  
-  padding: 4px 6px;
-  font-size: 12px;
-  line-height: 1;
-
-  background: #e8f2ff;
-  border-radius: 6px;
-
   gap: 6px;
-  white-space: nowrap;
+  background: #e5f0ff;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 12px;
 }
-
 
 .time-pill button {
   background: none;
@@ -129,7 +119,16 @@ button {
   white-space: nowrap;
 }
 
-
+.time-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 14px;
+  background: #e8f2ff;
+  margin-right: 6px;
+  font-size: 13px;
+}
 
 .week-date-list {
   display: flex;
@@ -266,9 +265,7 @@ button {
 /* Container holding all time-pill entries for a day */
 .day-row.day-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 3 per row */
-  column-gap: 6px;
-  row-gap: 4px;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 per row */
+  gap: 6px;
   align-items: start;
 }
-
