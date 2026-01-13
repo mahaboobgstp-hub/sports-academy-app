@@ -61,3 +61,131 @@ h2 {
 .time-slot.selected {
   background: #28a745;
 }
+/* ===============================
+   Paused / Cancelled Classes Page
+   =============================== */
+
+.paused-page {
+  padding: 24px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Header */
+.paused-header {
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.paused-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #111827;
+}
+
+.paused-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Filters */
+.paused-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.paused-filters select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  background-color: #ffffff;
+}
+
+/* Table Wrapper */
+.paused-table-wrapper {
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+/* Table */
+.paused-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.paused-table thead {
+  background-color: #f3f4f6;
+}
+
+.paused-table th {
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.paused-table td {
+  padding: 12px 14px;
+  border-top: 1px solid #e5e7eb;
+  color: #111827;
+  vertical-align: middle;
+}
+
+/* Zebra rows */
+.paused-table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Hover */
+.paused-table tbody tr:hover {
+  background-color: #eef2ff;
+}
+
+/* Status badges */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-paused {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-cancelled {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* Compliance */
+.compliance-warning {
+  color: #b91c1c;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Utility */
+.text-muted {
+  color: #6b7280;
+}
