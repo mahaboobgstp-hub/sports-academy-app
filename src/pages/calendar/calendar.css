@@ -132,7 +132,7 @@
   padding: 6px 8px;
   font-size: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   flex-direction: column;
 }
@@ -145,14 +145,14 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .event-sub {
   font-size: 11px;
   color: #475569;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: auto;
   text-overflow: ellipsis;
 }
 .event-time {
