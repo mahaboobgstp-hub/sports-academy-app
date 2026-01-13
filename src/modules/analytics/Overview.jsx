@@ -1,7 +1,7 @@
 import KPICard from "./components/KPICard";
 import SectionCard from "./components/SectionCard";
 import PlaceholderChart from "./components/PlaceholderChart";
-import "./styles/analytics.css";
+
 
 export default function Overview() {
   return (
