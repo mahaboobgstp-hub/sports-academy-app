@@ -649,7 +649,7 @@ const formatDateWithDay = (dateInput) => {
 }}
                           
                         >
-                          Edit Weeks
+                          Edit Days
                         </button>
 
                       </div>
