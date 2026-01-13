@@ -90,6 +90,11 @@ button {
 .day-total {
   font-weight: 600;
   margin-left: auto;
+   position: sticky;
+  right: 120px;        /* width of Edit Weeks column */
+  background: #fff;
+  z-index: 2;
+  text-align: right;
 }
 .day-grid {
   display: grid;
@@ -254,10 +259,11 @@ button {
     70px    /* 4. Add */
     repeat(6, 1fr)  /* 5–10. Class slots (6 fixed slots) */
     100px   /* 11. Total */
-    110px;  /* 12. Edit Weeks */
+    90px;  /* 12. Edit Weeks */
 
   column-gap: 8px;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .day-row.day-grid .time-pill {
@@ -285,3 +291,9 @@ button {
   overflow-y: auto;
 }
 
+.day-edit {
+  position: sticky;
+  right: 0;
+  background: #fff;
+  z-index: 3;
+}
