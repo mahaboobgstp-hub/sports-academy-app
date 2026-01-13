@@ -102,7 +102,7 @@ export default function Dashboard() {
           />
         </div>
 
-      </div>
+      
 
       {/* ===== KPI GRID (12 METRICS) ===== */}
       <div className="ceo-metrics-grid">
