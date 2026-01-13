@@ -66,7 +66,7 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/master/sports" element={<Sports />} />
           <Route path="/planner" element={<ProgramPlanner />} />
-          <Route path="scheduling/coach-assignment" element={<CoachAssignment />} />
+          <Route path="coach/coach-assignment" element={<CoachAssignment />} />
           <Route path="/master/seasons" element={<Seasons />} />
           <Route path="/master/programs" element={<Programs />} />
           <Route path="/master/locations" element={<Locations />} /> 
