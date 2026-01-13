@@ -55,7 +55,7 @@ export default function Dashboard() {
   const [toDate, setToDate] = useState("");
   return (
     <div className="ceo-dashboard">
-
+ <div className="ceo-title">CEO Overview</div>
   {/* FILTER BAR */}
   <div className="dashboard-filter-row">
 
