@@ -119,35 +119,37 @@
 }
 
 .drawer-actions button {
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid #e0e4eb;
-  background: #ffffff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #ffffff;   /* visible background */
+  color: #111827;              /* 🔥 TEXT ALWAYS VISIBLE */
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: center;
+  white-space: nowrap;         /* keep text on one line */
+  transition: background 0.2s ease, border 0.2s ease;
 }
 
 .drawer-actions button:hover {
-  background: #f4f6ff;
+  background-color: #eef2ff;
   border-color: #4f46e5;
   color: #4f46e5;
-  transform: translateY(-1px);
 }
 
+
 .drawer-actions .danger {
-  background: #fff5f5;
-  border-color: #fecaca;
+  background-color: #fff5f5;
+  border-color: #fca5a5;
   color: #b91c1c;
 }
 
 .drawer-actions .danger:hover {
-  background: #fee2e2;
+  background-color: #fee2e2;
   border-color: #ef4444;
   color: #991b1b;
 }
+
 
 .drawer-danger {
   color: #b42318;
@@ -235,6 +237,7 @@
 }
 @media (max-width: 600px) {
   .drawer-actions {
+    overflow-x: auto;
     grid-template-columns: 1fr;
   }
 }
