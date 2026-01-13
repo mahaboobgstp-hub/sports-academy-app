@@ -16,8 +16,21 @@ export default function ManageBookings() {
   <div className="booking-table-wrapper">
     <table className="booking-table">...</table>
   </div>
-</div>
 
-    
+<div className="p-6 space-y-4">
+      <h1 className="text-2xl font-semibold">Manage Bookings</h1>
+
+      <BookingFilters />
+
+      <BookingTable onManage={setSelectedBooking} />
+
+      {selectedBooking && (
+        <BookingActionsDrawer
+          booking={selectedBooking}
+          onClose={() => setSelectedBooking(null)}
+        />
+      )}
+    </div>
+   </div> 
   );
 }
