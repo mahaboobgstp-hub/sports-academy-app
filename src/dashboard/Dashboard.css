@@ -152,9 +152,10 @@
 ================================ */
 
 .dashboard-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 180px 140px 200px 200px;
+  gap: 16px;
+  align-items: end;
   margin-bottom: 18px;
 }
 
@@ -174,8 +175,9 @@
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 14px;
-  min-width: 160px;
-  background: #fff;
+  height: 36px;
+  width: 100%;
+  background: #ffffff;
 }
 
 /* ================================
@@ -232,5 +234,16 @@
 @media (max-width: 1200px) {
   .comparison-row {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 1024px) {
+  .dashboard-filters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-filters {
+    grid-template-columns: 1fr;
   }
 }
