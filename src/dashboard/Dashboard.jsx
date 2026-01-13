@@ -49,103 +49,95 @@ const PIE_COLORS = ["#2563eb", "#e5e7eb"];
 
 export default function Dashboard() {
   return (
-    <div className="dashboard-page">
+    <div className="ceo-dashboard">
 
-      {/* CEO OVERVIEW */}
-      <section className="dashboard-section">
-        <h2>CEO Overview</h2>
+      <div className="ceo-title">CEO Overview</div>
 
-        <div className="kpi-grid">
-          <div className="kpi-card">Revenue MTD<br /><strong>₹ 8.1L</strong></div>
-          <div className="kpi-card">Active Students<br /><strong>680</strong></div>
-          <div className="kpi-card">Occupancy<br /><strong>72%</strong></div>
-          <div className="kpi-card">New Enrollments<br /><strong>94</strong></div>
+      {/* ===== KPI GRID (12 METRICS) ===== */}
+      <div className="ceo-metrics-grid">
+
+        {/* ROW 1 */}
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Revenue MTD</div>
+          <div className="ceo-metric-value">₹8.1L</div>
+          <div className="ceo-metric-sub metric-positive">▲ 9%</div>
         </div>
 
-        <div className="chart-card">
-          <h3>Revenue Trend</h3>
-          <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={revenueData}>
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="revenue" stroke="#2563eb" strokeWidth={3} />
-            </LineChart>
-          </ResponsiveContainer>
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Revenue YTD</div>
+          <div className="ceo-metric-value">₹62.4L</div>
         </div>
-      </section>
 
-      {/* PROGRAM PERFORMANCE */}
-      <section className="dashboard-section">
-        <h2>Program Performance</h2>
-
-        <div className="chart-card">
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={programPerformance}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="revenue" fill="#2563eb" />
-            </BarChart>
-          </ResponsiveContainer>
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Active Students</div>
+          <div className="ceo-metric-value">680</div>
         </div>
-      </section>
 
-      {/* LOCATION PERFORMANCE */}
-      <section className="dashboard-section">
-        <h2>Location Performance</h2>
-
-        <div className="chart-card">
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={locationPerformance}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="students" fill="#16a34a" />
-            </BarChart>
-          </ResponsiveContainer>
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">New Enrollments</div>
+          <div className="ceo-metric-value">94</div>
         </div>
-      </section>
 
-      {/* SALES EXECUTIVES */}
-      <section className="dashboard-section">
-        <h2>Sales Executives Performance</h2>
-
-        <div className="chart-card">
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={salesPerformance}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="bookings" fill="#9333ea" />
-            </BarChart>
-          </ResponsiveContainer>
+        {/* ROW 2 */}
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Occupancy</div>
+          <div className="ceo-metric-value">72%</div>
         </div>
-      </section>
 
-      {/* ACADEMY PERFORMANCE */}
-      <section className="dashboard-section">
-        <h2>Academy Performance</h2>
-
-        <div className="chart-card">
-          <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
-              <Pie
-                data={academyOccupancy}
-                dataKey="value"
-                nameKey="name"
-                innerRadius={60}
-                outerRadius={90}
-              >
-                {academyOccupancy.map((entry, index) => (
-                  <Cell key={index} fill={PIE_COLORS[index]} />
-                ))}
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Idle Capacity</div>
+          <div className="ceo-metric-value">28%</div>
+          <div className="ceo-metric-sub metric-negative">Needs action</div>
         </div>
-      </section>
+
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Avg Revenue / Student</div>
+          <div className="ceo-metric-value">₹9,180</div>
+        </div>
+
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Churn Rate</div>
+          <div className="ceo-metric-value">4.2%</div>
+        </div>
+
+        {/* ROW 3 */}
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Top Program Margin</div>
+          <div className="ceo-metric-value">38%</div>
+        </div>
+
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Lowest Program Margin</div>
+          <div className="ceo-metric-value">6%</div>
+          <div className="ceo-metric-sub metric-negative">Review</div>
+        </div>
+
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Coach Cost %</div>
+          <div className="ceo-metric-value">41%</div>
+        </div>
+
+        <div className="ceo-metric-card">
+          <div className="ceo-metric-label">Outstanding Dues</div>
+          <div className="ceo-metric-value">₹1.2L</div>
+        </div>
+
+      </div>
+
+      {/* ===== COMPACT CHARTS ===== */}
+      <div className="ceo-charts">
+
+        <div className="ceo-chart-card">
+          <div className="ceo-chart-title">Revenue Trend</div>
+          {/* existing chart component */}
+        </div>
+
+        <div className="ceo-chart-card">
+          <div className="ceo-chart-title">Program Performance</div>
+          {/* existing chart component */}
+        </div>
+
+      </div>
 
     </div>
   );
