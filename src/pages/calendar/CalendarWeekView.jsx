@@ -53,49 +53,50 @@ export default function CalendarWeekView({ currentDate, sessions }) {
   const toISODate = (date) => date.toISOString().split("T")[0];
 
   return (
-    <div className="calendar-week">
-      <div className="calendar-grid">
-        {/* ===== TIME COLUMN ===== */}
-        <div className="time-column">
-  {/* Header spacer – MUST match day-header */}
-  <div className="time-header"></div>
+   <div className="calendar-week">
+  <div className="calendar-grid">
 
-  {/* Time body – MUST match day-body */}
-  <div className="time-body">
-    {hours.map((hour) => (
-      <div key={hour} className="time-slot">
-        {String(hour).padStart(2, "0")}:00
+    {/* Top-left empty cell */}
+    <div></div>
+
+    {/* Day headers */}
+    {days.map((day) => (
+      <div key={day.toISOString()} className="day-header">
+        {formatDayHeader(day)}
       </div>
     ))}
-  </div>
-</div>
 
+    {/* Time rows + day cells */}
+    {hours.map((hour) => (
+      <React.Fragment key={hour}>
+        {/* Time column */}
+        <div className="time-slot">
+          {String(hour).padStart(2, "0")}:00
+        </div>
 
-        {/* ===== DAY COLUMNS ===== */}
+        {/* Day cells */}
         {days.map((day) => {
           const dayISO = toISODate(day);
           const daySessions = sessions.filter(
-            (s) => s.date === dayISO
+            (s) => s.date === dayISO && s.startHour === hour
           );
 
           return (
-            <div key={dayISO} className="day-column">
-              <div className="day-header">
-                {formatDayHeader(day)}
-              </div>
-
-              <div className="day-body">
-                {daySessions.map((session) => (
-                  <CalendarEvent
-                    key={session.id}
-                    session={session}
-                  />
-                ))}
-              </div>
+            <div key={`${dayISO}-${hour}`} className="day-cell">
+              {daySessions.map((session) => (
+                <CalendarEvent
+                  key={session.id}
+                  session={session}
+                />
+              ))}
             </div>
           );
         })}
-      </div>
-    </div>
+      </React.Fragment>
+    ))}
+
+  </div>
+</div>
+
   );
 }
