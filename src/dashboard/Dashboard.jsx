@@ -56,53 +56,37 @@ export default function Dashboard() {
   return (
     <div className="ceo-dashboard">
 
-      <div className="ceo-title">CEO Overview</div>
- <div className="filter-group">
-          <div className="filter-label">Season</div>
-          <select
-            className="filter-input"
-            value={season}
-            onChange={(e) => setSeason(e.target.value)}
-          >
-            <option>2025-26</option>
-            <option>2024-25</option>
-          </select>
-        </div>
+  {/* FILTER BAR */}
+  <div className="dashboard-filter-row">
 
-        <div className="filter-group">
-          <div className="filter-label">Month</div>
-          <select
-            className="filter-input"
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-          >
-            <option>May</option>
-            <option>April</option>
-            <option>March</option>
-          </select>
-        </div>
+    <div className="dashboard-filter-item">
+      <label className="filter-label">Season</label>
+      <select className="filter-input">
+        <option>2025-26</option>
+        <option>2024-25</option>
+      </select>
+    </div>
 
-        <div className="filter-group">
-          <div className="filter-label">From Date</div>
-          <input
-            type="date"
-            className="filter-input"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-          />
-        </div>
+    <div className="dashboard-filter-item">
+      <label className="filter-label">Month</label>
+      <select className="filter-input">
+        <option>May</option>
+        <option>April</option>
+      </select>
+    </div>
 
-        <div className="filter-group">
-          <div className="filter-label">To Date</div>
-          <input
-            type="date"
-            className="filter-input"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-          />
-        </div>
+    <div className="dashboard-filter-item">
+      <label className="filter-label">From Date</label>
+      <input type="date" className="filter-input" />
+    </div>
 
-      
+    <div className="dashboard-filter-item">
+      <label className="filter-label">To Date</label>
+      <input type="date" className="filter-input" />
+    </div>
+
+  </div>
+   
 
       {/* ===== KPI GRID (12 METRICS) ===== */}
       <div className="ceo-metrics-grid">
