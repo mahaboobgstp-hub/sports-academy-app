@@ -2,7 +2,7 @@ import { useState } from "react";
 import BookingFilters from "./components/BookingFilters";
 import BookingTable from "./components/BookingTable";
 import BookingActionsDrawer from "./components/BookingActionsDrawer";
-import "/ManageBookings.css";
+import "./ManageBookings.css";
 
 export default function ManageBookings() {
   const [selectedBooking, setSelectedBooking] = useState(null);
