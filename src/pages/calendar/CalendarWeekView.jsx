@@ -87,7 +87,7 @@ export default function CalendarWeekView({ currentDate, sessions }) {
               {daySessions.map((session) => (
                 <CalendarEvent
                   key={session.id}
-                  session={session}
+                  sessions={sessions}
                 />
               ))}
             </div>
