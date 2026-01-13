@@ -106,7 +106,7 @@ button {
     130px   /* Time dropdown */
     80px    /* Seats input */
     70px    /* Add button */
-    1fr     /* Time pills */
+    6fr     /* Time pills */
     120px   /* Total */
     100px;  /* Edit weeks */
   align-items: center;
