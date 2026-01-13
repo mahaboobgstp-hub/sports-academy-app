@@ -14,7 +14,7 @@ export default function Sidebar() {
       <div className="section">
         <div className="section-title">Scheduling</div>
         <Link to="/planner">Program Planner</Link>
-         <Link to="/coach">Coach Assignment </Link>
+         <Link to="/coachassignment">Coach Assignment </Link>
         <Link to="/calendar">Calendar View</Link>
         <Link to="/paused">Paused / Cancelled</Link>
       </div>
