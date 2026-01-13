@@ -48,32 +48,49 @@ export default function BookingTable({ onManage }) {
           </tr>
         </thead>
         <tbody>
-          {MOCK_BOOKINGS.map((b) => (
-            <tr key={b.id} className="border-t">
-              <td className="px-4 py-2 font-mono">{b.id}</td>
-              <td className="px-4 py-2">{b.student}</td>
-              <td className="px-4 py-2">{b.program}</td>
-              <td className="px-4 py-2">{b.batch}</td>
-              <td className="px-4 py-2">{b.start}</td>
-              <td className="px-4 py-2">{b.end}</td>
-              <td className="px-4 py-2">
-                <span className={b.sessionsLeft === 0 ? "text-red-600" : ""}>
-                  {b.sessionsLeft}
-                </span>
-              </td>
-              <td className="px-4 py-2">{b.payment}</td>
-              <td className="px-4 py-2">{b.status}</td>
-              <td className="px-4 py-2">
-                <button
-                  className="btn-link"
-                  onClick={() => onManage(b)}
-                >
-                  Manage
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  {MOCK_BOOKINGS.map((b) => (
+    <tr key={b.id}>
+      {/* Booking ID */}
+      <td>
+        <span className="booking-id">{b.id}</span>
+      </td>
+
+      <td>{b.student}</td>
+      <td>{b.program}</td>
+      <td>{b.batch}</td>
+      <td>{b.start}</td>
+      <td>{b.end}</td>
+
+      {/* Sessions Left */}
+      <td className={b.sessionsLeft === 0 ? "sessions-zero" : ""}>
+        {b.sessionsLeft}
+      </td>
+
+      {/* Payment Status */}
+      <td className={`payment-${b.payment.toLowerCase()}`}>
+        {b.payment}
+      </td>
+
+      {/* Booking Status */}
+      <td>
+        <span className={`status-pill status-${b.status.toLowerCase()}`}>
+          {b.status}
+        </span>
+      </td>
+
+      {/* Action */}
+      <td>
+        <button
+          className="manage-btn"
+          onClick={() => onManage(b)}
+        >
+          Manage
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
       </table>
     </div>
   );
