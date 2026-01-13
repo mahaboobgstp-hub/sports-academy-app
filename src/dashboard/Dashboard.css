@@ -151,33 +151,41 @@
    DASHBOARD FILTER BAR
 ================================ */
 
-.dashboard-filters {
-  display: grid;
+.ceo-dashboard .dashboard-filters {
+  display: grid !important;
   grid-template-columns: 180px 140px 200px 200px;
   gap: 16px;
-  align-items: end;
+  align-items: flex-end;
   margin-bottom: 18px;
+  width: auto;
 }
 
-.filter-group {
+.ceo-dashboard .filter-group {
   display: flex;
   flex-direction: column;
+  width: auto !important;
 }
 
-.filter-label {
+.ceo-dashboard .filter-label {
   font-size: 12px;
   color: #6b7280;
   margin-bottom: 4px;
 }
 
-.filter-input {
+.ceo-dashboard .filter-input {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+
+  height: 36px;
   padding: 6px 10px;
+
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 14px;
-  height: 36px;
-  width: 100%;
-  background: #ffffff;
+
+  display: inline-flex !important;
+  background-color: #ffffff;
 }
 
 /* ================================
@@ -237,13 +245,13 @@
   }
 }
 @media (max-width: 1024px) {
-  .dashboard-filters {
-    grid-template-columns: repeat(2, 1fr);
+  .ceo-dashboard .dashboard-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 
 @media (max-width: 640px) {
-  .dashboard-filters {
-    grid-template-columns: 1fr;
+  .ceo-dashboard .dashboard-filters {
+    grid-template-columns: 1fr !important;
   }
 }
