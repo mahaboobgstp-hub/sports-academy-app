@@ -62,6 +62,25 @@ const formatDateWithDay = (date) => {
   return `${d}-${m}-${y} ${day}`;
 };
 
+function getDateForDayInSelectedWeek(week, dayName) {
+  if (!week) return null;
+
+  const dayIndexMap = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4,
+    Saturday: 5,
+    Sunday: 6
+  };
+
+  const start = new Date(week.start);
+  const date = new Date(start);
+  date.setDate(start.getDate() + dayIndexMap[dayName]);
+
+  return date;
+}
 
 
 function getWeekDatesBetween(startDate, endDate, dayName) {
@@ -531,10 +550,12 @@ const formatDateWithDay = (dateInput) => {
                       <div key={dIndex} className="day-row day-grid">
 
                         <strong style={{ minWidth: "160px" }}>
-  {formatDateWithDay(
-    getFirstDateForDayInSeason(day.dayName, selectedSeason)
-  )}
-</strong>
+                         {formatDateWithDay(
+                           getDateForDayInSelectedWeek(
+                            seasonWeeks[selectedWeekIndex],
+                             day.dayName)
+                          )}
+                          </strong>
 
                       
                         <select
