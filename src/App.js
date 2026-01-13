@@ -24,6 +24,8 @@ import SalesRoutes from "./routes/salesRoutes";
 import UsersRolesPage from "./modules/administration/pages/UsersRolesPage";
 //import PricingRulesPage from "./pricing-rules/PricingRulesPage";
 import SettingsLayout from "./modules/settings/SettingsLayout";
+import "./styles/analytics.css";
+
 
 
 
