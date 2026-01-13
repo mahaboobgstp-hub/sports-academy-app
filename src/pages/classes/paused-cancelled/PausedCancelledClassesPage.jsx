@@ -4,25 +4,73 @@ import { pausedCancelledClasses } from "./mockData";
 
 export default function PausedCancelledClassesPage() {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen space-y-6">
-<div className="bg-green-500 text-white p-6">
-  Tailwind Active
-</div>
-      {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm p-6">
-        <h1 className="text-2xl font-semibold text-gray-800">
-          Paused / Cancelled Classes
-        </h1>
-        <p className="text-sm text-gray-500 mt-1">
+     <div className="paused-page">
+
+      <div className="paused-header">
+        <h1>Paused / Cancelled Classes</h1>
+        <p>
           Track paused batches, cancelled programs, refunds, make-ups & compliance
         </p>
       </div>
 
-      {/* Filters */}
-      <StatusFilter />
+      <div className="paused-filters">
+        <select><option>Status</option></select>
+        <select><option>Program</option></select>
+        <select><option>Location</option></select>
+        <select><option>Refund Required</option></select>
+      </div>
 
-      {/* Table */}
-      <ClassStatusTable data={pausedCancelledClasses} />
+      <div className="paused-table-wrapper">
+        <table className="paused-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Program</th>
+              <th>Location</th>
+              <th>Coach</th>
+              <th>Status</th>
+              <th>Effective From</th>
+              <th>Reason</th>
+              <th>Refund</th>
+              <th>Make-Up</th>
+              <th>Compliance</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {pausedCancelledClasses.map(item => (
+              <tr key={item.classId}>
+                <td><strong>{item.className}</strong></td>
+                <td>{item.program}</td>
+                <td>{item.location}</td>
+                <td>{item.coach}</td>
+                <td>
+                  <span
+                    className={`status-badge ${
+                      item.status === "Paused"
+                        ? "status-paused"
+                        : "status-cancelled"
+                    }`}
+                  >
+                    {item.status}
+                  </span>
+                </td>
+                <td>{item.pausedOrCancelledOn}</td>
+                <td className="text-muted">{item.reason}</td>
+                <td>{item.refundRequired ? "Yes" : "No"}</td>
+                <td>{item.makeUpRequired ? "Yes" : "No"}</td>
+                <td>
+                  {item.complianceFlag ? (
+                    <span className="compliance-warning">⚠ Action</span>
+                  ) : (
+                    "No"
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
     </div>
   );
