@@ -40,7 +40,7 @@ export default function CalendarHeader({
         
          </div>
     </div>*/
-        
+       <div className="calendar-header">
         <div className="calendar-btn-group">
          <button className="calendar-btn" onClick={() => changeWeek(-1)}>◀</button>
          <button className="calendar-btn" onClick={() => setCurrentDate(new Date())}>Today</button>
@@ -53,6 +53,6 @@ export default function CalendarHeader({
   <button className={`calendar-btn ${view === "month" ? "active" : ""}`}>Month</button>
 </div>
 
-     
+</div>     
   );
 }
