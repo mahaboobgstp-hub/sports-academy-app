@@ -113,7 +113,7 @@
 }
 .drawer-actions {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 12px;               /* 🔥 space between buttons */
   margin-top: 20px;
 }
