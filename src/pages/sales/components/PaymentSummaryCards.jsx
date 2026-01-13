@@ -7,11 +7,11 @@ export default function PaymentSummaryCards() {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="payment-summary">
       {stats.map((s, i) => (
-        <div key={i} className="bg-white p-4 rounded shadow">
-          <p className="text-sm text-gray-500">{s.label}</p>
-          <p className="text-xl font-semibold">{s.value}</p>
+        <div key={i} className="summary-card">
+          <div className="summary-label">{s.label}</div>
+          <div className="summary-value">{s.value}</div>
         </div>
       ))}
     </div>
