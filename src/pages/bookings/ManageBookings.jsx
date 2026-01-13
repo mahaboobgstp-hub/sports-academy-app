@@ -8,14 +8,7 @@ export default function ManageBookings() {
   const [selectedBooking, setSelectedBooking] = useState(null);
 
   return (
-    <div className="manage-bookings">
-  <h1>Manage Bookings</h1>
-
-  <div className="booking-filters">...</div>
-
-  <div className="booking-table-wrapper">
-    <table className="booking-table">...</table>
-  </div>
+    
 
 <div className="p-6 space-y-4">
       <h1 className="text-2xl font-semibold">Manage Bookings</h1>
@@ -31,6 +24,6 @@ export default function ManageBookings() {
         />
       )}
     </div>
-   </div> 
+  
   );
 }
