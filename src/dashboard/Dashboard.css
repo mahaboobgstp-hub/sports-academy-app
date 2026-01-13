@@ -46,3 +46,104 @@
   }
 }
 
+/* ================================
+   CEO DASHBOARD METRICS GRID
+================================ */
+
+.ceo-dashboard {
+  padding: 20px;
+}
+
+.ceo-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+/* KPI GRID */
+.ceo-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.ceo-metric-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.ceo-metric-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.ceo-metric-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ceo-metric-sub {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.metric-positive {
+  color: #16a34a;
+}
+
+.metric-negative {
+  color: #991b1b;
+}
+
+.metric-neutral {
+  color: #92400e;
+}
+
+/* ================================
+   COMPACT CHARTS
+================================ */
+
+.ceo-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ceo-chart-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.ceo-chart-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1200px) {
+  .ceo-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ceo-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ceo-charts {
+    grid-template-columns: 1fr;
+  }
+}
