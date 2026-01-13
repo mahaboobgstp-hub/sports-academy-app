@@ -262,10 +262,3 @@ button {
   opacity: 0.9;
 }
 
-/* Container holding all time-pill entries for a day */
-.day-row.day-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 per row */
-  gap: 6px;
-  align-items: start;
-}
