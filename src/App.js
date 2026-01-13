@@ -26,7 +26,7 @@ import UsersRolesPage from "./modules/administration/pages/UsersRolesPage";
 import SettingsLayout from "./modules/settings/SettingsLayout";
 import "./styles/analytics.css";
 
-import CoachAssignment from "./pages/coach/CoachAssignment";
+import CoachAssignment from "./pages/coachassignment/CoachAssignment";
 
 
 
@@ -66,7 +66,7 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/master/sports" element={<Sports />} />
           <Route path="/planner" element={<ProgramPlanner />} />
-          <Route path="coach/coach-assignment" element={<CoachAssignment />} />
+          <Route path="coachassignment/coach-assignment" element={<CoachAssignment />} />
           <Route path="/master/seasons" element={<Seasons />} />
           <Route path="/master/programs" element={<Programs />} />
           <Route path="/master/locations" element={<Locations />} /> 
