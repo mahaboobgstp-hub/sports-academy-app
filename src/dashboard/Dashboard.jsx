@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Dashboard.css";
 import {
   LineChart, Line, BarChart, Bar,
@@ -48,10 +49,60 @@ const PIE_COLORS = ["#2563eb", "#e5e7eb"];
 /* ---------------- COMPONENT ---------------- */
 
 export default function Dashboard() {
+ const [season, setSeason] = useState("2025-26");
+  const [month, setMonth] = useState("May");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
   return (
     <div className="ceo-dashboard">
 
       <div className="ceo-title">CEO Overview</div>
+ <div className="filter-group">
+          <div className="filter-label">Season</div>
+          <select
+            className="filter-input"
+            value={season}
+            onChange={(e) => setSeason(e.target.value)}
+          >
+            <option>2025-26</option>
+            <option>2024-25</option>
+          </select>
+        </div>
+
+        <div className="filter-group">
+          <div className="filter-label">Month</div>
+          <select
+            className="filter-input"
+            value={month}
+            onChange={(e) => setMonth(e.target.value)}
+          >
+            <option>May</option>
+            <option>April</option>
+            <option>March</option>
+          </select>
+        </div>
+
+        <div className="filter-group">
+          <div className="filter-label">From Date</div>
+          <input
+            type="date"
+            className="filter-input"
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+          />
+        </div>
+
+        <div className="filter-group">
+          <div className="filter-label">To Date</div>
+          <input
+            type="date"
+            className="filter-input"
+            value={toDate}
+            onChange={(e) => setToDate(e.target.value)}
+          />
+        </div>
+
+      </div>
 
       {/* ===== KPI GRID (12 METRICS) ===== */}
       <div className="ceo-metrics-grid">
@@ -123,7 +174,41 @@ export default function Dashboard() {
         </div>
 
       </div>
+ <div className="comparison-row">
 
+        <div className="comparison-card">
+          <div className="comparison-title">Top Location (Revenue)</div>
+          <div className="comparison-value">Center A</div>
+          <div className="comparison-sub comp-positive">₹2.4L this month</div>
+        </div>
+
+        <div className="comparison-card">
+          <div className="comparison-title">Top Program</div>
+          <div className="comparison-value">Basketball</div>
+          <div className="comparison-sub comp-positive">38% margin</div>
+        </div>
+
+        <div className="comparison-card">
+          <div className="comparison-title">Best Sales Executive</div>
+          <div className="comparison-value">Rahul</div>
+          <div className="comparison-sub comp-positive">₹3.1L revenue</div>
+        </div>
+
+        <div className="comparison-card">
+          <div className="comparison-title">Today vs Last Year</div>
+          <div className="comparison-value">₹42,000</div>
+          <div className="comparison-sub comp-positive">▲ 11%</div>
+        </div>
+
+        <div className="comparison-card">
+          <div className="comparison-title">Month vs LY Same Month</div>
+          <div className="comparison-value">₹8.1L</div>
+          <div className="comparison-sub comp-neutral">▲ 6%</div>
+        </div>
+
+      </div>
+
+      
       {/* ===== COMPACT CHARTS ===== */}
       <div className="ceo-charts">
 
