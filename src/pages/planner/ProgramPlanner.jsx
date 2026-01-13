@@ -585,7 +585,7 @@ const formatDateWithDay = (dateInput) => {
                                   .locations[lIndex]
                                   .courts[cIndex]
                                   .days[dIndex]
-                                  .timeSlots.splice(i, 1);
+                                  .timeSlots.splice(i, 6);
                                 setPrograms(updated);
                               }}
                             >
