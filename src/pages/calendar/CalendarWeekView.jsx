@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import CalendarEvent from "./CalendarEvent";
 
 /**
@@ -68,7 +69,7 @@ export default function CalendarWeekView({ currentDate, sessions }) {
 
     {/* Time rows + day cells */}
     {hours.map((hour) => (
-      <React.Fragment key={hour}>
+      <Fragment key={hour}>
         {/* Time column */}
         <div className="time-slot">
           {String(hour).padStart(2, "0")}:00
@@ -92,7 +93,7 @@ export default function CalendarWeekView({ currentDate, sessions }) {
             </div>
           );
         })}
-      </React.Fragment>
+      </Fragment>
     ))}
 
   </div>
