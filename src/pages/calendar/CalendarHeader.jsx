@@ -11,7 +11,7 @@ export default function CalendarHeader({
   };
 
   return (
-    <div className="calendar-header">
+   /* <div className="calendar-header">
       <div className="button-group">
         <button onClick={() => changeWeek(-1)}>◀</button>
         <button onClick={() => setCurrentDate(new Date())}>Today</button>
@@ -37,7 +37,22 @@ export default function CalendarHeader({
         >
           Month
         </button>
+        
+         </div>
+    </div>*/
+        
+        <div className="calendar-btn-group">
+         <button className="calendar-btn" onClick={() => changeWeek(-1)}>◀</button>
+         <button className="calendar-btn" onClick={() => setCurrentDate(new Date())}>Today</button>
+         <button className="calendar-btn" onClick={() => changeWeek(1)}>▶</button>
       </div>
-    </div>
+
+<div className="calendar-btn-group">
+  <button className={`calendar-btn ${view === "day" ? "active" : ""}`}>Day</button>
+  <button className={`calendar-btn ${view === "week" ? "active" : ""}`}>Week</button>
+  <button className={`calendar-btn ${view === "month" ? "active" : ""}`}>Month</button>
+</div>
+
+     
   );
 }
