@@ -189,3 +189,206 @@ h2 {
 .text-muted {
   color: #6b7280;
 }
+/* ================================
+   COACH ASSIGNMENT PAGE
+================================ */
+
+.coach-assign-page {
+  padding: 20px;
+  background: #f5f7fb;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ================================
+   FILTER BAR
+================================ */
+
+.ca-filters {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.ca-filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.ca-filter label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.ca-filter select,
+.ca-filter input {
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  width: 180px;
+}
+
+/* ================================
+   CLASSES TABLE
+================================ */
+
+.ca-table-wrapper {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.ca-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.ca-table th {
+  background: #f1f5f9;
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+}
+
+.ca-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ca-table tr:hover {
+  background: #f9fafb;
+}
+
+/* Unassigned highlight */
+.unassigned {
+  background: #fff5f5;
+}
+
+.status-unassigned {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+.status-assigned {
+  color: #166534;
+  font-weight: 600;
+}
+
+/* ================================
+   ACTION BUTTON
+================================ */
+
+.assign-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ================================
+   ASSIGNMENT DRAWER
+================================ */
+
+.ca-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100vh;
+  background: #ffffff;
+  border-left: 1px solid #e5e7eb;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.08);
+  padding: 20px;
+  z-index: 1000;
+}
+
+.drawer-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.drawer-section {
+  margin-bottom: 14px;
+}
+
+.drawer-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.drawer-value {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.drawer-input {
+  width: 100%;
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+/* ================================
+   COST PREVIEW
+================================ */
+
+.cost-preview {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.cost-total {
+  font-weight: 600;
+}
+
+/* ================================
+   DRAWER ACTIONS
+================================ */
+
+.drawer-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
