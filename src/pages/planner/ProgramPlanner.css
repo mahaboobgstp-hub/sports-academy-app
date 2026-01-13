@@ -83,9 +83,10 @@ button {
   align-items: center;
   gap: 6px;
   background: #e5f0ff;
-  padding: 2px 6px;
+  padding: 4px 6px;
   border-radius: 12px;
   font-size: 12px;
+  white-space: nowrap;
 }
 
 .time-pill button {
@@ -262,3 +263,21 @@ button {
   opacity: 0.9;
 }
 
+.day-row.day-grid {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.day-row.day-grid .time-pill {
+  flex: 0 0 auto;
+}
+.day-row.day-grid {
+  display: grid;
+  grid-template-columns:
+    220px 130px 80px 70px 1fr 120px 100px;
+}
+
+.time-pill {
+  display: inline-flex;
+}
