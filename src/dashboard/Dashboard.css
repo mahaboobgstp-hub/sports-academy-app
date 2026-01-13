@@ -147,3 +147,90 @@
     grid-template-columns: 1fr;
   }
 }
+/* ================================
+   DASHBOARD FILTER BAR
+================================ */
+
+.dashboard-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.filter-input {
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 160px;
+  background: #fff;
+}
+
+/* ================================
+   COMPARISON ROW
+================================ */
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.comparison-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.comparison-title {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.comparison-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.comparison-sub {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.comp-positive {
+  color: #16a34a;
+}
+
+.comp-negative {
+  color: #991b1b;
+}
+
+.comp-neutral {
+  color: #92400e;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1200px) {
+  .comparison-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
