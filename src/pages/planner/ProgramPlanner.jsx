@@ -795,8 +795,5 @@ const formatDateWithDay = (dateInput) => {
     </div>
   </div>
 )}
-
-
-    </div>
-  );
+);
 }
