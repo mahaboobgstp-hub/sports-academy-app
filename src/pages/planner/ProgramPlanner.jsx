@@ -755,11 +755,7 @@ useEffect(() => {
       >
         Close
       </button>
-
-    
- 
-
-      {/* ===== WEEK PICKER MODAL ===== */}
+ {/* ===== WEEK PICKER MODAL ===== */}
 {showWeekPicker && (
   <div className="modal-backdrop">
     <div className="modal large">
@@ -795,6 +791,8 @@ useEffect(() => {
 
     </div>
   </div>
-)}
+)}  
+ 
 
-
+     </div>
+);
