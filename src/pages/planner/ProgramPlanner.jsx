@@ -457,7 +457,7 @@ const handleSaveProgram = (pIndex) => {
               <input placeholder="Allocated" disabled />
               <input placeholder="Pending" disabled />
 
-              <<button
+              <button
   className="sub-btn save-program-btn"
   onClick={() => handleSaveProgram(pIndex)}
 >
