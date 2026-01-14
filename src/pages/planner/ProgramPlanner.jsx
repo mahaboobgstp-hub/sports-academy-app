@@ -729,7 +729,7 @@ useEffect(() => {
       </button>
 
     </div>
-  </div>
+ 
 )}
 
     {/* override time slots UI goes here */}
@@ -792,7 +792,5 @@ useEffect(() => {
     </div>
   </div>
 )}  
- 
-
-     </div>
+   </div>
 );
