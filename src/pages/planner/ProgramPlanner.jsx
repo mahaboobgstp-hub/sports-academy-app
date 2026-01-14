@@ -677,23 +677,23 @@ const formatDateWithDay = (dateInput) => {
   <div className="modal-backdrop">
     <div className="modal large">
      
-     {modalWeekDates.length > 0 && (
-  <div className="edit-weeks">
-    {modalWeekDates.map(date => (
-      <button
-        key={date}
-        className={
-          selectedOverrideDate === date
-            ? "week-btn active"
-            : "week-btn"
-        }
-        onClick={() => setSelectedOverrideDate(date)}
-      >
-        {formatDateWithDay(new Date(date))}
-      </button>
-    ))}
-  </div>
-)}
+ //    {modalWeekDates.length > 0 && (
+//  <div className="edit-weeks">
+  //  {modalWeekDates.map(date => (
+ //     <button
+    //    key={date}
+      //  className={
+         // selectedOverrideDate === date
+          //  ? "week-btn active"
+          //  : "week-btn"
+       // }
+      //  onClick={() => setSelectedOverrideDate(date)}
+     // >
+      //  {formatDateWithDay(new Date(date))}
+     // </button>
+   // ))}
+//  </div>
+//)}*/
 
       <h3>
         Edit Weeks – {
