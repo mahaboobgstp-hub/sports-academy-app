@@ -198,6 +198,14 @@ function getScheduleForDate(date, weekdayTemplate) {
   const [programs, setPrograms] = useState([]);
 
   const selectedSeason = seasons.find(s => s.id === selectedSeasonId);
+  const modalWeekDates =
+  weekEditor && selectedSeason
+    ? getWeekDatesBetween(
+        selectedSeason.start_date,
+        selectedSeason.end_date,
+        weekEditor.dayName
+      )
+    : [];
 
   // ===== WEEK GENERATION (MONDAY-BASED) =====
 useEffect(() => {
@@ -669,32 +677,24 @@ const formatDateWithDay = (dateInput) => {
   <div className="modal-backdrop">
     <div className="modal large">
      
-      const modalWeekDates = getWeekDatesBetween(
-     selectedSeason?.start_date,
-     selectedSeason?.end_date,
-     weekEditor.dayName
-    );
+     {modalWeekDates.length > 0 && (
+  <div className="edit-weeks">
+    {modalWeekDates.map(date => (
+      <button
+        key={date}
+        className={
+          selectedOverrideDate === date
+            ? "week-btn active"
+            : "week-btn"
+        }
+        onClick={() => setSelectedOverrideDate(date)}
+      >
+        {formatDateWithDay(new Date(date))}
+      </button>
+    ))}
+  </div>
+)}
 
-return (
-    modalWeekDates.length > 0 && (
-      <div className="edit-weeks">
-        {modalWeekDates.map(date => (
-          <button
-            key={date}
-            className={
-              selectedOverrideDate === date
-                ? "week-btn active"
-                : "week-btn"
-            }
-            onClick={() => setSelectedOverrideDate(date)}
-          >
-            {formatDateWithDay(new Date(date))}
-          </button>
-        ))}
-      </div>
-    )
-  );
-})()}
       <h3>
         Edit Weeks – {
           programs[weekEditor.pIndex]
