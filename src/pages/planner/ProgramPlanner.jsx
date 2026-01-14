@@ -51,7 +51,7 @@ const getFirstDateForDayInSeason = (dayName, season) => {
   return null;
 };
 
-const formatDateWithDay = (date) => {
+/*const formatDateWithDay = (date) => {
   if (!date) return "";
 
   const d = String(date.getDate()).padStart(2, "0");
@@ -61,6 +61,7 @@ const formatDateWithDay = (date) => {
 
   return `${d}-${m}-${y} ${day}`;
 };
+*/
 
 function getDateForDayInSelectedWeek(week, dayName) {
   if (!week) return null;
@@ -208,7 +209,7 @@ function getScheduleForDate(date, weekdayTemplate) {
     : [];
 
   // ===== WEEK GENERATION (MONDAY-BASED) =====
-useEffect(() => {
+/*useEffect(() => {
   if (!selectedSeason?.start_date || !selectedSeason?.end_date) return;
 
   const weeks = [];
@@ -243,7 +244,7 @@ useEffect(() => {
   setSeasonWeeks(weeks);
   setSelectedWeekIndex(0); // default to Week 1
 }, [selectedSeason]);
-
+*/
 
   /* ===== LOAD MASTER DATA ===== */
   useEffect(() => {
