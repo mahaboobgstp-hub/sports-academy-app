@@ -457,6 +457,8 @@ const formatDateWithDay = (dateInput) => {
     const updated = [...programs];
     updated[pIndex].locked = true; // mark program as saved
     setPrograms(updated);
+    console.log("PROGRAMS STATE:", programs);
+
   }}
 >
   Save Program
