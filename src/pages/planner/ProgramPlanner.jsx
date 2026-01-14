@@ -743,14 +743,11 @@ useEffect(() => {
 
 
       {/* DATE-SPECIFIC EDITOR */}
-      {weekEditor.selectedDate && (
+     /* {weekEditor.selectedDate && (
         <div className="week-day-editor">
           <h4>{formatDateWithDay(weekEditor.selectedDate)}</h4>
-
-          {/* reuse same time-slot UI here */}
-          {/* IMPORTANT: bind to overrides[date] instead of day.timeSlots */}
-        </div>
-      )}
+         </div>
+      )}*/
 
       <button
         className="sub-btn"
