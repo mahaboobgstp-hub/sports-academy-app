@@ -166,7 +166,7 @@ function getScheduleForDate(date, weekdayTemplate) {
 }
 
 
-  function getWeeksBetween(startDate, endDate) {
+ /* function getWeeksBetween(startDate, endDate) {
   if (!startDate || !endDate) return [];
 
   const weeks = [];
@@ -192,7 +192,7 @@ function getScheduleForDate(date, weekdayTemplate) {
 
   return weeks;
 }
-
+*/
 
   /* ===== PLANNER STATE ===== */
   const [programs, setPrograms] = useState([]);
@@ -274,7 +274,8 @@ useEffect(() => {
     const { data } = await supabase.from("locations").select("id,name");
     setLocationsMaster(data || []);
   };
-useEffect(() => {
+  
+/*useEffect(() => {
   if (!selectedSeason?.start_date || !selectedSeason?.end_date) return;
 
   const weeks = getWeeksBetween(
@@ -285,7 +286,8 @@ useEffect(() => {
   setSeasonWeeks(weeks);
   setSelectedWeekIndex(0); // default = Week 1
 }, [selectedSeason]);
-
+*/
+  
   /* ===== ADD FUNCTIONS ===== */
 
   const addProgram = () => {
@@ -337,7 +339,7 @@ useEffect(() => {
       }));
     setPrograms(updated);
   };
-const formatDateWithDay = (dateInput) => {
+/*const formatDateWithDay = (dateInput) => {
   const date = new Date(dateInput);
 
   const day = String(date.getDate()).padStart(2, "0");
@@ -354,7 +356,7 @@ const formatDateWithDay = (dateInput) => {
 
   return `${day}-${month}-${year} ${weekday}`;
 };
-
+*/
   function getDateForDayInWeek(week, dayName) {
   const dayIndexMap = {
     Monday: 0,
