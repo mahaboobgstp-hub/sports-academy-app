@@ -798,5 +798,3 @@ const handleSaveProgram = (pIndex) => {
     </div>
   </div>
 )}
-
-}
