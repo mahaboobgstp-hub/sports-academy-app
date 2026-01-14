@@ -371,6 +371,12 @@ const formatDateWithDay = (dateInput) => {
   date.setDate(start.getDate() + dayIndexMap[dayName]);
   return date;
 }
+const handleSaveProgram = (pIndex) => {
+  const updated = [...programs];
+  updated[pIndex].locked = true;
+  setPrograms(updated);
+  console.log("PROGRAMS STATE:", updated);
+};
 
   /*const weekDates = editWeekDay
   ? getWeekDatesBetween(
@@ -451,18 +457,13 @@ const formatDateWithDay = (dateInput) => {
               <input placeholder="Allocated" disabled />
               <input placeholder="Pending" disabled />
 
-              <button
+              <<button
   className="sub-btn save-program-btn"
-  onClick={handleSaveProgram}() => {
-    const updated = [...programs];
-    updated[pIndex].locked = true; // mark program as saved
-    setPrograms(updated);
-    console.log("PROGRAMS STATE:", programs);
-
-  }}
+  onClick={() => handleSaveProgram(pIndex)}
 >
   Save Program
 </button>
+
             </div>
 
             <button className="sub-btn" onClick={() => addLocation(pIndex)}>
