@@ -695,7 +695,7 @@ const formatDateWithDay = (dateInput) => {
   //</div>
     
 //)}
-
+   </div>
       <h3>
         Edit Weeks – {
           programs[weekEditor.pIndex]
