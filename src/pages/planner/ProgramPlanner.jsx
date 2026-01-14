@@ -677,36 +677,7 @@ const formatDateWithDay = (dateInput) => {
   <div className="modal-backdrop">
     <div className="modal large">
      
- //{modalWeekDates.//length > 0 && (
-//  <div className="edit-weeks">
-  //  {modalWeekDates.map(date => (
- //     <button
-    //    key={date}
-      //  className={
-         // selectedOverrideDate === date
-          //  ? "week-btn active"
-          //  : "week-btn"
-       // }
-      //  onClick={() => setSelectedOverrideDate(date)}
-     // >
-      //  {formatDateWithDay(new Date(date))}
-     // </button>
-   // ))}
-//  </div>
-//)}*/
-
-      <h3>
-        Edit Weeks – {
-          programs[weekEditor.pIndex]
-            .locations[weekEditor.lIndex]
-            .courts[weekEditor.cIndex]
-            .days[weekEditor.dIndex]
-            .dayName
-        }
-      </h3>
-
-      {/* DATE LIST */}
-  {modalWeekDates.length > 0 && (
+ {modalWeekDates.length > 0 && (
   <div className="edit-weeks">
     {modalWeekDates.map(date => (
       <button
@@ -723,6 +694,35 @@ const formatDateWithDay = (dateInput) => {
     ))}
   </div>
 )}
+
+      <h3>
+        Edit Weeks – {
+          programs[weekEditor.pIndex]
+            .locations[weekEditor.lIndex]
+            .courts[weekEditor.cIndex]
+            .days[weekEditor.dIndex]
+            .dayName
+        }
+      </h3>
+
+      {/* DATE LIST */}
+ // {modalWeekDates.//length > 0 && (
+ // <div className="edit-weeks">
+   // {modalWeekDates.map(date => (
+     // <button
+       // key={date}
+      //  className={
+         // selectedOverrideDate === date
+          //  ? "week-btn active"
+          //  : "week-btn"
+      //  }
+     //   onClick={() => setSelectedOverrideDate(date)}
+   //   >
+      //  {formatDateWithDay(new Date(date))}
+    //  </button>
+   // ))}
+//  </div>
+//)}
 
 
       {selectedOverrideDate && (
