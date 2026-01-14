@@ -453,18 +453,18 @@ useEffect(() => {
               <input placeholder="Allocated" disabled />
               <input placeholder="Pending" disabled />
 
-              <button
+             <button
   className="sub-btn save-program-btn"
-  onClick={handleSaveProgram}() => {
+  onClick={() => {
     const updated = [...programs];
     updated[pIndex].locked = true; // mark program as saved
     setPrograms(updated);
     console.log("PROGRAMS STATE:", programs);
-
   }}
 >
   Save Program
 </button>
+
             </div>
 
             <button className="sub-btn" onClick={() => addLocation(pIndex)}>
