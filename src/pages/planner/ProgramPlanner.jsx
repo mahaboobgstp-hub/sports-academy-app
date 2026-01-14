@@ -51,7 +51,7 @@ const getFirstDateForDayInSeason = (dayName, season) => {
   return null;
 };
 
-/*const formatDateWithDay = (date) => {
+const formatDateWithDay = (date) => {
   if (!date) return "";
 
   const d = String(date.getDate()).padStart(2, "0");
@@ -61,7 +61,6 @@ const getFirstDateForDayInSeason = (dayName, season) => {
 
   return `${d}-${m}-${y} ${day}`;
 };
-*/
 
 function getDateForDayInSelectedWeek(week, dayName) {
   if (!week) return null;
@@ -209,7 +208,7 @@ function getScheduleForDate(date, weekdayTemplate) {
     : [];
 
   // ===== WEEK GENERATION (MONDAY-BASED) =====
-/*useEffect(() => {
+useEffect(() => {
   if (!selectedSeason?.start_date || !selectedSeason?.end_date) return;
 
   const weeks = [];
@@ -244,7 +243,7 @@ function getScheduleForDate(date, weekdayTemplate) {
   setSeasonWeeks(weeks);
   setSelectedWeekIndex(0); // default to Week 1
 }, [selectedSeason]);
-*/
+
 
   /* ===== LOAD MASTER DATA ===== */
   useEffect(() => {
@@ -372,12 +371,6 @@ const formatDateWithDay = (dateInput) => {
   date.setDate(start.getDate() + dayIndexMap[dayName]);
   return date;
 }
-const handleSaveProgram = (pIndex) => {
-  const updated = [...programs];
-  updated[pIndex].locked = true;
-  setPrograms(updated);
-  console.log("PROGRAMS STATE:", updated);
-};
 
   /*const weekDates = editWeekDay
   ? getWeekDatesBetween(
@@ -460,12 +453,17 @@ const handleSaveProgram = (pIndex) => {
 
               <button
   className="sub-btn save-program-btn"
-  onClick={() => handleSaveProgram(pIndex)}
+  onClick={handleSaveProgram}() => {
+    const updated = [...programs];
+    updated[pIndex].locked = true; // mark program as saved
+    setPrograms(updated);
+    console.log("PROGRAMS STATE:", programs);
+
+  }}
 >
   Save Program
 </button>
             </div>
-           
 
             <button className="sub-btn" onClick={() => addLocation(pIndex)}>
               + Add Location
@@ -799,3 +797,5 @@ const handleSaveProgram = (pIndex) => {
     </div>
   </div>
 )}
+);
+}
