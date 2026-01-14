@@ -464,7 +464,7 @@ const handleSaveProgram = (pIndex) => {
   Save Program
 </button>
             </div>
-            </div>
+           
 
             <button className="sub-btn" onClick={() => addLocation(pIndex)}>
               + Add Location
