@@ -453,7 +453,7 @@ const formatDateWithDay = (dateInput) => {
 
               <button
   className="sub-btn save-program-btn"
-  onClick={() => {
+  onClick={handleSaveProgram}() => {
     const updated = [...programs];
     updated[pIndex].locked = true; // mark program as saved
     setPrograms(updated);
