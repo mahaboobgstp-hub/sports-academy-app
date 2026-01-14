@@ -755,7 +755,7 @@ const formatDateWithDay = (dateInput) => {
         Close
       </button>
 
-    </div>
+    
  )}
 
       {/* ===== WEEK PICKER MODAL ===== */}
