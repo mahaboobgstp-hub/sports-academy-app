@@ -677,7 +677,7 @@ const formatDateWithDay = (dateInput) => {
   <div className="modal-backdrop">
     <div className="modal large">
      
- //    {modalWeekDates.length > 0 && (
+ /*{modalWeekDates.length > 0 && (*/
 //  <div className="edit-weeks">
   //  {modalWeekDates.map(date => (
  //     <button
