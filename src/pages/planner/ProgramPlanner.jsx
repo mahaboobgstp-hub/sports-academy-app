@@ -733,6 +733,9 @@ const formatDateWithDay = (dateInput) => {
     </h4>
 
     {/* override time slots UI goes here */}
+    <div style={{ marginTop: "12px", fontSize: "13px", color: "#555" }}>
+      Here you will edit time slots ONLY for this date.
+    </div>
   </div>
 )}
 
