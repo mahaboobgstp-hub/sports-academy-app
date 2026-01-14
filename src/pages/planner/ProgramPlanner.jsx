@@ -677,7 +677,37 @@ const formatDateWithDay = (dateInput) => {
   <div className="modal-backdrop">
     <div className="modal large">
      
- {modalWeekDates.length > 0 && (
+ //{modalWeekDates.//length > 0 && (
+  //<div className="edit-weeks">
+    //{modalWeekDates.map(date => (
+      //<button
+        //key={date}
+        //className={
+          //selectedOverrideDate === date
+            //? "week-btn active"
+            //: "week-btn"
+        //}
+        //onClick={() => setSelectedOverrideDate(date)}
+      //>
+        //{formatDateWithDay(new Date(date))}
+      //</button>
+    //))}
+  //</div>
+    
+//)}
+
+      <h3>
+        Edit Weeks – {
+          programs[weekEditor.pIndex]
+            .locations[weekEditor.lIndex]
+            .courts[weekEditor.cIndex]
+            .days[weekEditor.dIndex]
+            .dayName
+        }
+      </h3>
+
+      {/* DATE LIST */}
+  {modalWeekDates.length > 0 && (
   <div className="edit-weeks">
     {modalWeekDates.map(date => (
       <button
@@ -695,35 +725,6 @@ const formatDateWithDay = (dateInput) => {
   </div>
 )}
 
-      <h3>
-        Edit Weeks – {
-          programs[weekEditor.pIndex]
-            .locations[weekEditor.lIndex]
-            .courts[weekEditor.cIndex]
-            .days[weekEditor.dIndex]
-            .dayName
-        }
-      </h3>
-
-      {/* DATE LIST */}
- // {modalWeekDates.//length > 0 && (
- // <div className="edit-weeks">
-   // {modalWeekDates.map(date => (
-     // <button
-       // key={date}
-      //  className={
-         // selectedOverrideDate === date
-          //  ? "week-btn active"
-          //  : "week-btn"
-      //  }
-     //   onClick={() => setSelectedOverrideDate(date)}
-   //   >
-      //  {formatDateWithDay(new Date(date))}
-    //  </button>
-   // ))}
-//  </div>
-//)}
-
 
       {selectedOverrideDate && (
   <div className="override-editor">
@@ -731,7 +732,17 @@ const formatDateWithDay = (dateInput) => {
       Editing Override for{" "}
       {formatDateWithDay(new Date(selectedOverrideDate))}
     </h4>
-
+  </div>    
+    )}
+    <button
+        className="sub-btn"
+        onClick={() => {
+          setSelectedOverrideDate(null);
+          setWeekEditor(null);
+        }}
+      >
+        Close
+      </button>
     {/* override time slots UI goes here */}
     <div style={{ marginTop: "12px", fontSize: "13px", color: "#555" }}>
       Here you will edit time slots ONLY for this date.
@@ -760,8 +771,7 @@ const formatDateWithDay = (dateInput) => {
       </button>
 
     </div>
-  </div>
-)}
+ )}
 
       {/* ===== WEEK PICKER MODAL ===== */}
 {showWeekPicker && (
