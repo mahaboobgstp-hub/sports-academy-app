@@ -427,3 +427,54 @@
   width: 260px;
   margin-top: 0;     /* 🔥 important */
 }
+/* === Attendance layout split === */
+.attendance-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+/* Attendance section (left) */
+.attendance-section {
+  width: 100%;
+}
+/* Coach mode: split view */
+.attendance-layout.coach-mode .attendance-section {
+  width: 70%;
+}
+
+.attendance-layout.coach-mode .attendance-right-bottom {
+  width: 30%;
+}
+
+/* Student mode: full width */
+.attendance-layout.student-mode .attendance-section {
+  width: 100%;
+}
+
+/* Refund card styling */
+.attendance-right-bottom .cancel-eligibility {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fafafa;
+}
+
+/* Checkbox alignment */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+/* Mobile fallback */
+@media (max-width: 768px) {
+  .attendance-layout {
+    flex-direction: column;
+  }
+
+  .attendance-layout.coach-mode .attendance-section,
+  .attendance-layout.coach-mode .attendance-right-bottom {
+    width: 100%;
+  }
+}
