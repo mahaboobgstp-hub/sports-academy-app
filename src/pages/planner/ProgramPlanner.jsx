@@ -732,7 +732,30 @@ useEffect(() => {
     .timeSlots
     ).map((slot, i) => (
       <div key={i} className="override-row">
-        <span>{slot.slot}</span>
+       <select
+  value={slot.slot}
+  onChange={(e) => {
+    const updated = { ...dateOverrides };
+
+    if (!updated[selectedOverrideDate]) {
+      updated[selectedOverrideDate] = [];
+    }
+
+    updated[selectedOverrideDate][i] = {
+      ...slot,
+      slot: e.target.value
+    };
+
+    setDateOverrides(updated);
+  }}
+>
+  {TIME_SLOTS.map((t) => (
+    <option key={t} value={t}>
+      {t}
+    </option>
+  ))}
+</select>
+
 
         <input
           type="number"
