@@ -161,7 +161,9 @@ export default function BookingPage() {
         <div className="booking-grid">
           <input placeholder="Student Name" />
           <input placeholder="Age" />
+           <input placeholder="Parent Name" />
           <input placeholder="Parent Mobile" />
+           <input placeholder="Alternate Mobile" />
         </div>
       </div>
 
