@@ -1,0 +1,41 @@
+.page-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: #667085;
+  margin-bottom: 16px;
+}
+
+/* TABLE */
+.erp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.erp-table thead {
+  background: #f9fafb;
+}
+
+.erp-table th,
+.erp-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eaecf0;
+  font-size: 14px;
+}
+
+.erp-table th {
+  font-weight: 600;
+  color: #344054;
+}
