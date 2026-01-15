@@ -89,6 +89,12 @@ export default function AttendancePanel({ isCoach }) {
   const [attendance, setAttendance] = useState(generateMockAttendance());
   const [selectedDay, setSelectedDay] = useState(null);
   const [popupPos, setPopupPos] = useState({ x: 0, y: 0 });
+  const [cancelEligibility, setCancelEligibility] = useState({
+  refund: false,
+  makeup: false,
+  noRefund: false,
+});
+
 
   const updateStatus = (status) => {
     setAttendance((prev) =>
@@ -117,7 +123,7 @@ export default function AttendancePanel({ isCoach }) {
                 key={d.day}
                 className="attendance-box"
                 style={{ backgroundColor: STATUS_COLORS[d.status] }}
-                title={`Day ${d.day}`}
+               title={d.date}
                 onClick={(e) => {
   if (!isCoach) return;
   setSelectedDay(d.day);
@@ -154,6 +160,43 @@ export default function AttendancePanel({ isCoach }) {
         <span><i style={{ background: "#f59e0b" }} /> Holiday</span>
         <span><i style={{ background: "#7f1d1d" }} /> Cancelled</span>
       </div>
+      <div className="cancel-eligibility">
+  <h4>Cancelled Classes Eligibility</h4>
+
+  <label>
+    <input
+      type="checkbox"
+      checked={cancelEligibility.refund}
+      onChange={(e) =>
+        setCancelEligibility({ ...cancelEligibility, refund: e.target.checked })
+      }
+    />
+    Eligible for Refund
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      checked={cancelEligibility.makeup}
+      onChange={(e) =>
+        setCancelEligibility({ ...cancelEligibility, makeup: e.target.checked })
+      }
+    />
+    Eligible for Make up Classes
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      checked={cancelEligibility.noRefund}
+      onChange={(e) =>
+        setCancelEligibility({ ...cancelEligibility, noRefund: e.target.checked })
+      }
+    />
+    Not Eligible for Refund
+  </label>
+</div>
+
     </div>
   );
 }
