@@ -30,9 +30,14 @@ export default function StudentOverview() {
     program="U-12 Basketball"
     classTime="Mon–Wed, 5:30–6:30 PM"
   />
-  
-
-
+     {isCoach && (
+  <button
+    className="history-btn"
+    onClick={() => setShowHistory(true)}
+  >
+    Student History
+  </button>
+)}
 
         {/* Coach */}
         <div className="person">
