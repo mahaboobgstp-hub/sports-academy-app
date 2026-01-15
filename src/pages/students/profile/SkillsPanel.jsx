@@ -161,17 +161,26 @@ const advancedSkills = [
           <span style={{ color: "#555", width: 110 }}>
             {LEVEL_LABEL[skill.level]}
           </span>
-
-          {/* HELPER TEXT */}
-          {isCoach && (
-            <small style={{ color: "#888" }}>
-              Click to update
-            </small>
-          )}
-        </div>
+           </div>
       ))}
       {/* INTERMEDIATE LEVEL (LOCKED SECTION) */}
-<div style={{ marginTop: 24 }}>
+<div
+  style={{
+    display: "flex",
+    gap: "24px",
+    marginTop: "24px",
+  }}
+>
+  {/* INTERMEDIATE SKILLS */}
+  <div
+    style={{
+      flex: 1,
+      border: "1px solid #e5e7eb",
+      borderRadius: "8px",
+      padding: "12px",
+      background: "#fafafa",
+    }}
+  >
   <strong>Intermediate Skills</strong>
 
   {!unlockedLevels.intermediate && (
@@ -197,7 +206,15 @@ const advancedSkills = [
 </div>
 
 {/* ADVANCED LEVEL (LOCKED SECTION) */}
-<div style={{ marginTop: 24 }}>
+<div
+    style={{
+      flex: 1,
+      border: "1px solid #e5e7eb",
+      borderRadius: "8px",
+      padding: "12px",
+      background: "#fafafa",
+    }}
+  >
   <strong>Advanced Skills</strong>
 
   {!unlockedLevels.advanced && (
@@ -221,7 +238,8 @@ const advancedSkills = [
     </button>
   )}
 </div>
-
+</div>
     </div>
+    
   );
 }
