@@ -88,6 +88,7 @@ const STATUS_COLORS = {
 export default function AttendancePanel({ isCoach }) {
   const [attendance, setAttendance] = useState(generateMockAttendance());
   const [selectedDay, setSelectedDay] = useState(null);
+  const [popupPos, setPopupPos] = useState({ x: 0, y: 0 });
 
   const updateStatus = (status) => {
     setAttendance((prev) =>
@@ -117,7 +118,14 @@ export default function AttendancePanel({ isCoach }) {
                 className="attendance-box"
                 style={{ backgroundColor: STATUS_COLORS[d.status] }}
                 title={`Day ${d.day}`}
-                onClick={() => isCoach && setSelectedDay(d.day)}
+                onClick={(e) => {
+  if (!isCoach) return;
+  setSelectedDay(d.day);
+  setPopupPos({
+    x: e.clientX,
+    y: e.clientY,
+  });
+}}
               />
             ))}
           </div>
@@ -126,7 +134,12 @@ export default function AttendancePanel({ isCoach }) {
 
       {/* Coach popup */}
       {isCoach && selectedDay && (
-        <div className="attendance-popup">
+        <div className="attendance-popup" 
+          style={{
+      top: popupPos.y + 10,
+      left: popupPos.x + 10,
+    }}
+          >
           {["present", "absent", "holiday", "cancelled"].map((s) => (
             <button key={s} onClick={() => updateStatus(s)}>
               {s}
