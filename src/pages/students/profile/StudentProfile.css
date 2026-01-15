@@ -492,17 +492,21 @@
   color: #374151;
 }
 .history-btn {
-  padding: 6px 12px;
+  padding: 6px 14px;
   font-size: 13px;
+  font-weight: 500;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
+  border: 1px solid #d1d5db;
+  background: #2563eb;
+  color: #ffffff;          /* 🔥 THIS FIXES IT */
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .history-btn:hover {
-  background: #f9fafb;
+  background: #1d4ed8;
 }
+
 .modal-overlay {
   position: fixed;
   inset: 0;
