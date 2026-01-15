@@ -167,6 +167,7 @@ export default function AttendancePanel({ isCoach }) {
     </div>
   </div>
 
+  {isCoach && (
   <div className="attendance-right-bottom">
     <div className="cancel-eligibility">
       <h4>Cancelled Classes Eligibility</h4>
@@ -216,6 +217,7 @@ export default function AttendancePanel({ isCoach }) {
   </div>
 </div>
 </div>
+)
 );
 }
       
