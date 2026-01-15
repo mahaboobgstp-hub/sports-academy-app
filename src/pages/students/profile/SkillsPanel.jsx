@@ -141,6 +141,14 @@ const advancedSkills = [
     <div className="card">
       <h3>Skill Progress</h3>
 
+      <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    columnGap: "24px",
+    rowGap: "12px",
+  }}
+>
       {skills.map((skill) => (
         <div
           key={skill.name}
@@ -172,31 +180,32 @@ const advancedSkills = [
       🏀
     </span>
   ))}
-
+</div>
   {/* 🔒 LOCK ICON */}
   <span
-    onClick={() => updateLevel(skill.name, 1)}
-    style={{
-      fontSize: 18,
-      marginLeft: 6,
-      cursor: isCoach ? "pointer" : "default",
-      opacity: skill.level === 0 ? 1 : 0.3
-    }}
-  >
-    🔒
-  </span>
-</div>
+        onClick={() => {
+          if (isCoach && skill.level === 0) {
+            updateLevel(skill.name, 1);
+          }
+        }}
+        style={{
+          fontSize: 18,
+          cursor: isCoach && skill.level === 0 ? "pointer" : "default",
+          opacity: skill.level === 0 ? 1 : 0.2,
+        }}
+      >
+        🔒
+      </span>
 
 
           {/* LEVEL TEXT */}
           <span style={{ color: "#555", width: 110 }}>
   {skill.level === 0 ? "Locked" : LEVEL_LABEL[skill.level]}
 </span>
-
-           </div>
-      ))}
-      
+ </div>
+ ))} 
     </div>
+      </div>
     
-  );
-}
+  )}
+
