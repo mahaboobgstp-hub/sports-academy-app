@@ -5,7 +5,7 @@ import EnrollmentInfo from "../components/EnrollmentInfo";
 import StudentHistoryModal from "../components/StudentHistoryModal";
 
 
-export default function StudentOverview() {
+export default function StudentOverview({ isCoach }) {
   const [showHistory, setShowHistory] = useState(false);
 
   return (
