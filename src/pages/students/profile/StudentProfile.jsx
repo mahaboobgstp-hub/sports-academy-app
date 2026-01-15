@@ -7,6 +7,7 @@ import CoachNotes from "./CoachNotes";
 import CurriculumPanel from "./CurriculumPanel";
 import DrillsPanel from "./DrillsPanel";
 import QuestionsPanel from "./QuestionsPanel";
+import EnrollmentInfo from "./components/EnrollmentInfo";
 
 
 
