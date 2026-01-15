@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import "../../styles/table.css";
+
 
 export default function Sports() {
   const [sports, setSports] = useState([]);
