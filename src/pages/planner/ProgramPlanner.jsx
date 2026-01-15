@@ -420,8 +420,10 @@ useEffect(() => {
       <strong>
         Week {selectedWeekIndex + 1} :
       </strong>{" "}
-      {formatDateWithDay(seasonWeeks[selectedWeekIndex].start)} →{" "}
-      {formatDateWithDay(seasonWeeks[selectedWeekIndex].end)}
+     {formatDateWithDay(new Date(seasonWeeks[selectedWeekIndex].start))}{" "}
+→{" "}
+{formatDateWithDay(new Date(seasonWeeks[selectedWeekIndex].end))}
+
     </div>
 
     <button
