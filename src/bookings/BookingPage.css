@@ -103,3 +103,14 @@
   display: flex;
   justify-content: flex-end;
 }
+/* FIX: dropdown placeholder text cut off */
+.booking-grid select {
+  height: 42px;              /* force sufficient field height */
+  line-height: 22px;         /* readable text height */
+  padding: 8px 12px;         /* balanced vertical padding */
+  font-size: 14px;
+  appearance: none;          /* normalize browser rendering */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #ffffff;
+}
