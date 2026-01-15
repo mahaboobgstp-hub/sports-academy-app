@@ -743,7 +743,11 @@ useEffect(() => {
 
 
       {/* DATE-SPECIFIC EDITOR */}
-     
+      {weekEditor.selectedDate && (
+        <div className="week-day-editor">
+          <h4>{formatDateWithDay(weekEditor.selectedDate)}</h4>
+         </div>
+      )}
 
       <button
         className="sub-btn"
