@@ -2,6 +2,8 @@
 //import coachImg from "../../../../assets/coach.png";
 import { useState } from "react";
 import EnrollmentInfo from "../components/EnrollmentInfo";
+import StudentHistoryModal from "../components/StudentHistoryModal";
+
 
 export default function StudentOverview() {
   const [showHistory, setShowHistory] = useState(false);
