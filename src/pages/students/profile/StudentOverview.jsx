@@ -1,8 +1,11 @@
 //import studentImg from "../../../../assets/student.png";
 //import coachImg from "../../../../assets/coach.png";
+import { useState } from "react";
 import EnrollmentInfo from "../components/EnrollmentInfo";
 
 export default function StudentOverview() {
+  const [showHistory, setShowHistory] = useState(false);
+
   return (
     <div className="card">
       <div className="header-row">
