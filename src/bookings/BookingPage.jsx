@@ -84,7 +84,8 @@ export default function BookingPage() {
 
       <div className="booking-card">
         <div className="booking-card-title">Class Selection</div>
-         <div className="schedule-type">
+         <div className="class-selection-row">
+            <div className="schedule-type">
   <label className="schedule-option">
     <input type="checkbox" />
     <span>Fixed Classes</span>
@@ -95,7 +96,7 @@ export default function BookingPage() {
     <span>Flexible Classes</span>
   </label>
 </div>
-        <div className="booking-card-actions">
+        
         <button type="button" className="secondary-btn">
         + Add Day
         </button>
