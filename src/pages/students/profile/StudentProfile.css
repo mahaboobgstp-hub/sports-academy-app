@@ -362,3 +362,22 @@
   height: 12px;
   margin-right: 6px;
 }
+.cancel-eligibility {
+  margin-top: 16px;
+}
+
+.cancel-eligibility h4 {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cancel-eligibility label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.cancel-eligibility input {
+  margin-right: 8px;
+}
