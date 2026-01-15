@@ -178,6 +178,20 @@ export default function BookingPage() {
         </div>
       </div>
 
+      {/* AMOUNTS */}
+      <div className="booking-card">
+        <div className="booking-card-title">Billing Details</div>
+
+        <div className="booking-grid">
+          <input placeholder="Total Amount" />
+          <input placeholder="Total Discount Amount" />
+           <input placeholder="Amount Taxable" />
+          <input placeholder="VAT Amount" />
+           <input placeholder="Total Payable" />
+           
+        </div>
+      </div>
+
       {/* ACTION */}
       <div className="booking-actions">
         <button className="primary-btn">Proceed to Payment</button>
