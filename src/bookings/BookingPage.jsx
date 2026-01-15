@@ -169,6 +169,7 @@ export default function BookingPage() {
            <input placeholder="Parent Name" />
           <input placeholder="Parent Mobile" />
            <input placeholder="Alternate Mobile" />
+           <input placeholder="Email ID" />
         </div>
       </div>
 
