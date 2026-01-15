@@ -148,6 +148,11 @@ export default function BookingPage() {
     type="number"
     placeholder="Product Price"
   />
+    
+  <input
+    type="number"
+    placeholder="Product Discount %"
+  />
 </div>
 
 <div className="booking-card-actions">
