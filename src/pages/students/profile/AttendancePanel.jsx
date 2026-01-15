@@ -116,87 +116,105 @@ export default function AttendancePanel({ isCoach }) {
 
       {/* 90-day grid */}
       <div className="attendance-wrapper">
-        {[0, 30, 60].map((start) => (
-          <div className="attendance-row" key={start}>
-            {attendance.slice(start, start + 30).map((d) => (
-              <div
-                key={d.day}
-                className="attendance-box"
-                style={{ backgroundColor: STATUS_COLORS[d.status] }}
-               title={d.date}
-                onClick={(e) => {
-  if (!isCoach) return;
-  setSelectedDay(d.day);
-  setPopupPos({
-    x: e.clientX,
-    y: e.clientY,
-  });
-}}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
+  {[0, 30, 60].map((start) => (
+    <div className="attendance-row" key={start}>
+      {attendance.slice(start, start + 30).map((d) => (
+        <div
+          key={d.day}
+          className="attendance-box"
+          style={{ backgroundColor: STATUS_COLORS[d.status] }}
+          title={d.date}
+          onClick={(e) => {
+            if (!isCoach) return;
+            setSelectedDay(d.day);
+            setPopupPos({
+              x: e.clientX,
+              y: e.clientY,
+            });
+          }}
+        />
+      ))}
+    </div>
+  ))}
+</div>
 
-      {/* Coach popup */}
-      {isCoach && selectedDay && (
-        <div className="attendance-popup" 
-          style={{
+{/* Coach popup */}
+{isCoach && selectedDay && (
+  <div
+    className="attendance-popup"
+    style={{
       top: popupPos.y + 10,
       left: popupPos.x + 10,
     }}
-          >
-          {["present", "absent", "holiday", "cancelled"].map((s) => (
-            <button key={s} onClick={() => updateStatus(s)}>
-              {s}
-            </button>
-          ))}
-        </div>
-      )}
+  >
+    {["present", "absent", "holiday", "cancelled"].map((s) => (
+      <button key={s} onClick={() => updateStatus(s)}>
+        {s}
+      </button>
+    ))}
+  </div>
+)}
 
-      <div className="attendance-legend">
-        <span><i style={{ background: "#22c55e" }} /> Present</span>
-        <span><i style={{ background: "#ef4444" }} /> Absent</span>
-        <span><i style={{ background: "#f59e0b" }} /> Holiday</span>
-        <span><i style={{ background: "#7f1d1d" }} /> Cancelled</span>
-      </div>
-      <div className="cancel-eligibility">
-  <h4>Cancelled Classes Eligibility</h4>
+{/* 👇 ONLY WRAPPING FOR ALIGNMENT – NOTHING REMOVED */}
+<div className="attendance-bottom">
 
-  <label>
-    <input
-      type="checkbox"
-      checked={cancelEligibility.refund}
-      onChange={(e) =>
-        setCancelEligibility({ ...cancelEligibility, refund: e.target.checked })
-      }
-    />
-    Eligible for Refund
-  </label>
+  <div className="attendance-left-bottom">
+    <div className="attendance-legend">
+      <span><i style={{ background: "#22c55e" }} /> Present</span>
+      <span><i style={{ background: "#ef4444" }} /> Absent</span>
+      <span><i style={{ background: "#f59e0b" }} /> Holiday</span>
+      <span><i style={{ background: "#7f1d1d" }} /> Cancelled</span>
+    </div>
+  </div>
 
-  <label>
-    <input
-      type="checkbox"
-      checked={cancelEligibility.makeup}
-      onChange={(e) =>
-        setCancelEligibility({ ...cancelEligibility, makeup: e.target.checked })
-      }
-    />
-    Eligible for Make up Classes
-  </label>
+  <div className="attendance-right-bottom">
+    <div className="cancel-eligibility">
+      <h4>Cancelled Classes Eligibility</h4>
 
-  <label>
-    <input
-      type="checkbox"
-      checked={cancelEligibility.noRefund}
-      onChange={(e) =>
-        setCancelEligibility({ ...cancelEligibility, noRefund: e.target.checked })
-      }
-    />
-    Not Eligible for Refund
-  </label>
+      <label className="checkbox-row">
+        <input
+          type="checkbox"
+          checked={cancelEligibility.refund}
+          onChange={(e) =>
+            setCancelEligibility({
+              ...cancelEligibility,
+              refund: e.target.checked,
+            })
+          }
+        />
+        <span>Eligible for Refund</span>
+      </label>
+
+      <label className="checkbox-row">
+        <input
+          type="checkbox"
+          checked={cancelEligibility.makeup}
+          onChange={(e) =>
+            setCancelEligibility({
+              ...cancelEligibility,
+              makeup: e.target.checked,
+            })
+          }
+        />
+        <span>Eligible for Make up Classes</span>
+      </label>
+
+      <label className="checkbox-row">
+        <input
+          type="checkbox"
+          checked={cancelEligibility.noRefund}
+          onChange={(e) =>
+            setCancelEligibility({
+              ...cancelEligibility,
+              noRefund: e.target.checked,
+            })
+          }
+        />
+        <span>Not Eligible for Refund</span>
+      </label>
+    </div>
+  </div>
+
 </div>
 
-    </div>
-  );
-}
+      
