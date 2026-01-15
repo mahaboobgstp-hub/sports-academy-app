@@ -108,6 +108,8 @@ export default function AttendancePanel({ isCoach }) {
   return (
     <div className="card">
       <h3>Attendance</h3>
+<div className={`attendance-layout ${isCoach ? "coach-mode" : "student-mode"}`}>
+  <div className="attendance-section">
 
       <div className="attendance-summary">
         <div>Total Classes: 24</div>
@@ -219,6 +221,8 @@ export default function AttendancePanel({ isCoach }) {
 )}
 </div>
  </div>
+   </div>
+       </div>
   );
 }
 
