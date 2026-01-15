@@ -5,7 +5,7 @@ const generateMockAttendance = () => {
     let status = "none";
 
     if (i <= 20) {
-      if (i <= 16) status = "present";       // 80%
+      if (i <= 16) status = "present";
       else if (i === 17) status = "absent";
       else if (i === 18) status = "holiday";
       else if (i === 19) status = "present";
@@ -18,3 +18,4 @@ const generateMockAttendance = () => {
   return data;
 };
 
+export default generateMockAttendance;  ✅
