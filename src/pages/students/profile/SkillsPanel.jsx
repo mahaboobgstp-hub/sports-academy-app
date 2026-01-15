@@ -89,14 +89,26 @@ const LEVEL_LABEL = {
 };
 
 export default function SkillsPanel({ isCoach }) {
-  const [skills, setSkills] = useState([
-    { name: "Dribbling", level: 2 },
-    { name: "Passing", level: 2 },
-    { name: "Shooting", level: 3 },
-    { name: "Defense", level: 1 },
-    { name: "Game Awareness", level: 2 }
-  ]);
-const [unlockedLevels, setUnlockedLevels] = useState({
+ const [skills, setSkills] = useState([
+  // BEGINNER SKILLS (already unlocked)
+  { name: "Dribbling", level: 2 },
+  { name: "Passing", level: 2 },
+  { name: "Shooting", level: 3 },
+  { name: "Defense", level: 1 },
+  { name: "Game Awareness", level: 2 },
+
+  // INTERMEDIATE SKILLS (LOCKED INITIALLY)
+  { name: "Crossover Dribble", level: 0 },
+  { name: "Shooting Form", level: 0 },
+  { name: "Defensive Positioning", level: 0 },
+
+  // ADVANCED SKILLS (LOCKED INITIALLY)
+  { name: "Pick & Roll", level: 0 },
+  { name: "Fast Break Decision", level: 0 },
+  { name: "Match Play", level: 0 },
+]);
+
+/*const [unlockedLevels, setUnlockedLevels] = useState({
   intermediate: false,
   advanced: false,
 });
@@ -111,16 +123,19 @@ const advancedSkills = [
   "Fast Break Decision",
   "Match Play",
 ];
+*/
+ function updateLevel(skillName, newLevel) {
+  if (!isCoach) return;
 
-  function updateLevel(skillName, newLevel) {
-    if (!isCoach) return;
+  setSkills((prev) =>
+    prev.map((s) =>
+      s.name === skillName
+        ? { ...s, level: newLevel }
+        : s
+    )
+  );
+}
 
-    setSkills(
-      skills.map((s) =>
-        s.name === skillName ? { ...s, level: newLevel } : s
-      )
-    );
-  }
 
   return (
     <div className="card">
@@ -142,104 +157,45 @@ const advancedSkills = [
           </strong>
 
           {/* BASKETBALL ICONS */}
-          <div style={{ display: "flex", gap: 6 }}>
-            {[1, 2, 3].map((i) => (
-              <span
-                key={i}
-                onClick={() => updateLevel(skill.name, i)}
-                style={{
-                  fontSize: 20,
-                  cursor: isCoach ? "pointer" : "default",
-                  opacity: i <= skill.level ? 1 : 0.3
-                }}
-              >
-                🏀
-              </span>
-            ))}
-          </div>
+          {/* BASKETBALLS + LOCK */}
+<div style={{ display: "flex", gap: 6 }}>
+  {[1, 2, 3].map((i) => (
+    <span
+      key={i}
+      onClick={() => updateLevel(skill.name, i)}
+      style={{
+        fontSize: 20,
+        cursor: isCoach ? "pointer" : "default",
+        opacity: skill.level >= i ? 1 : 0.3
+      }}
+    >
+      🏀
+    </span>
+  ))}
+
+  {/* 🔒 LOCK ICON */}
+  <span
+    onClick={() => updateLevel(skill.name, 1)}
+    style={{
+      fontSize: 18,
+      marginLeft: 6,
+      cursor: isCoach ? "pointer" : "default",
+      opacity: skill.level === 0 ? 1 : 0.3
+    }}
+  >
+    🔒
+  </span>
+</div>
+
 
           {/* LEVEL TEXT */}
           <span style={{ color: "#555", width: 110 }}>
-            {LEVEL_LABEL[skill.level]}
-          </span>
+  {skill.level === 0 ? "Locked" : LEVEL_LABEL[skill.level]}
+</span>
+
            </div>
       ))}
-      {/* INTERMEDIATE LEVEL (LOCKED SECTION) */}
-<div
-  style={{
-    display: "flex",
-    gap: "24px",
-    marginTop: "24px",
-  }}
->
-  {/* INTERMEDIATE SKILLS */}
-  <div
-    style={{
-      flex: 1,
-      border: "1px solid #e5e7eb",
-      borderRadius: "8px",
-      padding: "12px",
-      background: "#fafafa",
-    }}
-  >
-  <strong>Intermediate Skills</strong>
-
-  {!unlockedLevels.intermediate && (
-    <div style={{ opacity: 0.5, marginTop: 8 }}>
-      {intermediateSkills.map((s) => (
-        <div key={s} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          🔒 {s}
-        </div>
-      ))}
-    </div>
-  )}
-
-  {isCoach && !unlockedLevels.intermediate && (
-    <button
-      style={{ marginTop: 8, fontSize: 12 }}
-      onClick={() =>
-        setUnlockedLevels((p) => ({ ...p, intermediate: true }))
-      }
-    >
-      Unlock Intermediate Level
-    </button>
-  )}
-</div>
-
-{/* ADVANCED LEVEL (LOCKED SECTION) */}
-<div
-    style={{
-      flex: 1,
-      border: "1px solid #e5e7eb",
-      borderRadius: "8px",
-      padding: "12px",
-      background: "#fafafa",
-    }}
-  >
-  <strong>Advanced Skills</strong>
-
-  {!unlockedLevels.advanced && (
-    <div style={{ opacity: 0.5, marginTop: 8 }}>
-      {advancedSkills.map((s) => (
-        <div key={s} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          🔒 {s}
-        </div>
-      ))}
-    </div>
-  )}
-
-  {isCoach && !unlockedLevels.advanced && (
-    <button
-      style={{ marginTop: 8, fontSize: 12 }}
-      onClick={() =>
-        setUnlockedLevels((p) => ({ ...p, advanced: true }))
-      }
-    >
-      Unlock Advanced Level
-    </button>
-  )}
-</div>
-</div>
+      
     </div>
     
   );
