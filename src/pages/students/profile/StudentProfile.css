@@ -339,14 +339,15 @@
 
 .attendance-popup {
   position: fixed;
-  background: #fff;
+  background: white;
   padding: 8px;
   border-radius: 6px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 9999;
   display: flex;
   gap: 6px;
-  z-index: 1000;
 }
+
 
 .attendance-popup button {
   padding: 6px 10px;
