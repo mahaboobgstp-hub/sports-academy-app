@@ -214,10 +214,9 @@ export default function AttendancePanel({ isCoach }) {
         <span>Not Eligible for Refund</span>
       </label>
     </div>
+    )}
   </div>
 </div>
-</div>
-)
 );
 }
       
