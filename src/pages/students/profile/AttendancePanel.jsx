@@ -111,58 +111,34 @@ export default function AttendancePanel({ isCoach }) {
     <div className="card">
       <h3>Attendance</h3>
 <div className={`attendance-layout ${isCoach ? "coach-mode" : "student-mode"}`}>
+
+  {/* LEFT: Attendance */}
   <div className="attendance-section">
 
-      <div className="attendance-summary">
-        <div>Total Classes: 24</div>
-        <div>Attendance: 83%</div>
-      </div>
+    <div className="attendance-summary">
+      <div>Total Classes: 24</div>
+      <div>Attendance: 83%</div>
+    </div>
 
-      {/* 90-day grid */}
-      <div className="attendance-wrapper">
-  {[0, 30, 60].map((start) => (
-    <div className="attendance-row" key={start}>
-      {attendance.slice(start, start + 30).map((d) => (
-        <div
-          key={d.day}
-          className="attendance-box"
-          style={{ backgroundColor: STATUS_COLORS[d.status] }}
-          title={d.date}
-          onClick={(e) => {
-            if (!isCoach) return;
-            setSelectedDay(d.day);
-            setPopupPos({
-              x: e.clientX,
-              y: e.clientY,
-            });
-          }}
-        />
+    <div className="attendance-wrapper">
+      {[0, 30, 60].map((start) => (
+        <div className="attendance-row" key={start}>
+          {attendance.slice(start, start + 30).map((d) => (
+            <div
+              key={d.day}
+              className="attendance-box"
+              style={{ backgroundColor: STATUS_COLORS[d.status] }}
+              onClick={(e) => {
+                if (!isCoach) return;
+                setSelectedDay(d.day);
+                setPopupPos({ x: e.clientX, y: e.clientY });
+              }}
+            />
+          ))}
+        </div>
       ))}
     </div>
-  ))}
-</div>
 
-{/* Coach popup */}
-{isCoach && selectedDay && (
-  <div
-    className="attendance-popup"
-    style={{
-      top: popupPos.y + 10,
-      left: popupPos.x + 10,
-    }}
-  >
-    {["present", "absent", "holiday", "cancelled"].map((s) => (
-      <button key={s} onClick={() => updateStatus(s)}>
-        {s}
-      </button>
-    ))}
-  </div>
-)}
-
-{/* 👇 ONLY WRAPPING FOR ALIGNMENT – NOTHING REMOVED */}
-<div className="attendance-bottom">
-
-  <div className="attendance-left-bottom">
     <div className="attendance-legend">
       <span><i style={{ background: "#22c55e" }} /> Present</span>
       <span><i style={{ background: "#ef4444" }} /> Absent</span>
@@ -171,57 +147,31 @@ export default function AttendancePanel({ isCoach }) {
     </div>
   </div>
 
+  {/* RIGHT: Coach only */}
   {isCoach && (
-  <div className="attendance-right-bottom">
-    <div className="cancel-eligibility">
-      <h4>Cancelled Classes Eligibility</h4>
+    <div className="attendance-right-panel">
+      <div className="cancel-eligibility">
+        <h4>Cancelled Classes Eligibility</h4>
 
-      <label className="checkbox-row">
-        <input
-          type="checkbox"
-          checked={cancelEligibility.refund}
-          onChange={(e) =>
-            setCancelEligibility({
-              ...cancelEligibility,
-              refund: e.target.checked,
-            })
-          }
-        />
-        <span>Eligible for Refund</span>
-      </label>
+        <label className="checkbox-row">
+          <input type="checkbox" />
+          <span>Eligible for Refund</span>
+        </label>
 
-      <label className="checkbox-row">
-        <input
-          type="checkbox"
-          checked={cancelEligibility.makeup}
-          onChange={(e) =>
-            setCancelEligibility({
-              ...cancelEligibility,
-              makeup: e.target.checked,
-            })
-          }
-        />
-        <span>Eligible for Make up Classes</span>
-      </label>
+        <label className="checkbox-row">
+          <input type="checkbox" />
+          <span>Eligible for Make up Classes</span>
+        </label>
 
-      <label className="checkbox-row">
-        <input
-          type="checkbox"
-          checked={cancelEligibility.noRefund}
-          onChange={(e) =>
-            setCancelEligibility({
-              ...cancelEligibility,
-              noRefund: e.target.checked,
-            })
-          }
-        />
-        <span>Not Eligible for Refund</span>
-      </label>
+        <label className="checkbox-row">
+          <input type="checkbox" />
+          <span>Not Eligible for Refund</span>
+        </label>
+      </div>
     </div>
-    </div>
-   
-)}
+  )}
 </div>
+
  </div>
    </div>
        </div>
