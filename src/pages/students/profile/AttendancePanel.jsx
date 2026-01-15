@@ -76,6 +76,8 @@ function ParentAttendanceGrid() {
 */
 import { useState } from "react";
 import generateMockAttendance from "../mock/mockAttendance";
+import "./StudentProfile.css";
+
 
 const STATUS_COLORS = {
   none: "#e5e7eb",
