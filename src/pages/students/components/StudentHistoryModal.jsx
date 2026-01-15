@@ -40,7 +40,14 @@ export default function StudentHistoryModal({ enrollments, onClose }) {
                   </button>
                 </td>
               </tr>
-            )))}
+            ))
+      ):(
+       <tr>
+    <td colSpan="6" style={{ textAlign: "center", padding: "12px" }}>
+      No enrollment history found
+    </td>
+  </tr>
+    )}
           </tbody>
         </table>
 
