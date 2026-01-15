@@ -316,7 +316,7 @@
   color: #555;
 }
 .attendance-wrapper {
-  margin-top: 12px;
+  max-width: 720px;   /* adjust if needed */
 }
 
 .attendance-row {
@@ -387,19 +387,20 @@
 }
 .attendance-bottom {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;   /* 🔥 THIS FIXES vertical misalignment */
-  gap: 24px;
+  align-items: flex-start;
+  gap: 20px;              /* smaller gap */
   margin-top: 8px;
 }
 
 
 .attendance-left-bottom {
-  flex: 1;
+  flex: 0 0 auto;         /* 🔥 key fix */
 }
+
 
 .attendance-right-bottom {
   width: 260px;
+  margin-left: 0;         /* ensure no extra push */
 }
 
 .checkbox-row {
