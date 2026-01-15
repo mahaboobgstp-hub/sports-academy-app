@@ -118,6 +118,11 @@ export default function BookingPage() {
   placeholder="Price"
   className="price-input"
 />
+          <input
+  type="number"
+  placeholder="Discout%"
+  className="Discount-%"
+/>
  </div>
         
         <div className="booking-grid booking-stats">
