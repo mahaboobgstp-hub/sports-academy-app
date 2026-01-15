@@ -171,10 +171,6 @@ export default function AttendancePanel({ isCoach }) {
     </div>
   )}
 </div>
-
- </div>
- </div>
-</div>
 </div>
   );
 }
