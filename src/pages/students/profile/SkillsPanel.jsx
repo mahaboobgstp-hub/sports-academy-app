@@ -11,7 +11,7 @@ export default function SkillsPanel() {
     <div className="card">
       <h3>Skill Progress</h3>
 
-      {skillLevels.map((skill) => (
+      {skills.map((skill) => (
         <div key={skill.name} className="skill-row">
           <span>{skill.name}</span>
           <div className="skill-bars">
@@ -44,7 +44,7 @@ export default function SkillsPanel() {
     <div className="card">
       <h3>Skill Progress</h3>
 
-      {skillLevels.map((skill) => (
+      {skills.map((skill) => (
         <div key={skill.name} className="skill-row">
           <span className="skill-name">{skill.name}</span>
 
@@ -89,43 +89,34 @@ const LEVEL_LABEL = {
 };
 
 export default function SkillsPanel({ isCoach }) {
-  const [skillLevels, setSkillLevels] = useState([
-  {
-    level: "Beginner",
-    locked: false,
-    skills: [
-      { name: "Dribbling", completed: true },
-      { name: "Passing", completed: true },
-      { name: "Defense", completed: false },
-      { name: "Game Awareness", completed: false },
-    ],
-  },
-  {
-    level: "Intermediate",
-    locked: true,
-    skills: [
-      { name: "Crossover Dribble", completed: false },
-      { name: "Shooting Form", completed: false },
-      { name: "Defensive Positioning", completed: false },
-    ],
-  },
-  {
-    level: "Advanced",
-    locked: true,
-    skills: [
-      { name: "Pick & Roll", completed: false },
-      { name: "Fast Break Decision", completed: false },
-      { name: "Match Play", completed: false },
-    ],
-  },
-]);
+  const [skills, setSkills] = useState([
+    { name: "Dribbling", level: 2 },
+    { name: "Passing", level: 2 },
+    { name: "Shooting", level: 3 },
+    { name: "Defense", level: 1 },
+    { name: "Game Awareness", level: 2 }
+  ]);
+const [unlockedLevels, setUnlockedLevels] = useState({
+  intermediate: false,
+  advanced: false,
+});
+const intermediateSkills = [
+  "Crossover Dribble",
+  "Shooting Form",
+  "Defensive Positioning",
+];
 
+const advancedSkills = [
+  "Pick & Roll",
+  "Fast Break Decision",
+  "Match Play",
+];
 
   function updateLevel(skillName, newLevel) {
     if (!isCoach) return;
 
     setSkills(
-      skillLevels.map((s) =>
+      skills.map((s) =>
         s.name === skillName ? { ...s, level: newLevel } : s
       )
     );
@@ -135,7 +126,7 @@ export default function SkillsPanel({ isCoach }) {
     <div className="card">
       <h3>Skill Progress</h3>
 
-      {skillLevels.map((skill) => (
+      {skills.map((skill) => (
         <div
           key={skill.name}
           style={{
@@ -179,6 +170,58 @@ export default function SkillsPanel({ isCoach }) {
           )}
         </div>
       ))}
+      {/* INTERMEDIATE LEVEL (LOCKED SECTION) */}
+<div style={{ marginTop: 24 }}>
+  <strong>Intermediate Skills</strong>
+
+  {!unlockedLevels.intermediate && (
+    <div style={{ opacity: 0.5, marginTop: 8 }}>
+      {intermediateSkills.map((s) => (
+        <div key={s} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          🔒 {s}
+        </div>
+      ))}
+    </div>
+  )}
+
+  {isCoach && !unlockedLevels.intermediate && (
+    <button
+      style={{ marginTop: 8, fontSize: 12 }}
+      onClick={() =>
+        setUnlockedLevels((p) => ({ ...p, intermediate: true }))
+      }
+    >
+      Unlock Intermediate Level
+    </button>
+  )}
+</div>
+
+{/* ADVANCED LEVEL (LOCKED SECTION) */}
+<div style={{ marginTop: 24 }}>
+  <strong>Advanced Skills</strong>
+
+  {!unlockedLevels.advanced && (
+    <div style={{ opacity: 0.5, marginTop: 8 }}>
+      {advancedSkills.map((s) => (
+        <div key={s} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          🔒 {s}
+        </div>
+      ))}
+    </div>
+  )}
+
+  {isCoach && !unlockedLevels.advanced && (
+    <button
+      style={{ marginTop: 8, fontSize: 12 }}
+      onClick={() =>
+        setUnlockedLevels((p) => ({ ...p, advanced: true }))
+      }
+    >
+      Unlock Advanced Level
+    </button>
+  )}
+</div>
+
     </div>
   );
 }
