@@ -136,6 +136,13 @@ const advancedSkills = [
             marginBottom: 10
           }}
         >
+          <div
+  style={{
+    display: "flex",
+    gap: "24px",
+    marginTop: "24px",
+  }}
+>
           <strong style={{ width: 150 }}>
             {skill.name}
           </strong>
@@ -164,13 +171,7 @@ const advancedSkills = [
            </div>
       ))}
       {/* INTERMEDIATE LEVEL (LOCKED SECTION) */}
-<div
-  style={{
-    display: "flex",
-    gap: "24px",
-    marginTop: "24px",
-  }}
->
+
   {/* INTERMEDIATE SKILLS */}
   <div
     style={{
