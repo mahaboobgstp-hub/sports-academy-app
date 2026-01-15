@@ -725,11 +725,11 @@ useEffect(() => {
     </h4>
 
     {(dateOverrides[selectedOverrideDate] ||
-      programs[pIndex]
-        .locations[lIndex]
-        .courts[cIndex]
-        .days[dIndex]
-        .timeSlots
+  programs[weekEditor.pIndex]
+    .locations[weekEditor.lIndex]
+    .courts[weekEditor.cIndex]
+    .days[weekEditor.dIndex]
+    .timeSlots
     ).map((slot, i) => (
       <div key={i} className="override-row">
         <span>{slot.slot}</span>
