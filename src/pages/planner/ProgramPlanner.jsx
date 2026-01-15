@@ -717,6 +717,57 @@ useEffect(() => {
           <div style={{ fontSize: "13px", marginTop: "8px" }}>
             Time slot overrides will be applied only to this date.
           </div>
+          {selectedOverrideDate && (
+  <div className="day-override-grid">
+
+    <h4>
+      Time Slots – {formatDateWithDay(new Date(selectedOverrideDate))}
+    </h4>
+
+    {(dateOverrides[selectedOverrideDate] ||
+      programs[pIndex]
+        .locations[lIndex]
+        .courts[cIndex]
+        .days[dIndex]
+        .timeSlots
+    ).map((slot, i) => (
+      <div key={i} className="override-row">
+        <span>{slot.slot}</span>
+
+        <input
+          type="number"
+          value={slot.seats}
+          onChange={(e) => {
+            const updated = { ...dateOverrides };
+
+            if (!updated[selectedOverrideDate]) {
+              updated[selectedOverrideDate] = [];
+            }
+
+            updated[selectedOverrideDate][i] = {
+              ...slot,
+              seats: e.target.value
+            };
+
+            setDateOverrides(updated);
+          }}
+        />
+
+        <button
+          onClick={() => {
+            const updated = { ...dateOverrides };
+            updated[selectedOverrideDate].splice(i, 1);
+            setDateOverrides(updated);
+          }}
+        >
+          ✕
+        </button>
+      </div>
+    ))}
+
+  </div>
+)}
+
         </div>
       )}
 
