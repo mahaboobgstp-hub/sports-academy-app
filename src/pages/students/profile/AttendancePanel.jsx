@@ -108,6 +108,7 @@ export default function AttendancePanel({ isCoach }) {
   };
 
   return (
+<>
     <div className="card">
       <h3>Attendance</h3>
 <div className={`attendance-layout ${isCoach ? "coach-mode" : "student-mode"}`}>
