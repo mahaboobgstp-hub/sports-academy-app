@@ -363,11 +363,15 @@
   margin-right: 6px;
 }
 .cancel-eligibility {
-  margin-top: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fafafa;
 }
 
 .cancel-eligibility h4 {
-  margin-bottom: 8px;
+  margin-top: 0;              /* 🔥 removes downward push */
+  margin-bottom: 12px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -384,9 +388,11 @@
 .attendance-bottom {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;   /* 🔥 THIS FIXES vertical misalignment */
   gap: 24px;
-  margin-top: 12px;
+  margin-top: 8px;
 }
+
 
 .attendance-left-bottom {
   flex: 1;
@@ -398,12 +404,24 @@
 
 .checkbox-row {
   display: flex;
-  align-items: center;
+  align-items: center;        /* center vertically */
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 13px;
+  line-height: 1.2;
 }
 
-.checkbox-row input {
+.checkbox-row input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
   margin: 0;
+  vertical-align: middle;    /* 🔥 aligns checkbox to text */
+}
+.checkbox-row span {
+  display: inline-block;
+  line-height: 1.2;
+}
+.attendance-right-bottom {
+  width: 260px;
+  margin-top: 0;     /* 🔥 important */
 }
