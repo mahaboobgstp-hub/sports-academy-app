@@ -11,7 +11,7 @@ export default function SkillsPanel() {
     <div className="card">
       <h3>Skill Progress</h3>
 
-      {skills.map((skill) => (
+      {skillLevels.map((skill) => (
         <div key={skill.name} className="skill-row">
           <span>{skill.name}</span>
           <div className="skill-bars">
@@ -44,7 +44,7 @@ export default function SkillsPanel() {
     <div className="card">
       <h3>Skill Progress</h3>
 
-      {skills.map((skill) => (
+      {skillLevels.map((skill) => (
         <div key={skill.name} className="skill-row">
           <span className="skill-name">{skill.name}</span>
 
@@ -89,19 +89,43 @@ const LEVEL_LABEL = {
 };
 
 export default function SkillsPanel({ isCoach }) {
-  const [skills, setSkills] = useState([
-    { name: "Dribbling", level: 2 },
-    { name: "Passing", level: 2 },
-    { name: "Shooting", level: 3 },
-    { name: "Defense", level: 1 },
-    { name: "Game Awareness", level: 2 }
-  ]);
+  const [skillLevels, setSkillLevels] = useState([
+  {
+    level: "Beginner",
+    locked: false,
+    skills: [
+      { name: "Dribbling", completed: true },
+      { name: "Passing", completed: true },
+      { name: "Defense", completed: false },
+      { name: "Game Awareness", completed: false },
+    ],
+  },
+  {
+    level: "Intermediate",
+    locked: true,
+    skills: [
+      { name: "Crossover Dribble", completed: false },
+      { name: "Shooting Form", completed: false },
+      { name: "Defensive Positioning", completed: false },
+    ],
+  },
+  {
+    level: "Advanced",
+    locked: true,
+    skills: [
+      { name: "Pick & Roll", completed: false },
+      { name: "Fast Break Decision", completed: false },
+      { name: "Match Play", completed: false },
+    ],
+  },
+]);
+
 
   function updateLevel(skillName, newLevel) {
     if (!isCoach) return;
 
     setSkills(
-      skills.map((s) =>
+      skillLevels.map((s) =>
         s.name === skillName ? { ...s, level: newLevel } : s
       )
     );
@@ -111,7 +135,7 @@ export default function SkillsPanel({ isCoach }) {
     <div className="card">
       <h3>Skill Progress</h3>
 
-      {skills.map((skill) => (
+      {skillLevels.map((skill) => (
         <div
           key={skill.name}
           style={{
