@@ -353,3 +353,9 @@ button {
   padding: 4px;
   font-size: 13px;
 }
+.btn-group {
+  display: flex;
+  gap: 8px;            /* 👈 space between buttons */
+  flex-wrap: wrap;     /* responsive safety */
+  margin: 6px 0;
+}
