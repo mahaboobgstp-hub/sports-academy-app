@@ -24,7 +24,7 @@ export default function StudentOverview() {
  
   <EnrollmentInfo
     status="active"
-    year="2025"
+    year="2025-26"
     season="Summer"
     location="Indiranagar"
     program="U-12 Basketball"
