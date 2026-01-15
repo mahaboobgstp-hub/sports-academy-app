@@ -20,7 +20,8 @@ export default function StudentHistoryModal({ enrollments, onClose }) {
             </tr>
           </thead>
           <tbody>
-            {enrollments.map((e) => (
+            {enrollments?.length > 0 ? (
+              enrollments.map((e) =>  (
               <tr key={e.id}>
                 <td>{e.year}</td>
                 <td>{e.season}</td>
@@ -39,7 +40,7 @@ export default function StudentHistoryModal({ enrollments, onClose }) {
                   </button>
                 </td>
               </tr>
-            ))}
+            )))}
           </tbody>
         </table>
 
