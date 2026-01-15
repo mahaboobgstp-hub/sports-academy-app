@@ -7,6 +7,36 @@ import StudentHistoryModal from "../components/StudentHistoryModal";
 
 export default function StudentOverview({ isCoach }) {
   const [showHistory, setShowHistory] = useState(false);
+  const studentEnrollments = [
+  {
+    id: "e1",
+    studentId: "stu1",
+    year: "2023-24",
+    season: "Summer",
+    location: "Indiranagar",
+    program: "U-10 Basketball",
+    classTime: "Mon–Wed, 4:30–5:30 PM",
+  },
+  {
+    id: "e2",
+    studentId: "stu1",
+    year: "2024-25",
+    season: "Winter",
+    location: "Whitefield",
+    program: "U-12 Basketball",
+    classTime: "Tue–Thu, 5:00–6:00 PM",
+  },
+  {
+    id: "e3",
+    studentId: "stu1",
+    year: "2025-26",
+    season: "Summer",
+    location: "Indiranagar",
+    program: "U-12 Basketball",
+    classTime: "Mon–Wed, 5:30–6:30 PM",
+  },
+];
+
 
   return (
     <>
