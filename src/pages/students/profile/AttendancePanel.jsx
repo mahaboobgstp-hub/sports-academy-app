@@ -214,7 +214,7 @@ export default function AttendancePanel({ isCoach }) {
       </label>
     </div>
   </div>
-
+</div>
 </div>
 );
 }
