@@ -8,12 +8,14 @@ export default function EnrollmentInfo({
 }) {
   return (
     <div className="enrolment-info">
-
+      
+     <div className="class-meta-grid">
+       
       <div className={`enrolment-status ${status}`}>
         Enrolment: {status === "active" ? "Active" : "Inactive"}
       </div>
 
-      <div className="class-meta-grid">
+      
         <div><strong>Year:</strong> {year}</div>
         <div><strong>Season:</strong> {season}</div>
         <div><strong>Location:</strong> {location}</div>
