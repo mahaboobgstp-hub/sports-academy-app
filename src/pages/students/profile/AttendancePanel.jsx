@@ -1,4 +1,4 @@
-import { useState } from "react";
+/*import { useState } from "react";
 
 const attendanceData = [
   { day: "01", status: "P" },
@@ -72,4 +72,75 @@ function CoachAttendanceView() {
 
 function ParentAttendanceGrid() {
   return <div>Parent Attendance Grid</div>;
+}
+*/
+import { useState } from "react";
+import generateMockAttendance from "../mock/mockAttendance";
+
+const STATUS_COLORS = {
+  none: "#e5e7eb",
+  present: "#22c55e",
+  absent: "#ef4444",
+  holiday: "#f59e0b",
+  cancelled: "#7f1d1d",
+};
+
+export default function AttendancePanel({ isCoach }) {
+  const [attendance, setAttendance] = useState(generateMockAttendance());
+  const [selectedDay, setSelectedDay] = useState(null);
+
+  const updateStatus = (status) => {
+    setAttendance((prev) =>
+      prev.map((d) =>
+        d.day === selectedDay ? { ...d, status } : d
+      )
+    );
+    setSelectedDay(null);
+  };
+
+  return (
+    <div className="card">
+      <h3>Attendance</h3>
+
+      <div className="attendance-summary">
+        <div>Total Classes: 24</div>
+        <div>Attendance: 83%</div>
+      </div>
+
+      {/* 90-day grid */}
+      <div className="attendance-wrapper">
+        {[0, 30, 60].map((start) => (
+          <div className="attendance-row" key={start}>
+            {attendance.slice(start, start + 30).map((d) => (
+              <div
+                key={d.day}
+                className="attendance-box"
+                style={{ backgroundColor: STATUS_COLORS[d.status] }}
+                title={`Day ${d.day}`}
+                onClick={() => isCoach && setSelectedDay(d.day)}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* Coach popup */}
+      {isCoach && selectedDay && (
+        <div className="attendance-popup">
+          {["present", "absent", "holiday", "cancelled"].map((s) => (
+            <button key={s} onClick={() => updateStatus(s)}>
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="attendance-legend">
+        <span><i style={{ background: "#22c55e" }} /> Present</span>
+        <span><i style={{ background: "#ef4444" }} /> Absent</span>
+        <span><i style={{ background: "#f59e0b" }} /> Holiday</span>
+        <span><i style={{ background: "#7f1d1d" }} /> Cancelled</span>
+      </div>
+    </div>
+  );
 }
