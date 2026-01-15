@@ -14,6 +14,12 @@ export default function PausedCancelledClassesPage() {
       </div>
 
       <div className="paused-filters">
+        <select><option>Season</option><option>Season 3</option></select>
+        <div><label>Date</label>
+        <input type="date" value={date}
+        onChange={(e) => setDate(e.target.value)}
+        />
+        </div>
         <select><option>Status</option></select>
         <select><option>Program</option></select>
         <select><option>Location</option></select>
