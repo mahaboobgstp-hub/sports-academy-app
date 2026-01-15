@@ -18,4 +18,4 @@ const generateMockAttendance = () => {
   return data;
 };
 
-export default generateMockAttendance;  ✅
+export default generateMockAttendance;  
