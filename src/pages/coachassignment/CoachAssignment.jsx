@@ -46,14 +46,14 @@ export default function CoachAssignment() {
         <select>
         <option>All</option>
          <option>Season 3</option>
-          <select/>
+        </select>
         </div>
         <div className="ca-filter">
           <label>Program</label>
           <select>
           <option>All</option>
           <option>BallnBabies</option>
-          <select/>
+          </select>
         </div>
         <div className="ca-filter">
           <label>Date</label>
