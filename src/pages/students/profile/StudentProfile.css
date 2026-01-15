@@ -484,3 +484,10 @@
   flex: 0 0 30%;
   min-width: 320px;
 }
+.class-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns */
+  gap: 8px 20px;  /* row-gap | column-gap */
+  font-size: 13px;
+  color: #374151;
+}
