@@ -184,18 +184,25 @@ const advancedSkills = [
   {/* 🔒 LOCK ICON */}
   <span
         onClick={() => {
-          if (isCoach && skill.level === 0) {
-            updateLevel(skill.name, 1);
-          }
+          if (!isCoach) return;
+
+if (skill.level === 0) {
+  // unlock → beginner
+  updateLevel(skill.name, 1);
+} else {
+  // re-lock
+  updateLevel(skill.name, 0);
+}
+
         }}
         style={{
-          fontSize: 18,
-          cursor: isCoach && skill.level === 0 ? "pointer" : "default",
-          opacity: skill.level === 0 ? 1 : 0.2,
-        }}
-      >
-        🔒
-      </span>
+    fontSize: 18,
+    cursor: isCoach ? "pointer" : "default",
+    opacity: skill.level === 0 ? 1 : 0.5
+  }}
+>
+  🔒
+</span>
 
 
           {/* LEVEL TEXT */}
