@@ -1,3 +1,12 @@
+const startDate = new Date("2026-01-01");
+
+const formatDate = (date) =>
+  date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+
 const generateMockAttendance = () => {
   const data = [];
 
@@ -12,7 +21,16 @@ const generateMockAttendance = () => {
       else status = "cancelled";
     }
 
-    data.push({ day: i, status });
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
+
+
+     data.push({
+      day: i + 1,
+      status,
+      date: formatDate(currentDate), // 👈 dd-MMM-yyyy
+    });
+
   }
 
   return data;
