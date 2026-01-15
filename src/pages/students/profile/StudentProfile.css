@@ -316,8 +316,9 @@
   color: #555;
 }
 .attendance-wrapper {
-  max-width: 720px;   /* adjust if needed */
+  width: 100%;
 }
+
 
 .attendance-row {
   display: flex;
@@ -326,12 +327,11 @@
 }
 
 .attendance-box {
-  width: 26px;
-  height: 26px;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid #d1d5db;
+  width: 32px;            /* was ~26px */
+  height: 32px;
+  border-radius: 6px;
 }
+
 
 .attendance-box:hover {
   transform: scale(1.08);
@@ -363,11 +363,10 @@
   margin-right: 6px;
 }
 .cancel-eligibility {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 12px;
-  background: #fafafa;
+  padding: 16px;
+  font-size: 14px;
 }
+
 
 .cancel-eligibility h4 {
   margin-top: 0;              /* 🔥 removes downward push */
@@ -430,13 +429,16 @@
 /* === Attendance layout split === */
 .attendance-layout {
   display: flex;
-  gap: 24px;
+  gap: 32px;              /* more breathing space */
   align-items: flex-start;
-}
-/* Attendance section (left) */
-.attendance-section {
   width: 100%;
 }
+
+/* Attendance section (left) */
+.attendance-section {
+  padding-right: 12px;
+}
+
 /* Coach mode: split view */
 .attendance-layout.coach-mode .attendance-section {
   width: 70%;
@@ -477,4 +479,8 @@
   .attendance-layout.coach-mode .attendance-right-bottom {
     width: 100%;
   }
+}
+.attendance-right-panel {
+  flex: 0 0 30%;
+  min-width: 320px;
 }
