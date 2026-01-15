@@ -1,41 +1,84 @@
-.page-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 16px;
+/* ===============================
+   PAGE CONTAINER
+================================ */
+div {
+  box-sizing: border-box;
 }
 
-.page-title {
+/* ===============================
+   HEADINGS
+================================ */
+h3 {
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
 
-.page-subtitle {
-  font-size: 13px;
-  color: #667085;
-  margin-bottom: 16px;
-}
-
-/* TABLE */
-.erp-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.erp-table thead {
-  background: #f9fafb;
-}
-
-.erp-table th,
-.erp-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #eaecf0;
+/* ===============================
+   INPUTS & BUTTONS
+================================ */
+input {
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 6px;
   font-size: 14px;
 }
 
-.erp-table th {
+button {
+  height: 36px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+/* ===============================
+   TABLE (THIS IS THE KEY)
+================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* REMOVE OLD HTML BORDERS */
+table[border] {
+  border: none;
+}
+
+/* HEADER */
+thead {
+  background-color: #f9fafb;
+}
+
+th {
+  text-align: left;
+  font-size: 13px;
   font-weight: 600;
   color: #344054;
+  padding: 12px;
+  border-bottom: 1px solid #eaecf0;
+}
+
+/* BODY */
+td {
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #eaecf0;
+  color: #101828;
+}
+
+/* ROW HOVER */
+tbody tr:hover {
+  background-color: #f9fafb;
 }
