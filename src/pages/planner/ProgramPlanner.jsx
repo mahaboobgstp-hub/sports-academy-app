@@ -437,8 +437,13 @@ useEffect(() => {
 
         <div className="section-header">
           <h3>Programs</h3>
+           <div className="btn-group">
+              <button className="sub-btn">
+      View Programs
+    </button>
           <button onClick={addProgram}>+ Add Program</button>
         </div>
+          </div> 
 
         {programs.map((p, pIndex) => (
           <div key={p.id} className="program-card">
@@ -494,7 +499,7 @@ useEffect(() => {
   }
 />
 
-
+                <div className="btn-group">
                 <button className="sub-btn" onClick={() => addCourt(pIndex, lIndex)}>
                   + Add Court
                 </button>
@@ -510,13 +515,14 @@ useEffect(() => {
                 >
                   {loc.saved ? "Location Saved" : "Save Location"}
                 </button>
-
+                 </div>
                 {loc.courts.map((court, cIndex) => (
                   <div key={court.id} className="court-row">
 
                     <input placeholder="Court Name" />
                     <input placeholder="Seats Allocated" />
 
+                    <div className="btn-group">
                     <button
                       className="sub-btn"
                       onClick={() => addHours(pIndex, lIndex, cIndex)}
@@ -559,7 +565,8 @@ useEffect(() => {
                     >
                       {court.saved ? "Court Saved" : "Save Court"}
                     </button>
-
+                    </div>
+                      
                     {!court.collapsed && court.days.map((day, dIndex) => (
                       <div key={dIndex} className="day-row day-grid">
 
