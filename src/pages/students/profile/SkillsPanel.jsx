@@ -100,7 +100,7 @@ export default function SkillsPanel({ isCoach }) {
   // INTERMEDIATE SKILLS (LOCKED INITIALLY)
   { name: "Crossover Dribble", level: 0 },
   { name: "Shooting Form", level: 0 },
-  { name: "Defensive Positioning", level: 0 },
+  { name: "Defense", level: 0 },
 
   // ADVANCED SKILLS (LOCKED INITIALLY)
   { name: "Pick & Roll", level: 0 },
