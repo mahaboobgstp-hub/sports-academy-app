@@ -128,6 +128,7 @@ export default function AttendancePanel({ isCoach }) {
               key={d.day}
               className="attendance-box"
               style={{ backgroundColor: STATUS_COLORS[d.status] }}
+              title={d.date}                 {/* ✅ hover date */}
               onClick={(e) => {
                 if (!isCoach) return;
                 setSelectedDay(d.day);
@@ -171,8 +172,24 @@ export default function AttendancePanel({ isCoach }) {
     </div>
   )}
 </div>
-</div>
-  );
+      {/* ✅ POPUP RESTORED */}
+      {isCoach && selectedDay && (
+        <div
+          className="attendance-popup"
+          style={{
+            top: popupPos.y + 10,
+            left: popupPos.x + 10,
+          }}
+        >
+          {["present", "absent", "holiday", "cancelled"].map((s) => (
+            <button key={s} onClick={() => updateStatus(s)}>
+              {s}
+            </button>
+          ))}
+        </div>
+   )}
+    </div>
+  </>
+);
 }
-
       
