@@ -297,3 +297,55 @@ button {
   background: #fff;
   z-index: 3;
 }
+/* Edit Days – left date buttons */
+.edit-weeks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px; /* 👈 THIS FIXES MERGING */
+  margin-bottom: 16px;
+}
+
+.week-btn {
+  background: #0d6efd; /* same as week editor */
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.week-btn:hover {
+  background: #0b5ed7;
+}
+
+.week-btn.active {
+  background: #084298;
+}
+.day-override-grid {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.override-row {
+  display: grid;
+  grid-template-columns: 140px 80px 30px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.override-row input {
+  padding: 4px;
+}
+
+.override-row button {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
