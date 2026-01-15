@@ -776,7 +776,8 @@ useEffect(() => {
           >
             <div><strong>Week {index + 1}</strong></div>
             <div style={{ fontSize: "12px", opacity: 0.8 }}>
-              {formatDateWithDay(week.start)} → {formatDateWithDay(week.end)}
+                {formatDateWithDay(new Date(week.start))} →{" "}
+                  {formatDateWithDay(new Date(week.end))}
             </div>
           </button>
         ))}
@@ -792,4 +793,7 @@ useEffect(() => {
     </div>
   </div>
    )}  
+  </div>
 );
+}
+
