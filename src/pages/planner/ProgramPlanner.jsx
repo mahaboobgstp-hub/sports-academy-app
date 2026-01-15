@@ -438,10 +438,10 @@ useEffect(() => {
         <div className="section-header">
           <h3>Programs</h3>
            <div className="btn-group">
-              <button className="sub-btn">
+              <button className="primary-btn">
       View Programs
     </button>
-          <button onClick={addProgram}>+ Add Program</button>
+          <button className="primary-btn" onClick={addProgram}>+ Add Program</button>
         </div>
           </div> 
 
