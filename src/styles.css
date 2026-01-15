@@ -112,6 +112,21 @@ h2 {
   font-size: 13px;
   background-color: #ffffff;
 }
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-control {
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+}
+
 
 /* Table Wrapper */
 .paused-table-wrapper {
