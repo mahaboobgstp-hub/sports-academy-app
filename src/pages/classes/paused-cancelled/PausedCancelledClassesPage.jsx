@@ -16,7 +16,7 @@ export default function PausedCancelledClassesPage() {
       <div className="paused-filters">
         <select><option>Season</option><option>Season 3</option></select>
        <div className="filter-item">
-  <label>Date</label>
+  <label>&nbsp;</label>
   <input
     type="date"
     className="filter-control"
