@@ -82,3 +82,19 @@ td {
 tbody tr:hover {
   background-color: #f9fafb;
 }
+select {
+  height: 36px;
+  padding: 6px 10px;
+  border: 1px solid #d0d5dd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #101828;
+  cursor: pointer;
+}
+option {
+  font-size: 14px;
+  padding: 6px;
+  color: #101828;
+  background-color: #ffffff;
+}
