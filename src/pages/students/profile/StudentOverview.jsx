@@ -9,6 +9,7 @@ export default function StudentOverview() {
   const [showHistory, setShowHistory] = useState(false);
 
   return (
+    <>
     <div className="card">
       <div className="header-row">
         
@@ -59,5 +60,14 @@ export default function StudentOverview() {
 
       </div>
     </div>
+    {/* ✅ MODAL GOES HERE */}
+      {showHistory && (
+        <StudentHistoryModal
+          enrollments={studentEnrollments}
+          onClose={() => setShowHistory(false)}
+        />
+      )}
+    </>
   );
 }
+ 
