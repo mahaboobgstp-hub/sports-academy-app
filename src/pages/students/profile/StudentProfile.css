@@ -381,3 +381,29 @@
 .cancel-eligibility input {
   margin-right: 8px;
 }
+.attendance-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.attendance-left-bottom {
+  flex: 1;
+}
+
+.attendance-right-bottom {
+  width: 260px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.checkbox-row input {
+  margin: 0;
+}
