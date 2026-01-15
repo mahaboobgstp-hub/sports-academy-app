@@ -128,7 +128,7 @@ export default function AttendancePanel({ isCoach }) {
               key={d.day}
               className="attendance-box"
               style={{ backgroundColor: STATUS_COLORS[d.status] }}
-              title={d.date}                 {/* ✅ hover date */}
+              title={d.date}                 
               onClick={(e) => {
                 if (!isCoach) return;
                 setSelectedDay(d.day);
