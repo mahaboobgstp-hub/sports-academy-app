@@ -27,9 +27,13 @@ import SettingsLayout from "./modules/settings/SettingsLayout";
 import "./styles/analytics.css";
 
 import CoachAssignment from "./pages/coachassignment/CoachAssignment";
-import AttendancePage from "./modules/attendance/pages/AttendancePage";
+//import AttendancePage from "./modules/attendance/pages/AttendancePage";
 
+import { lazy, Suspense } from "react";
 
+const AttendancePage = lazy(() =>
+  import("./modules/attendance/pages/AttendancePage")
+);
 
 
 
@@ -124,7 +128,15 @@ export default function App() {
 
              
               {/* ATTENDANCE PAGE */}
-              <Route path="/attendance" element={<AttendancePage />} />
+              //<Route path="/attendance" element={<AttendancePage />} />
+                <Route
+  path="/attendance"
+  element={
+    <Suspense fallback={<div>Loading Attendance...</div>}>
+      <AttendancePage />
+    </Suspense>
+  }
+/>
                         
        </Route>
 
