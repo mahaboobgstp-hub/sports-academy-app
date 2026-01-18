@@ -36,7 +36,7 @@ const [filters, setFilters] = useState({
   };
 
   return {
-    period,
+    
     setPeriod,
     filters,
     setFilters,
