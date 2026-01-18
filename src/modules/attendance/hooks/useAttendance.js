@@ -36,9 +36,7 @@ const [filters, setFilters] = useState({
   };
 
   return {
-    
-    setPeriod,
-    filters,
+     filters,
     setFilters,
     month,
     setMonth,
