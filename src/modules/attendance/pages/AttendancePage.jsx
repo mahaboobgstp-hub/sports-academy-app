@@ -1,5 +1,4 @@
 import AttendanceToolbar from "../components/toolbar/AttendanceToolbar";
-import AttendanceGrid from "../components/grid/AttendanceGrid";
 import AttendanceSummary from "../components/summary/AttendanceSummary";
 import useAttendance from "../hooks/useAttendance";
 
@@ -7,10 +6,18 @@ export default function AttendancePage() {
   const attendance = useAttendance();
 
   return (
-    <div className="attendance-page">
-      <AttendanceToolbar {...attendance} />
-      <AttendanceGrid {...attendance} />
-      <AttendanceSummary {...attendance} />
-    </div>
+    <>
+      <AttendanceToolbar
+        period={attendance.period}
+        setPeriod={attendance.setPeriod}
+        filters={attendance.filters}
+        setFilters={attendance.setFilters}
+        bulkMode={attendance.bulkMode}
+        setBulkMode={attendance.setBulkMode}
+        attendanceData={attendance.attendanceData}
+      />
+
+      <AttendanceSummary summary={attendance.summary} />
+    </>
   );
 }
