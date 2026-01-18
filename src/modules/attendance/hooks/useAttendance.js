@@ -5,6 +5,12 @@ import { calculateSummary } from "../services/attendance.engine.client";
 export default function useAttendance() {
   const [month, setMonth] = useState("2026-01");
   const [bulkMode, setBulkMode] = useState(false);
+const [filters, setFilters] = useState({
+  orgUnit: "All",
+  department: "All",
+  group: "All",
+  role: "All"
+});
 
   const [employees, setEmployees] = useState([
     { id: 1, name: "Employee 1", attendance: {} },
