@@ -28,7 +28,7 @@ import "./styles/analytics.css";
 
 import CoachAssignment from "./pages/coachassignment/CoachAssignment";
 
-
+import AttendancePage from "./modules/attendance/pages/AttendancePage";
 
 
 
@@ -121,7 +121,8 @@ export default function App() {
             <Route path="/UsersRolesPage" element={<UsersRolesPage />} />src/
            
             <Route path="/settings" element={<SettingsLayout />} /> 
-                        
+              
+                   <Route path="/attendance" element={<AttendancePage />} />     
        </Route>
 
       </Routes>
