@@ -30,7 +30,7 @@ import CoachAssignment from "./pages/coachassignment/CoachAssignment";
 
 import AttendancePage from "./modules/attendance/pages/AttendancePage";
 
-
+import PayrollPage from "./modules/payroll/pages/PayrollPage";
 
 
 /* ===== SEASONS ===== */
@@ -122,7 +122,8 @@ export default function App() {
            
             <Route path="/settings" element={<SettingsLayout />} /> 
               
-                   <Route path="/attendance" element={<AttendancePage />} />     
+                   <Route path="/attendance" element={<AttendancePage />} /> 
+              <Route path="/payroll" element={<PayrollPage />} />
        </Route>
 
       </Routes>
