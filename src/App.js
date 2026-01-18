@@ -128,7 +128,7 @@ export default function App() {
 
              
               {/* ATTENDANCE PAGE */}
-              //<Route path="/attendance" element={<AttendancePage />} />
+              
                 <Route
   path="/attendance"
   element={
